@@ -82,6 +82,9 @@ def blogs(request):
     blogs = Blog.objects.order_by("-created_at").all()
     return JsonResponse({ "blogs": [blog.serialize_all() for blog in blogs] }, status=201)
 
+def blog_page(request, blog_id):
+    blog = Blog.objects.filter(pk=blog_id).first()
+    return JsonResponse({ "blog": blog.serialize() }, status=201)
 
 @csrf_exempt
 def new_blog(request):
