@@ -29,6 +29,7 @@ class BlogPage extends React.Component {
         } else {
             this.props.startSetBlog(parseInt(this.props.match.params.bid)).then((result) => {
                 this.setState({ blog: result.blog, renderBlog: true });
+                console.log(result);
                 //this.setState({ renderBlog: true });
             });
         }

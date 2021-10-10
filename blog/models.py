@@ -91,6 +91,15 @@ class Comments(models.Model):
     def __str__(self):
         return f"{self.content} - {self.created_by} <on> {self.on_blog}"
 
+    def serialize(self):
+        return {
+            "id": self.id,
+            "content": self.content,
+            "created_at": self.created_at.strftime("%b %d %Y, %I:%M %p"),
+            "created_by": self.created_by.username,
+            "likes": self.likes.count()
+        }
+
 
 
 """from django.db import models

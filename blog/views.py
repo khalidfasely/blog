@@ -6,7 +6,7 @@ from django.contrib.auth import authenticate, login, logout
 from django.views.decorators.csrf import csrf_exempt
 from django.db import IntegrityError
 
-from .models import User, Blog, Category
+from .models import User, Blog, Category, Comments
 
 # Create your views here.
 
@@ -84,7 +84,8 @@ def blogs(request):
 
 def blog_page(request, blog_id):
     blog = Blog.objects.filter(pk=blog_id).first()
-    return JsonResponse({ "blog": blog.serialize() }, status=201)
+    comments = Comments.objects.filter(on_blog=blog).all()
+    return JsonResponse({ "blog": blog.serialize(), "comments": [comment.serialize() for comment in comments] }, status=201)
 
 @csrf_exempt
 def new_blog(request):
