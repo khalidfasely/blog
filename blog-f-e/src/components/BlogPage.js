@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import ReactMarkdown from 'react-markdown';
 import { startSetBlog } from '../actions/blogPage';
+import Comment from './Comment';
 
 class BlogPage extends React.Component {
     state = {
@@ -28,8 +29,10 @@ class BlogPage extends React.Component {
             // Then render the content from Redux
         } else {
             this.props.startSetBlog(parseInt(this.props.match.params.bid)).then((result) => {
-                this.setState({ blog: result.blog, renderBlog: true });
-                console.log(result);
+                this.setState({ blog: {
+                    ...result.blog,
+                    comments: result.comments
+                }, renderBlog: true });
                 //this.setState({ renderBlog: true });
             });
         }
@@ -46,7 +49,14 @@ class BlogPage extends React.Component {
                     <ReactMarkdown>{this.state.blog.content}</ReactMarkdown>
                     <p>{this.state.blog.likes}</p>
                     <p>{this.state.blog.dislikes}</p>
-                    
+                    <div>
+                        <h5>Comments:</h5>
+                        {
+                            this.state.blog.comments.length !== 0 ?
+                            this.state.blog.comments.map(comment => <Comment key={comment.id} comment={comment} />) :
+                            <div>-NO COMMENTS-</div>
+                        }
+                    </div>
                 </div>
             )
         } else {
