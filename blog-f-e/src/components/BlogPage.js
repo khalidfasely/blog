@@ -1,14 +1,24 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import ReactMarkdown from 'react-markdown';
-import { startSetBlog } from '../actions/blogPage';
+import { startAddComment, startSetBlog } from '../actions/blogPage';
 import Comment from './Comment';
 
 class BlogPage extends React.Component {
-    state = {
-        renderBlog: false,
-        blog: undefined
+    constructor(props) {
+        super(props);
+
+        this.state = {
+            renderBlog: false,
+            blog: undefined,
+            newComment: ''
+        }
     }
+    //state = {
+    //    renderBlog: false,
+    //    blog: undefined,
+    //    newComment: ''
+    //}
     blogDidAlreadyLoad = () => {
         let blogInList = undefined;
         this.props.blogList.map((blogItem) => {
@@ -37,13 +47,29 @@ class BlogPage extends React.Component {
             });
         }
     }
+
+    onCommentChange = (e) => {
+        const newComment = e.target.value;
+        this.setState({ newComment });
+    }
+
+    onFormSubmit = (e) => {
+        e.preventDefault();
+        if (this.state.newComment.replace(/\s/g, '')) {    
+            this.props.startAddComment(parseInt(this.props.match.params.bid), this.state.newComment)//.then((result) => {
+
+//            })
+            this.setState({ newComment: '' });
+        }
+    }
+
     render(){
         if(this.state.renderBlog) {
             return (
                 <div>
                     <h1>{this.state.blog.title}</h1>
                     <p>{this.state.blog.created_at}</p>
-                    <p>{this.state.blog.created_by}</p>
+                    <p>{this.state.blog.created_by.username}</p>
                     <p>{this.state.blog.category}</p>
                     <p>{this.state.blog.description}</p>
                     <ReactMarkdown>{this.state.blog.content}</ReactMarkdown>
@@ -56,6 +82,17 @@ class BlogPage extends React.Component {
                             this.state.blog.comments.map(comment => <Comment key={comment.id} comment={comment} />) :
                             <div>-NO COMMENTS-</div>
                         }
+                    </div>
+                    <div>
+                        <h5>Add comments:</h5>
+                        <form onSubmit={this.onFormSubmit}>
+                            <textarea
+                              placeholder='Comment'
+                              onChange={this.onCommentChange}
+                              value={this.state.newComment}
+                            />
+                            <button disabled={!this.state.newComment.replace(/\s/g, '')}>Add Comment</button>
+                        </form>
                     </div>
                 </div>
             )
@@ -70,7 +107,8 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-    startSetBlog: (id) => dispatch(startSetBlog(id))
+    startSetBlog: (id) => dispatch(startSetBlog(id)),
+    startAddComment: (blog_id, comment) => dispatch(startAddComment({ blog_id, comment }))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(BlogPage);

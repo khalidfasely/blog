@@ -6,7 +6,7 @@ from django.contrib.auth import authenticate, login, logout
 from django.views.decorators.csrf import csrf_exempt
 from django.db import IntegrityError
 
-from .models import User, Blog, Category, Comments
+from .models import User, Blog, Category, Comments, Profile
 
 # Create your views here.
 
@@ -14,9 +14,13 @@ def index(request):
     return HttpResponse("Hello, world!")
 
 def user(request):
-    if request.user.username:
-        print(request.user.date_joined)
     return JsonResponse({"user": f"{request.user}"}, status=201)
+
+def user_page(request, uname):
+    blogs = Blog.objects.filter(created_by=uname).all()
+    bio = Profile.objects.filter(user=uname).first()
+    print(bio)
+    return JsonResponse({ "blogs": [ blog.serialize_all() for blog in blogs ], "bio": bio }, status=201)
 
 @csrf_exempt
 def login_view(request):
@@ -108,6 +112,26 @@ def new_blog(request):
         #print([blog.serialize()])
 
         return JsonResponse({ "message": "Blog Created", "blog": blog.serialize() }, status=201)
+
+    else:
+        return JsonResponse({"message": "The method must be POST"}, status=400)
+
+@csrf_exempt
+def new_comment(request):
+    if request.method == "POST":
+        if request.user is None:
+            return JsonResponse({ "message": "You must be Logged In to Create a New Blog!" }, status=201)
+    
+        data = json.loads(request.body)
+
+        comment_f_e = data.get("comment")
+        on_blog = data.get("blog_id")
+        blog = Blog.objects.filter(pk=on_blog).first()
+
+        comment = Comments.objects.create(created_by=request.user, content=comment_f_e, on_blog=blog)
+        comment.save()
+
+        return JsonResponse({ "message": "Comment Added", "comment": comment.serialize() }, status=201)
 
     else:
         return JsonResponse({"message": "The method must be POST"}, status=400)

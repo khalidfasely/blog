@@ -56,7 +56,10 @@ class Blog(models.Model):
             "title": self.title,
             "description": self.description,
             "created_at": self.created_at.strftime("%b %d %Y, %I:%M %p"),
-            "created_by": self.created_by.username,
+            "created_by": {
+                "id": self.created_by.id,
+                "username": self.created_by.username
+            },
             "likes": self.likes.count(),
             "dislikes": self.dislikes.count(),
             "category": self.category.category
@@ -69,7 +72,10 @@ class Blog(models.Model):
             "description": self.description,
             "content": self.content,
             "created_at": self.created_at.strftime("%b %d %Y, %I:%M %p"),
-            "created_by": self.created_by.username,
+            "created_by": {
+                "id": self.created_by.id,
+                "username": self.created_by.username
+            },
             "likes": self.likes.count(),
             "dislikes": self.dislikes.count(),
             "category": self.category.category
@@ -96,7 +102,10 @@ class Comments(models.Model):
             "id": self.id,
             "content": self.content,
             "created_at": self.created_at.strftime("%b %d %Y, %I:%M %p"),
-            "created_by": self.created_by.username,
+            "created_by": {
+                "id": self.created_by.id,
+                "username": self.created_by.username
+            },
             "likes": self.likes.count()
         }
 
