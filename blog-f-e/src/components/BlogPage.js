@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import ReactMarkdown from 'react-markdown';
 import { startAddComment, startSetBlog } from '../actions/blogPage';
 import Comment from './Comment';
+import { Link } from 'react-router-dom';
 
 class BlogPage extends React.Component {
     constructor(props) {
@@ -79,20 +80,24 @@ class BlogPage extends React.Component {
                         <h5>Comments:</h5>
                         {
                             this.state.blog.comments.length !== 0 ?
-                            this.state.blog.comments.map(comment => <Comment key={comment.id} comment={comment} />) :
+                            this.state.blog.comments.map(comment => <Comment key={comment.id} blogId={this.state.blog.id} comment={comment} />) :
                             <div>-NO COMMENTS-</div>
                         }
                     </div>
                     <div>
                         <h5>Add comments:</h5>
-                        <form onSubmit={this.onFormSubmit}>
-                            <textarea
-                              placeholder='Comment'
-                              onChange={this.onCommentChange}
-                              value={this.state.newComment}
-                            />
-                            <button disabled={!this.state.newComment.replace(/\s/g, '')}>Add Comment</button>
-                        </form>
+                        {
+                            this.props.uname ?
+                            <form onSubmit={this.onFormSubmit}>
+                                <textarea
+                                placeholder='Comment'
+                                onChange={this.onCommentChange}
+                                value={this.state.newComment}
+                                />
+                                <button disabled={!this.state.newComment.replace(/\s/g, '')}>Add Comment</button>
+                            </form> :
+                            <h5><Link to='/login'>Login</Link> or <Link to='/register'>Sign In</Link> to Add a Comment!</h5>
+                        }
                     </div>
                 </div>
             )
@@ -103,7 +108,8 @@ class BlogPage extends React.Component {
 };
 
 const mapStateToProps = (state) => ({
-    blogList: state.blogPage
+    blogList: state.blogPage,
+    uname: state.auth.uname
 });
 
 const mapDispatchToProps = (dispatch) => ({

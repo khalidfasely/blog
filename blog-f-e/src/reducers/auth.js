@@ -1,5 +1,6 @@
 const authReducerDefaultState = {
-    uname: undefined
+    uname: undefined,
+    commentsLiked: []
 };
 
 export default (state = authReducerDefaultState, action) => {
@@ -7,22 +8,26 @@ export default (state = authReducerDefaultState, action) => {
         case 'SET_USER':
             return {
                 ...state,
-                uname: action.uname
+                uname: action.uname,
+                commentsLiked: action.commentsLiked
             }
         case 'LOGIN':
             return {
                 ...state,
-                uname: action.uname
+                uname: action.uname,
+                commentsLiked: action.commentsLiked
             }
         case 'LOGOUT':
             return {
                 ...state,
-                uname: undefined
+                uname: undefined,
+                commentsLiked: []
             };
         case 'REGISTER':
             return {
                 ...state,
-                uname: action.uname
+                uname: action.uname,
+                commentsLiked: action.commentsLiked
             }
         default:
             return state;

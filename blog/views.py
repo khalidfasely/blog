@@ -5,6 +5,7 @@ from django.shortcuts import render
 from django.contrib.auth import authenticate, login, logout
 from django.views.decorators.csrf import csrf_exempt
 from django.db import IntegrityError
+#from django.contrib.auth.decorators import login_required
 
 from .models import User, Blog, Category, Comments, Profile
 
@@ -14,7 +15,12 @@ def index(request):
     return HttpResponse("Hello, world!")
 
 def user(request):
-    return JsonResponse({"user": f"{request.user}"}, status=201)
+    if request.user.username:
+        comments_liked = Comments.objects.filter(likes=request.user).all()
+    else:
+        comments_liked = []
+
+    return JsonResponse({ "user": f"{request.user}", "likes": [ comment.comment_id() for comment in comments_liked ] }, status=201)    
 
 def user_page(request, uname):
     blogs = Blog.objects.filter(created_by=uname).all()
@@ -39,7 +45,8 @@ def login_view(request):
         if user is not None:
             login(request, user)
 
-            return JsonResponse({"message": "Login Successfully.", "user": f"{request.user}"}, status=201)
+            comments_liked = Comments.objects.filter(likes=request.user).all()
+            return JsonResponse({"message": "Login Successfully.", "user": f"{request.user}", "likes": [ comment.comment_id() for comment in comments_liked ]}, status=201)
 
         else:
             return JsonResponse({"message": "Invalid username and/or password."}, status=201)
@@ -77,7 +84,9 @@ def register_view(request):
 
         login(request, user)
 
-        return JsonResponse({"message": "Register"}, status=201)
+        comments_liked = Comments.objects.filter(likes=request.user).all()
+        print([ comment.comment_id() for comment in comments_liked ])
+        return JsonResponse({"message": "Register", "likes": [ comment.comment_id() for comment in comments_liked ]}, status=201)
 
     else:
         return JsonResponse({"message": "The method must be POST"}, status=400)
@@ -135,3 +144,20 @@ def new_comment(request):
 
     else:
         return JsonResponse({"message": "The method must be POST"}, status=400)
+
+def like_comment(request, comment_id):
+    if request.user.username:
+        comment = Comments.objects.get(pk=comment_id)
+        comment.likes.add(request.user)
+        return JsonResponse({ "message": "Liked successfully." }, status=201)
+    
+    return JsonResponse({ "message": "You must be Logged In to Like a Comment!" }, status=201)
+
+
+def unlike_comment(request, comment_id):
+    if request.user.username:
+        comment = Comments.objects.get(pk=comment_id)
+        comment.likes.remove(request.user)
+        return JsonResponse({ "message": "Unliked successfully." }, status=201)
+    
+    return JsonResponse({ "message": "You must be Logged In to Unlike a Comment!" }, status=201)

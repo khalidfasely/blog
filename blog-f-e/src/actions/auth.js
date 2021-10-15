@@ -3,31 +3,33 @@ import loginApi from '../fetching/login';
 import logoutApi from '../fetching/logout';
 import registerApi from '../fetching/register';
 
-export const setUser = ({ uname } = {}) => ({
+export const setUser = ({ uname, commentsLiked } = {}) => ({
     type: 'SET_USER',
-    uname
+    uname,
+    commentsLiked
 });
 
 export const startSetUser = () => {
     return (dispatch) => {
         return user().then((result) => {
             if(result) {
-                dispatch(setUser({ uname: result.user }));
+                dispatch(setUser({ uname: result.user, commentsLiked: result.likes }));
                 return result;
             };
         });
     };
 };
 
-export const login = ({ uname }) => ({
+export const login = ({ uname, commentsLiked }) => ({
     type: 'LOGIN',
-    uname
+    uname,
+    commentsLiked
 });
 
 export const startLogin = ({ username, password }) => {
     return (dispatch) => {
         return loginApi({ username, password }).then((result) => {
-            dispatch(login({ uname: result.user }));
+            dispatch(login({ uname: result.user, commentsLiked: result.likes }));
             return result;
         });
     };
@@ -46,16 +48,17 @@ export const startLogout = () => {
     };
 };
 
-export const register = ({ uname }) => ({
+export const register = ({ uname, commentsLiked }) => ({
     type: 'REGISTER',
-    uname
+    uname,
+    commentsLiked
 });
 
 export const startRegister = ({ username, email, password, confirmation }) => {
     return (dispatch) => {
         return registerApi({ username, email, password, confirmation }).then(result => {
             if(result.message === "Register") {
-                dispatch(register({ uname: username }));
+                dispatch(register({ uname: username, commentsLiked: result.likes }));
             }
             return result;
         });

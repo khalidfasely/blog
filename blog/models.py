@@ -92,7 +92,7 @@ class Comments(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     content = models.TextField(max_length=300)
     on_blog = models.ForeignKey(Blog, on_delete=models.CASCADE, related_name="comment_on_blog")
-    likes = models.ManyToManyField(User, related_name="liker_com")
+    likes = models.ManyToManyField(User, related_name="liker_com", default=None, blank=True)
 
     def __str__(self):
         return f"{self.content} - {self.created_by} <on> {self.on_blog}"
@@ -108,6 +108,9 @@ class Comments(models.Model):
             },
             "likes": self.likes.count()
         }
+
+    def comment_id(self):
+        return f"{self.id}"
 
 
 

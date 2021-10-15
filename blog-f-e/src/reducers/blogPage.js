@@ -41,6 +41,53 @@ export default (state = blogPageReducerDefaultState, action) => {
             //        };
             //    })
             //]
+        case 'LIKE_COMMENT':
+            const blogsLC = [];
+            state.map((blog) => {
+                const cid = action.cid;
+                if(blog.id === action.bid) {
+                    blogsLC.push({
+                            ...blog,
+                            ...blog.comments.map(comment => {
+                                if (cid === comment.id) {
+                                    return {
+                                        ...comment,
+                                        likes: comment.likes++
+                                    }
+                                } else {
+                                    return comment;
+                                }
+                            })
+                        });
+                } else {
+                    blogsLC.push(blog);
+                };
+            })
+            return [...blogsLC];
+        case 'UNLIKE_COMMENT':
+            const blogsUC = [];
+            state.map((blog) => {
+                const cid = action.cid;
+                if(blog.id === action.bid) {
+                    blogsUC.push({
+                            ...blog,
+                            ...blog.comments.map(comment => {
+                                if (cid === comment.id) {
+                                    console.log(comment.likes--);
+                                    return {
+                                        ...comment,
+                                        likes: comment.likes - 1
+                                    }
+                                } else {
+                                    return comment;
+                                }
+                            })
+                        });
+                } else {
+                    blogsUC.push(blog);
+                };
+            })
+            return [...blogsUC];
         default:
             return state;
     }
