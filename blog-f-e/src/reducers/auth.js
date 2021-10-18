@@ -29,6 +29,18 @@ export default (state = authReducerDefaultState, action) => {
                 uname: action.uname,
                 commentsLiked: action.commentsLiked
             }
+        case 'L_COMMENT':
+            //console.log(state.commentsLiked)
+            return {
+                ...state,
+                ...state.commentsLiked.push(`${action.cid}`)
+            }
+        case 'U_COMMENT':
+            //console.log(state.commentsLiked, [...state.commentsLiked.filter(commentId => commentId !== `${action.cid}`)])
+            return {
+                ...state,
+                commentsLiked: [...state.commentsLiked.filter(commentId => commentId !== `${action.cid}`)]
+            }
         default:
             return state;
     }

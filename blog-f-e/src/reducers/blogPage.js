@@ -73,10 +73,11 @@ export default (state = blogPageReducerDefaultState, action) => {
                             ...blog,
                             ...blog.comments.map(comment => {
                                 if (cid === comment.id) {
-                                    console.log(comment.likes--);
+                                    const cL = comment.likes--;
+                                    //console.log(comment.likes--);
                                     return {
                                         ...comment,
-                                        likes: comment.likes - 1
+                                        likes: cL//comment.likes - 1
                                     }
                                 } else {
                                     return comment;

@@ -64,3 +64,13 @@ export const startRegister = ({ username, email, password, confirmation }) => {
         });
     };
 };
+
+export const l_comment = (cid) => ({
+    type: 'L_COMMENT',
+    cid
+});
+
+export const u_comment = (cid) => ({
+    type: 'U_COMMENT',
+    cid
+});
