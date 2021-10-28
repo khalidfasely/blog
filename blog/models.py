@@ -87,6 +87,9 @@ class Blog(models.Model):
     def dislikes_num(self):
         return self.dislikes.all().count()
 
+    def blog_id(self):
+        return f"{self.id}"
+
 class Comments(models.Model):
     created_by = models.ForeignKey(User, on_delete=models.PROTECT, related_name="creater_com")
     created_at = models.DateTimeField(auto_now_add=True)

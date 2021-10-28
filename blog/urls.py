@@ -14,4 +14,6 @@ urlpatterns = [
     path("user_page/<str:uname>", views.user_page, name="user_page"),
     path("like_comment/<int:comment_id>", views.like_comment, name="like_comment"),
     path("unlike_comment/<int:comment_id>", views.unlike_comment, name="unlike_comment"),
+    path("like_blog/<int:blog_id>", views.like_blog, name="like_blog"),
+    path("unlike_blog/<int:blog_id>", views.unlike_blog, name="unlike_blog"),
 ]

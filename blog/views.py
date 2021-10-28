@@ -17,10 +17,13 @@ def index(request):
 def user(request):
     if request.user.username:
         comments_liked = Comments.objects.filter(likes=request.user).all()
+        blogs_liked = Blog.objects.filter(likes=request.user).all()    
     else:
         comments_liked = []
+        blogs_liked = []
 
-    return JsonResponse({ "user": f"{request.user}", "likes": [ comment.comment_id() for comment in comments_liked ] }, status=201)    
+    print(blogs_liked)
+    return JsonResponse({ "user": f"{request.user}", "likes": [ comment.comment_id() for comment in comments_liked ], "likes_b": [ blog.blog_id() for blog in blogs_liked ] }, status=201)    
 
 def user_page(request, uname):
     blogs = Blog.objects.filter(created_by=uname).all()
@@ -46,7 +49,8 @@ def login_view(request):
             login(request, user)
 
             comments_liked = Comments.objects.filter(likes=request.user).all()
-            return JsonResponse({"message": "Login Successfully.", "user": f"{request.user}", "likes": [ comment.comment_id() for comment in comments_liked ]}, status=201)
+            blogs_liked = Blog.objects.filter(likes=request.user).all()
+            return JsonResponse({"message": "Login Successfully.", "user": f"{request.user}", "likes": [ comment.comment_id() for comment in comments_liked ], "likes_b": [ blog.blog_id() for blog in blogs_liked ]}, status=201)
 
         else:
             return JsonResponse({"message": "Invalid username and/or password."}, status=201)
@@ -85,8 +89,9 @@ def register_view(request):
         login(request, user)
 
         comments_liked = Comments.objects.filter(likes=request.user).all()
-        print([ comment.comment_id() for comment in comments_liked ])
-        return JsonResponse({"message": "Register", "likes": [ comment.comment_id() for comment in comments_liked ]}, status=201)
+        blogs_liked = Blog.objects.filter(likes=request.user).all()
+        #print([ comment.comment_id() for comment in comments_liked ])
+        return JsonResponse({"message": "Register", "likes": [ comment.comment_id() for comment in comments_liked ], "likes_b": [ blog.blog_id() for blog in blogs_liked ]}, status=201)
 
     else:
         return JsonResponse({"message": "The method must be POST"}, status=400)
@@ -144,6 +149,22 @@ def new_comment(request):
 
     else:
         return JsonResponse({"message": "The method must be POST"}, status=400)
+
+def like_blog(request, blog_id):
+    if request.user.username:
+        blog = Blog.objects.get(pk=blog_id)
+        blog.likes.add(request.user)
+        return JsonResponse({ "message": "Liked successfully." }, status=201)
+
+    return JsonResponse({ "message": "You must be Logged In to Like a Comment!" }, status=201)
+
+def unlike_blog(request, blog_id):
+    if request.user.username:
+        blog = Blog.objects.get(pk=blog_id)
+        blog.likes.remove(request.user)
+        return JsonResponse({ "message": "Unliked successfully." }, status=201)
+
+    return JsonResponse({ "message": "You must be Logged In to Like a Comment!" }, status=201)
 
 def like_comment(request, comment_id):
     if request.user.username:

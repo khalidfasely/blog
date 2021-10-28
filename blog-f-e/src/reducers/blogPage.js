@@ -41,6 +41,60 @@ export default (state = blogPageReducerDefaultState, action) => {
             //        };
             //    })
             //]
+        case 'LIKE_BLOG':
+            //console.log('like blog');
+            //console.log(state);
+            //state.map(blog => {
+            //    if (blog.id === action.bid) {
+            //        return {
+            //            ...blog,
+            //            likes: blog.likes++
+            //        }
+            //    } else {
+            //        return blog;
+            //    }
+            //})
+            const blogLB = [];
+            [...state].map(blog => {
+                if (blog.id === action.bid) {
+                    blogLB.push({
+                        //...blog,
+                        //...blog.likes++
+                        ...blog,
+                        likes: blog.likes + 1
+                    })
+                } else {
+                    blogLB.push(blog)
+                }
+            })
+            return [...blogLB]
+        case 'UNLIKE_BLOG':
+            //console.log('unlike blog');
+            //console.log(state);
+            //state.map(blog => {
+            //    if (blog.id === action.bid) {
+            //        return {
+            //            ...blog,
+            //            likes: blog.likes--
+            //        }
+            //    } else {
+            //        return blog;
+            //    }
+            //})
+            const blogUB = [];
+            [...state].map(blog => {
+                if (blog.id === action.bid) {
+                    blogUB.push({
+                        //...blog,
+                        //...blog.likes--
+                        ...blog,
+                        likes: blog.likes - 1
+                    })
+                } else {
+                    blogUB.push(blog)
+                }
+            })
+            return [...blogUB]
         case 'LIKE_COMMENT':
             const blogsLC = [];
             state.map((blog) => {

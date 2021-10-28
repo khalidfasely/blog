@@ -2,6 +2,8 @@ import blogPage from "../fetching/blogPage";
 import newComment from "../fetching/newComment";
 import likeCommentApi from "../fetching/likeComment";
 import unlikeCommentApi from "../fetching/unlikeComment";
+import likeBlogApi from "../fetching/likeBlog";
+import unlikeBlogApi from "../fetching/unlikeBlog";
 
 export const setBlog = ({ blog, comments }) => ({
     type: 'SET_BLOG',
@@ -62,6 +64,34 @@ export const startUnlikeComment = (cid, bid) => {
     return (dispatch) => {
         return unlikeCommentApi(cid).then(result => {
             dispatch(unlikeComment(cid, bid));
+            return result;
+        });
+    };
+};
+
+export const likeBlog = (bid) => ({
+    type: 'LIKE_BLOG', //????
+    bid
+});
+
+export const startLikeBlog = (bid) => {
+    return (dispatch) => {
+        return likeBlogApi(bid).then(result => {
+            dispatch(likeBlog(bid));
+            return result;
+        });
+    };
+};
+
+export const unlikeBlog = (bid) => ({
+    type: 'UNLIKE_BLOG', //????
+    bid
+});
+
+export const startUnlikeBlog = (bid) => {
+    return (dispatch) => {
+        return unlikeBlogApi(bid).then(result => {
+            dispatch(unlikeBlog(bid));
             return result;
         });
     };

@@ -4,6 +4,7 @@ export default () => {
     .then(result => {
         //console.log(result.user);
         if (result.user !== "AnonymousUser") {
+            //console.log(result);
             return result;
         } else {
             return undefined;
