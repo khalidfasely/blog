@@ -10,6 +10,7 @@ import NewBlog from "../components/NewBlog";
 import NotFound from "../components/NotFound";
 import BlogPage from "../components/BlogPage";
 import UserPage from "../components/UserPage";
+import SavedBlogs from "../components/SavedBlogs";
 
 export const history = createHistory();
 
@@ -25,6 +26,7 @@ const AppRoute = () => (
             <Route path="/new" component={NewBlog} />
             <Route path="/blog/:bid" component={BlogPage} />
             <Route path="/user/:uid" component={UserPage} />
+            <Route path="/saves" component={SavedBlogs} />
             <Route component={NotFound} />
         </Switch>
         </div>
@@ -32,3 +34,12 @@ const AppRoute = () => (
 )
 
 export default AppRoute;
+
+//<Route path="/" component={Blogs} exact={true} /> //Public
+//<Route path="/profile" component={Profile} /> //Private
+//<Route path="/login" component={Login} /> //Public
+//<Route path="/register" component={Register} /> //Public
+//<Route path="/new" component={NewBlog} /> //Private
+//<Route path="/blog/:bid" component={BlogPage} /> //Public
+//<Route path="/user/:uid" component={UserPage} /> //Public
+//<Route path="/saves" component={SavedBlogs} /> //Private

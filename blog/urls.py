@@ -16,4 +16,5 @@ urlpatterns = [
     path("unlike_comment/<int:comment_id>", views.unlike_comment, name="unlike_comment"),
     path("like_blog/<int:blog_id>", views.like_blog, name="like_blog"),
     path("unlike_blog/<int:blog_id>", views.unlike_blog, name="unlike_blog"),
+    path("blogs_saved", views.blogs_saved, name="blogs_saved"),
 ]

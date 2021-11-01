@@ -5,6 +5,7 @@ const Profile = () => (
     <div>
         <h1>Profile</h1>
         <Link to='/' >Home</Link>
+        <Link to='/saves' >Save Blogs</Link>
     </div>
 )
 

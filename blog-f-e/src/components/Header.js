@@ -3,10 +3,12 @@ import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { history } from '../router/AppRouter';
 import { startLogout } from '../actions/auth';
+import { unsetSavedBlogs } from '../actions/savedBlogs';
 
-const Header = ({ uname, startLogout }) => {
+const Header = ({ uname, startLogout, unsetSavedBlogs }) => {
     const logout = () => {
         startLogout().then(() => {
+            unsetSavedBlogs();
             history.push('/');
         });
     };
@@ -35,6 +37,7 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = (dispatch) => ({
     startLogout: () => dispatch(startLogout()),
+    unsetSavedBlogs: () => dispatch(unsetSavedBlogs()),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Header);

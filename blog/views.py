@@ -22,13 +22,11 @@ def user(request):
         comments_liked = []
         blogs_liked = []
 
-    print(blogs_liked)
     return JsonResponse({ "user": f"{request.user}", "likes": [ comment.comment_id() for comment in comments_liked ], "likes_b": [ blog.blog_id() for blog in blogs_liked ] }, status=201)    
 
 def user_page(request, uname):
     blogs = Blog.objects.filter(created_by=uname).all()
     bio = Profile.objects.filter(user=uname).first()
-    print(bio)
     return JsonResponse({ "blogs": [ blog.serialize_all() for blog in blogs ], "bio": bio }, status=201)
 
 @csrf_exempt
@@ -42,7 +40,6 @@ def login_view(request):
         #user = authenticate(request, username=username, password=password)
         #users = authenticate(request, username=username, password=password)
         user = authenticate(request, username=username, password=password)
-        print(user)
 
         #if user is not None:
         if user is not None:
@@ -182,3 +179,15 @@ def unlike_comment(request, comment_id):
         return JsonResponse({ "message": "Unliked successfully." }, status=201)
     
     return JsonResponse({ "message": "You must be Logged In to Unlike a Comment!" }, status=201)
+
+def blogs_saved(request):
+    if request.user.username:
+        profile = Profile.objects.filter(user=request.user).first()
+        if profile:
+            blogs = profile.saves.all()
+        else:
+            blogs = []
+
+        return JsonResponse({ "message": "Profile.", "blogs_saved": [blog.serialize_all() for blog in blogs] }, status=201)
+    
+    return JsonResponse({ "message": "No Profile!" }, status=201)

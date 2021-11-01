@@ -17,16 +17,6 @@ from django.db import models
     objects = UserManager()"""
     
 
-class Profile(models.Model):
-    user = models.OneToOneField(User, null=True, on_delete=models.CASCADE)
-    bio = models.TextField(max_length=255)
-    saves = models.ManyToManyField('Blog', default=None, blank=True, related_name="saves_blogs")
-
-    def __str__(self):
-        return f"{self.user} - {self.bio} - {self.saves.all().count()}"
-
-    def saves_blogs_num(self):
-        return self.saves.all().count()
 
 
 class Category(models.Model):
@@ -89,6 +79,17 @@ class Blog(models.Model):
 
     def blog_id(self):
         return f"{self.id}"
+
+class Profile(models.Model):
+    user = models.OneToOneField(User, null=True, on_delete=models.CASCADE)
+    bio = models.TextField(max_length=255)
+    saves = models.ManyToManyField(Blog, default=None, blank=True, related_name="saves_blogs")
+
+    def __str__(self):
+        return f"{self.user} - {self.bio} - {self.saves.all().count()}"
+
+    def saves_blogs_num(self):
+        return self.saves.all().count()
 
 class Comments(models.Model):
     created_by = models.ForeignKey(User, on_delete=models.PROTECT, related_name="creater_com")
