@@ -18,11 +18,12 @@ def user(request):
     if request.user.username:
         comments_liked = Comments.objects.filter(likes=request.user).all()
         blogs_liked = Blog.objects.filter(likes=request.user).all()    
+        blogs_saved = Profile.objects.filter(user=request.user).first().saves.all()
     else:
         comments_liked = []
         blogs_liked = []
 
-    return JsonResponse({ "user": f"{request.user}", "likes": [ comment.comment_id() for comment in comments_liked ], "likes_b": [ blog.blog_id() for blog in blogs_liked ] }, status=201)    
+    return JsonResponse({ "user": f"{request.user}", "likes": [ comment.comment_id() for comment in comments_liked ], "likes_b": [ blog.blog_id() for blog in blogs_liked ], "blogs_saved": [ f"{blog_saved.id}" for blog_saved in blogs_saved ] }, status=201)    
 
 def user_page(request, uname):
     blogs = Blog.objects.filter(created_by=uname).all()
@@ -47,7 +48,8 @@ def login_view(request):
 
             comments_liked = Comments.objects.filter(likes=request.user).all()
             blogs_liked = Blog.objects.filter(likes=request.user).all()
-            return JsonResponse({"message": "Login Successfully.", "user": f"{request.user}", "likes": [ comment.comment_id() for comment in comments_liked ], "likes_b": [ blog.blog_id() for blog in blogs_liked ]}, status=201)
+            blogs_saved = Profile.objects.filter(user=request.user).first().saves.all()
+            return JsonResponse({"message": "Login Successfully.", "user": f"{request.user}", "likes": [ comment.comment_id() for comment in comments_liked ], "likes_b": [ blog.blog_id() for blog in blogs_liked ], "blogs_saved": [ f"{blog_saved.id}" for blog_saved in blogs_saved ] }, status=201)
 
         else:
             return JsonResponse({"message": "Invalid username and/or password."}, status=201)
@@ -87,8 +89,9 @@ def register_view(request):
 
         comments_liked = Comments.objects.filter(likes=request.user).all()
         blogs_liked = Blog.objects.filter(likes=request.user).all()
+        blogs_saved = Profile.objects.filter(user=request.user).first().saves.all()
         #print([ comment.comment_id() for comment in comments_liked ])
-        return JsonResponse({"message": "Register", "likes": [ comment.comment_id() for comment in comments_liked ], "likes_b": [ blog.blog_id() for blog in blogs_liked ]}, status=201)
+        return JsonResponse({"message": "Register", "likes": [ comment.comment_id() for comment in comments_liked ], "likes_b": [ blog.blog_id() for blog in blogs_liked ], "blogs_saved": [ f"{blog_saved.id}" for blog_saved in blogs_saved ] }, status=201)
 
     else:
         return JsonResponse({"message": "The method must be POST"}, status=400)

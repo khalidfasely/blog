@@ -118,6 +118,15 @@ const BlogPage = (props) => {
                     }
                 </div>
                 <div>
+                    {
+                        props.uname && (
+                            props.blogsSaved.includes(props.match.params.bid) ?
+                            <button disabled={buttonDis}>Unsave</button> :
+                            <button disabled={buttonDis}>Save</button>
+                        )
+                    }
+                </div>
+                <div>
                     <h5>Comments:</h5>
                     {
                         blog.comments.length !== 0 ?
@@ -150,7 +159,8 @@ const BlogPage = (props) => {
 const mapStateToProps = (state) => ({
     blogList: state.blogPage,
     uname: state.auth.uname,
-    blogsLiked: state.auth.blogsLiked
+    blogsLiked: state.auth.blogsLiked,
+    blogsSaved: state.auth.blogsSaved
 });
 
 const mapDispatchToProps = (dispatch) => ({

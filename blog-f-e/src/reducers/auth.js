@@ -1,7 +1,8 @@
 const authReducerDefaultState = {
     uname: undefined,
     commentsLiked: [],
-    blogsLiked: []
+    blogsLiked: [],
+    blogsSaved: []
 };
 
 export default (state = authReducerDefaultState, action) => {
@@ -11,28 +12,32 @@ export default (state = authReducerDefaultState, action) => {
                 ...state,
                 uname: action.uname,
                 commentsLiked: action.commentsLiked,
-                blogsLiked: action.blogsLiked
+                blogsLiked: action.blogsLiked,
+                blogsSaved: action.blogsSaved
             }
         case 'LOGIN':
             return {
                 ...state,
                 uname: action.uname,
                 commentsLiked: action.commentsLiked,
-                blogsLiked: action.blogsLiked
+                blogsLiked: action.blogsLiked,
+                blogsSaved: action.blogsSaved
             }
         case 'LOGOUT':
             return {
                 ...state,
                 uname: undefined,
                 commentsLiked: [],
-                blogsLiked: []
+                blogsLiked: [],
+                blogsSaved: []
             };
         case 'REGISTER':
             return {
                 ...state,
                 uname: action.uname,
                 commentsLiked: action.commentsLiked,
-                blogsLiked: action.blogsLiked
+                blogsLiked: action.blogsLiked,
+                blogsSaved: action.blogsSaved
             }
         case 'L_COMMENT':
             //console.log(state.commentsLiked)

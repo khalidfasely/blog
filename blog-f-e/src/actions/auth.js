@@ -3,35 +3,47 @@ import loginApi from '../fetching/login';
 import logoutApi from '../fetching/logout';
 import registerApi from '../fetching/register';
 
-export const setUser = ({ uname, commentsLiked, blogsLiked } = {}) => ({
+export const setUser = ({ uname, commentsLiked, blogsLiked, blogsSaved } = {}) => ({
     type: 'SET_USER',
     uname,
     commentsLiked,
-    blogsLiked
+    blogsLiked,
+    blogsSaved
 });
 
 export const startSetUser = () => {
     return (dispatch) => {
         return user().then((result) => {
             if(result) {
-                dispatch(setUser({ uname: result.user, commentsLiked: result.likes, blogsLiked: result.likes_b }));
+                dispatch(setUser({
+                    uname: result.user,
+                    commentsLiked: result.likes,
+                    blogsLiked: result.likes_b,
+                    blogsSaved: result.blogs_saved
+                }));
                 return result;
             };
         });
     };
 };
 
-export const login = ({ uname, commentsLiked, blogsLiked }) => ({
+export const login = ({ uname, commentsLiked, blogsLiked, blogsSaved }) => ({
     type: 'LOGIN',
     uname,
     commentsLiked,
-    blogsLiked
+    blogsLiked,
+    blogsSaved
 });
 
 export const startLogin = ({ username, password }) => {
     return (dispatch) => {
         return loginApi({ username, password }).then((result) => {
-            dispatch(login({ uname: result.user, commentsLiked: result.likes, blogsLiked: result.likes_b }));
+            dispatch(login({
+                uname: result.user,
+                commentsLiked: result.likes,
+                blogsLiked: result.likes_b,
+                blogsSaved: result.blogs_saved
+            }));
             return result;
         });
     };
@@ -50,18 +62,24 @@ export const startLogout = () => {
     };
 };
 
-export const register = ({ uname, commentsLiked, blogsLiked }) => ({
+export const register = ({ uname, commentsLiked, blogsLiked, blogsSaved }) => ({
     type: 'REGISTER',
     uname,
     commentsLiked,
-    blogsLiked
+    blogsLiked,
+    blogsSaved
 });
 
 export const startRegister = ({ username, email, password, confirmation }) => {
     return (dispatch) => {
         return registerApi({ username, email, password, confirmation }).then(result => {
             if(result.message === "Register") {
-                dispatch(register({ uname: username, commentsLiked: result.likes, blogsLiked: result.likes_b }));
+                dispatch(register({
+                    uname: username,
+                    commentsLiked: result.likes,
+                    blogsLiked: result.likes_b,
+                    blogsSaved: result.blogs_saved
+                }));
             }
             return result;
         });
