@@ -7,20 +7,23 @@ import reportWebVitals from './reportWebVitals';
 import AppRoute from './router/AppRouter';
 import { startSetUser } from './actions/auth';
 import { startSetBlogs } from './actions/blogs';
+import { startSetSavedBlogs } from './actions/savedBlogs';
 
 const store = configeStore();
 
 const renderApp = () => {
   store.dispatch(startSetBlogs()).then(()=> {
     store.dispatch(startSetUser()).then(() => {
-      ReactDOM.render(
-        <React.StrictMode>
-          <Provider store={store}>
-            <AppRoute />
-          </Provider>
-        </React.StrictMode>,
-        document.getElementById('root')
-      );
+      store.dispatch(startSetSavedBlogs()).then(() => {
+        ReactDOM.render(
+          <React.StrictMode>
+            <Provider store={store}>
+              <AppRoute />
+            </Provider>
+          </React.StrictMode>,
+          document.getElementById('root')
+        );
+      })
     })
   })
 }

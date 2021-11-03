@@ -4,17 +4,25 @@ import ReactMarkdown from 'react-markdown';
 import { startAddComment, startLikeBlog, startSetBlog, startUnlikeBlog } from '../actions/blogPage';
 import Comment from './Comment';
 import { Link } from 'react-router-dom';
-import { l_blog, u_blog } from '../actions/auth';
+import { l_blog, s_blog, u_blog, u_s_blog } from '../actions/auth';
+import { startSaveBlog, startUnsaveBlog } from '../actions/savedBlogs';
 
 const BlogPage = (props) => {
     const [renderBlog, setRenderBlog] = useState(false);
     const [blog, setBlog] = useState(undefined);
     const [newComment, setNewComment] = useState('');
     const [ buttonDis, setButtonDis ] = useState(false);
+    const [ sButtonDis, setSButtonDis ] = useState(false);
     const disableButton = () => {
         setButtonDis(true);
         setTimeout(() => {
             setButtonDis(false);
+        }, 200);
+    };
+    const disableSButton = () => {
+        setSButtonDis(true);
+        setTimeout(() => {
+            setSButtonDis(false);
         }, 200);
     };
     //state = {
@@ -96,6 +104,20 @@ const BlogPage = (props) => {
         });
     };
 
+    const save_b = () => {
+        disableSButton();
+        props.startSaveBlog(parseInt(props.match.params.bid)).then(() => {
+            props.s_blog(parseInt(props.match.params.bid));
+        });
+    };
+
+    const unsave_b = () => {
+        disableSButton();
+        props.startUnsaveBlog(parseInt(props.match.params.bid)).then(() => {
+            props.u_s_blog(parseInt(props.match.params.bid));
+        });
+    };
+
     if(renderBlog) {
         return (
             <div>
@@ -121,8 +143,8 @@ const BlogPage = (props) => {
                     {
                         props.uname && (
                             props.blogsSaved.includes(props.match.params.bid) ?
-                            <button disabled={buttonDis}>Unsave</button> :
-                            <button disabled={buttonDis}>Save</button>
+                            <button disabled={sButtonDis} onClick={unsave_b}>Unsave</button> :
+                            <button disabled={sButtonDis} onClick={save_b}>Save</button>
                         )
                     }
                 </div>
@@ -169,7 +191,11 @@ const mapDispatchToProps = (dispatch) => ({
     startLikeBlog: (id) => dispatch(startLikeBlog(id)),
     startUnlikeBlog: (id) => dispatch(startUnlikeBlog(id)),
     l_blog: (id) => dispatch(l_blog(id)),
-    u_blog: (id) => dispatch(u_blog(id))
+    u_blog: (id) => dispatch(u_blog(id)),
+    s_blog: (id) => dispatch(s_blog(id)),
+    u_s_blog: (id) => dispatch(u_s_blog(id)),
+    startSaveBlog: (id) => dispatch(startSaveBlog(id)),
+    startUnsaveBlog: (id) => dispatch(startUnsaveBlog(id)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(BlogPage);

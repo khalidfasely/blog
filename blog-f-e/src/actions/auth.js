@@ -2,6 +2,8 @@ import user from '../fetching/user';
 import loginApi from '../fetching/login';
 import logoutApi from '../fetching/logout';
 import registerApi from '../fetching/register';
+import saveBlogApi from '../fetching/saveBlog';
+import unsaveBlogApi from '../fetching/unsaveBlog';
 
 export const setUser = ({ uname, commentsLiked, blogsLiked, blogsSaved } = {}) => ({
     type: 'SET_USER',
@@ -105,3 +107,31 @@ export const u_blog = (bid) => ({
     type: 'U_BLOG', //???
     bid
 });
+
+export const s_blog = (bid) => ({
+    type: 'S_BLOG',
+    bid
+});
+
+//export const startSaveBlog = (bid) => {
+//    return (dispatch) => {
+//        return saveBlogApi(bid).then((result) => {
+//            dispatch(saveBlog(bid));
+//            return result;
+//        });
+//    };
+//};
+
+export const u_s_blog = (bid) => ({
+    type: 'U_S_BLOG',
+    bid
+});
+
+//export const startUnsaveBlog = (bid) => {
+//    return (dispatch) => {
+//        return unsaveBlogApi(bid).then((result) => {
+//            dispatch(unsaveBlog(bid));
+//            return result;
+//        });
+//    };
+//};

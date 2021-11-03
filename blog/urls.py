@@ -17,4 +17,6 @@ urlpatterns = [
     path("like_blog/<int:blog_id>", views.like_blog, name="like_blog"),
     path("unlike_blog/<int:blog_id>", views.unlike_blog, name="unlike_blog"),
     path("blogs_saved", views.blogs_saved, name="blogs_saved"),
+    path("save_blog/<int:blog_id>", views.save_blog, name="save_blog"),
+    path("unsave_blog/<int:blog_id>", views.unsave_blog, name="unsave_blog"),
 ]

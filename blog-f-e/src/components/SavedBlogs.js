@@ -7,7 +7,7 @@ import BlogsList from './BlogsList';
 const SavedBlogs = ({ startSetSavedBlogs, blogs }) => {
     //const [ blogs, setBlogs ] = useState();
     useEffect(() => {
-        startSetSavedBlogs();
+        //startSetSavedBlogs();
     }, [])
     return (
         <div>

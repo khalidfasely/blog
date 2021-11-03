@@ -68,6 +68,16 @@ export default (state = authReducerDefaultState, action) => {
                     //return blogId !== `${action.bid}`}
                     )]
             }
+        case 'S_BLOG':
+            return {
+                ...state,
+                blogsSaved: [...state.blogsSaved, `${action.bid}`]
+            }
+        case 'U_S_BLOG':
+            return {
+                ...state,
+                blogsSaved: [...state.blogsSaved.filter(blogId => blogId !== `${action.bid}`)]
+            }
         default:
             return state;
     }

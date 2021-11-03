@@ -12,6 +12,16 @@ export default (state = savedBlogsReducerDefaultState, action) => {
                 ...state,
                 blogs: []
             }
+        case 'SAVE_BLOG':
+            return {
+                ...state,
+                blogs: [action.blog, ...state.blogs]
+            }
+        case 'UNSAVE_BLOG':
+            return {
+                ...state,
+                blogs: state.blogs.filter(blog => blog.id !== action.bid)
+            }
         default:
             return state;
     }

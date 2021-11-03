@@ -18,17 +18,27 @@ def user(request):
     if request.user.username:
         comments_liked = Comments.objects.filter(likes=request.user).all()
         blogs_liked = Blog.objects.filter(likes=request.user).all()    
-        blogs_saved = Profile.objects.filter(user=request.user).first().saves.all()
+        #blogs_saved = Profile.objects.filter(user=request.user).first().saves.all()
+        profile_blogs_saved = Profile.objects.filter(user=request.user).first()
+        if profile_blogs_saved:
+            blogs_saved = profile_blogs_saved.saves.all()
+        else:
+            blogs_saved = []
     else:
         comments_liked = []
         blogs_liked = []
+        blogs_saved = []
 
     return JsonResponse({ "user": f"{request.user}", "likes": [ comment.comment_id() for comment in comments_liked ], "likes_b": [ blog.blog_id() for blog in blogs_liked ], "blogs_saved": [ f"{blog_saved.id}" for blog_saved in blogs_saved ] }, status=201)    
 
 def user_page(request, uname):
     blogs = Blog.objects.filter(created_by=uname).all()
-    bio = Profile.objects.filter(user=uname).first()
-    return JsonResponse({ "blogs": [ blog.serialize_all() for blog in blogs ], "bio": bio }, status=201)
+    profile_bio = Profile.objects.filter(user=uname).first()
+    if profile_bio:
+        bio = profile_bio.bio
+    else:
+        bio = "No Bio Disponible!"
+    return JsonResponse({ "blogs": [ blog.serialize_all() for blog in blogs ], "bio": f"{bio}" }, status=201)
 
 @csrf_exempt
 def login_view(request):
@@ -48,7 +58,12 @@ def login_view(request):
 
             comments_liked = Comments.objects.filter(likes=request.user).all()
             blogs_liked = Blog.objects.filter(likes=request.user).all()
-            blogs_saved = Profile.objects.filter(user=request.user).first().saves.all()
+            profile_blogs_saved = Profile.objects.filter(user=request.user).first()
+            if profile_blogs_saved:
+                blogs_saved = profile_blogs_saved.saves.all()
+            else:
+                blogs_saved = []
+
             return JsonResponse({"message": "Login Successfully.", "user": f"{request.user}", "likes": [ comment.comment_id() for comment in comments_liked ], "likes_b": [ blog.blog_id() for blog in blogs_liked ], "blogs_saved": [ f"{blog_saved.id}" for blog_saved in blogs_saved ] }, status=201)
 
         else:
@@ -89,8 +104,12 @@ def register_view(request):
 
         comments_liked = Comments.objects.filter(likes=request.user).all()
         blogs_liked = Blog.objects.filter(likes=request.user).all()
-        blogs_saved = Profile.objects.filter(user=request.user).first().saves.all()
-        #print([ comment.comment_id() for comment in comments_liked ])
+        #blogs_saved = Profile.objects.filter(user=request.user).first().saves.all()
+        profile_blogs_saved = Profile.objects.filter(user=request.user).first()
+        if profile_blogs_saved:
+            blogs_saved = profile_blogs_saved.saves.all()
+        else:
+            blogs_saved = []
         return JsonResponse({"message": "Register", "likes": [ comment.comment_id() for comment in comments_liked ], "likes_b": [ blog.blog_id() for blog in blogs_liked ], "blogs_saved": [ f"{blog_saved.id}" for blog_saved in blogs_saved ] }, status=201)
 
     else:
@@ -187,10 +206,34 @@ def blogs_saved(request):
     if request.user.username:
         profile = Profile.objects.filter(user=request.user).first()
         if profile:
-            blogs = profile.saves.all()
+            blogs = profile.saves.order_by("-created_at").all()
         else:
             blogs = []
 
         return JsonResponse({ "message": "Profile.", "blogs_saved": [blog.serialize_all() for blog in blogs] }, status=201)
     
     return JsonResponse({ "message": "No Profile!" }, status=201)
+
+def save_blog(request, blog_id):
+    if request.user.username:
+        profile = Profile.objects.filter(user=request.user).first()
+        if profile:
+            profile.saves.add(blog_id)
+        else:
+            new_profile = Profile.objects.create(user=request.user)
+            new_profile.save()
+            new_profile.saves.add(blog_id)
+
+        blog = Blog.objects.get(pk=blog_id)
+
+        return JsonResponse({ "message": "Saved successfully.", "blog": blog.serialize_all() }, status=201)
+    
+    return JsonResponse({ "message": "You must be Logged In to Save a Blog!" }, status=201)
+
+def unsave_blog(request, blog_id):
+    if request.user.username:
+        profile = Profile.objects.get(user=request.user)
+        profile.saves.remove(blog_id)
+        return JsonResponse({ "message": "Unsaved successfully." }, status=201)
+    
+    return JsonResponse({ "message": "You must be Logged In to Unsave a Blog!" }, status=201)
