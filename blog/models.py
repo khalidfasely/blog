@@ -31,7 +31,7 @@ class Blog(models.Model):
     description = models.TextField(max_length=300)
     content = models.TextField()
     created_at = models.DateTimeField(auto_now_add=True)
-    created_by = models.ForeignKey(User, on_delete=models.PROTECT, related_name="creater")
+    created_by = models.ForeignKey(User, on_delete=models.CASCADE, related_name="creater")
     likes = models.ManyToManyField(User, default=None, blank=True, related_name="liker")
     dislikes = models.ManyToManyField(User, default=None, blank=True, related_name="disliker")
     category = models.ForeignKey(Category, on_delete=models.PROTECT, related_name="category_of_blog")
@@ -92,7 +92,7 @@ class Profile(models.Model):
         return self.saves.all().count()
 
 class Comments(models.Model):
-    created_by = models.ForeignKey(User, on_delete=models.PROTECT, related_name="creater_com")
+    created_by = models.ForeignKey(User, on_delete=models.CASCADE, related_name="creater_com")
     created_at = models.DateTimeField(auto_now_add=True)
     content = models.TextField(max_length=300)
     on_blog = models.ForeignKey(Blog, on_delete=models.CASCADE, related_name="comment_on_blog")

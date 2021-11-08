@@ -1,51 +1,115 @@
 import React, { useEffect, useState } from 'react';
+import { connect } from 'react-redux';
+import ReactMarkdown from 'react-markdown';
+import { startAddComment, startLikeBlog, startSetBlog, startUnlikeBlog } from '../actions/blogPage';
+import Comment from './Comment';
+import { Link } from 'react-router-dom';
+import { l_blog, s_blog, u_blog, u_s_blog } from '../actions/auth';
+import { startSaveBlog, startUnsaveBlog } from '../actions/savedBlogs';
+import { startSetUserPage } from '../actions/userPage';
 import BlogsList from './BlogsList';
 
 const UserPage = (props) => {
-    const [blogs, setBlogs] = useState();
-    const [bio, setBio] = useState();
+    const [renderUserPage, setRenderUserPage] = useState(false);
+    const [userPage, setUserPage] = useState();
+    
+    const blogDidAlreadyLoad = () => {
+        let profileInList = undefined;
+        let num = 0;
+        props.profileList.map((profileItem) => {    
+            //console.log(parseInt(profileItem.uid) === parseInt(props.match.params.uid));
+            //console.log(profileItem.uid, parseInt(props.match.params.uid))
+            if(parseInt(profileItem.uid) === parseInt(props.match.params.uid)){
+                profileInList = profileItem;
+            };
+            num++;
+        });
+        return profileInList;
+    }
+    //componentDidUpdate(){
+    //    console.log(this.state.blog)
+    //}
     useEffect(() => {
-        fetch(`/data/user_page/${props.match.params.uid}`)
-        .then(res => res.json())
-        .then(result => {
-            console.log(result)
-            setBlogs(result.blogs);
-            setBio(result.bio);
-        })
-        .catch(er => console.log(er));
-    }, []);
+        //console.log(this.props.blogsLiked, this.props.match.params.bid, this.props.blogsLiked.includes(this.props.match.params.bid))
+        const userPage = blogDidAlreadyLoad();
+        if (userPage) {
+            setUserPage(userPage);
+            setRenderUserPage(true);
+            // Render the blog content.. from Redux
+            // Otherwise Fecth it from the backend
+            // Store it on Redux
+            // Then render the content from Redux
+        } else {
+            props.startSetUserPage(parseInt(props.match.params.uid)).then((result) => {
+                setUserPage({
+                    uid: props.match.params.uid,
+                    bio: result.bio,
+                    blogs: result.blogs
+                });
+                setRenderUserPage(true);
+                //this.setState({ renderBlog: true });
+            });
+        }
+    }, [])
 
-    return (
-        <div>
-            <div>User Page {props.match.params.uid}</div>
-            <h4>{bio}</h4>
-            {
-                blogs && <div>{
-                    blogs.length !== 0 ?
-                    <BlogsList blogs={blogs} /> :
-                    <h5>-No Blogs In This Profile-</h5>
-                }</div>
-            }
-        </div>
-    )
+    if(renderUserPage) {
+        return (
+            <div>{ userPage &&
+                <div>
+                    <div>bio: {userPage.bio}</div>
+                    <BlogsList blogs={userPage.blogs} />
+                </div>
+            }</div>
+        )
+    } else {
+        return <div>User Page {props.match.params.uid}</div>
+    };
 };
 
-export default UserPage;
+const mapStateToProps = (state) => ({
+    profileList: state.userPage,
+    uname: state.auth.uname,
+});
 
-//import React from 'react';
+const mapDispatchToProps = (dispatch) => ({
+    startSetUserPage: (id) => dispatch(startSetUserPage(id))
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(UserPage);
+
+
+
+
+//import React, { useEffect, useState } from 'react';
+//import BlogsList from './BlogsList';
 //
-//class UserPage extends React.Component {
-//    componentDidMount(){
-//        fetch(`/data/user_page/${this.props.match.params.uid}`)
+//const UserPage = (props) => {
+//    const [blogs, setBlogs] = useState();
+//    const [bio, setBio] = useState();
+//    useEffect(() => {
+//        fetch(`/data/user_page/${props.match.params.uid}`)
 //        .then(res => res.json())
 //        .then(result => {
 //            console.log(result)
+//            setBlogs(result.blogs);
+//            setBio(result.bio);
 //        })
 //        .catch(er => console.log(er));
-//    }
-//    render(){
-//        return <div>User Page {this.props.match.params.uid}</div>
-//    }
+//    }, []);
+//
+//    return (
+//        <div>
+//            <div>User Page {props.match.params.uid}</div>
+//            <h4>{bio}</h4>
+//            {
+//                blogs && <div>{
+//                    blogs.length !== 0 ?
+//                    <BlogsList blogs={blogs} /> :
+//                    <h5>-No Blogs In This Profile-</h5>
+//                }</div>
+//            }
+//        </div>
+//    )
 //};
 //
 //export default UserPage;

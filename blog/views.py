@@ -34,11 +34,16 @@ def user(request):
 def user_page(request, uname):
     blogs = Blog.objects.filter(created_by=uname).all()
     profile_bio = Profile.objects.filter(user=uname).first()
+    #uid = User.objects.get(username=uname)
+    #print(profile_bio.user.id)
     if profile_bio:
         bio = profile_bio.bio
-    else:
-        bio = "No Bio Disponible!"
-    return JsonResponse({ "blogs": [ blog.serialize_all() for blog in blogs ], "bio": f"{bio}" }, status=201)
+        profile_user = User.objects.filter(username=profile_bio.user).first().id
+        profile_id = profile_bio.id
+    #else:
+    #    bio = "No Bio Disponible!"
+    #    profile_user = User.objects.filter(username=uname).first().id
+    return JsonResponse({ "uid": f"{profile_user}", "blogs": [ blog.serialize_all() for blog in blogs ], "bio": f"{bio}" }, status=201)
 
 @csrf_exempt
 def login_view(request):
@@ -97,6 +102,8 @@ def register_view(request):
             #user = User.objects.create(username=username, email=email, password=password)
             user = User.objects.create_user(username, email, password)
             user.save()
+            profile = Profile.objects.create(user=user)
+            profile.save()
         except IntegrityError:
             return JsonResponse({"message": "Username already taken"}, status=201)
 
