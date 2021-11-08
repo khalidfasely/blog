@@ -43,6 +43,7 @@ const UserPage = (props) => {
             props.startSetUserPage(parseInt(props.match.params.uid)).then((result) => {
                 setUserPage({
                     uid: props.match.params.uid,
+                    uinfo: result.uinfo,
                     bio: result.bio,
                     blogs: result.blogs
                 });
@@ -56,6 +57,7 @@ const UserPage = (props) => {
         return (
             <div>{ userPage &&
                 <div>
+                    <div>{`joined on: ${userPage.uinfo.join_date}`}</div>
                     <div>bio: {userPage.bio}</div>
                     <BlogsList blogs={userPage.blogs} />
                 </div>
@@ -64,7 +66,7 @@ const UserPage = (props) => {
     } else {
         return <div>User Page {props.match.params.uid}</div>
     };
-};
+};//<div>{`joined on: ${userPage.uinfo.join_date} - last login on: ${userPage.uinfo.last_login}`}</div>
 
 const mapStateToProps = (state) => ({
     profileList: state.userPage,

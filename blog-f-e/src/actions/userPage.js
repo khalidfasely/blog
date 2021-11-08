@@ -1,9 +1,10 @@
 import userPage from '../fetching/userPage';
 
-export const setUserPage = ({ uid, blogs, bio }) => ({
+export const setUserPage = ({ uid, uinfo, blogs, bio }) => ({
     type: 'SET_USER_PAGE',
     user: {
         uid,
+        uinfo,
         bio,
         blogs
     }

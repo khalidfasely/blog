@@ -36,14 +36,20 @@ def user_page(request, uname):
     profile_bio = Profile.objects.filter(user=uname).first()
     #uid = User.objects.get(username=uname)
     #print(profile_bio.user.id)
+    user = User.objects.filter(username=profile_bio.user).first()
     if profile_bio:
         bio = profile_bio.bio
-        profile_user = User.objects.filter(username=profile_bio.user).first().id
-        profile_id = profile_bio.id
+        profile_user = user.id
+        join_date = user.date_joined.strftime("%b %d %Y, %I:%M %p")
+        last_login = user.last_login.strftime("%b %d %Y, %I:%M %p")
+        # = profile_bio.id
     #else:
     #    bio = "No Bio Disponible!"
     #    profile_user = User.objects.filter(username=uname).first().id
-    return JsonResponse({ "uid": f"{profile_user}", "blogs": [ blog.serialize_all() for blog in blogs ], "bio": f"{bio}" }, status=201)
+    return JsonResponse({ "uid": f"{profile_user}", "uinfo": {
+        "join_date": join_date,
+        "last_login": last_login
+    }, "blogs": [ blog.serialize_all() for blog in blogs ], "bio": f"{bio}" }, status=201)
 
 @csrf_exempt
 def login_view(request):
