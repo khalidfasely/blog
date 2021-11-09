@@ -18,3 +18,9 @@ export const startSetUserPage = (id) => {
         });
     };
 };
+
+export const addBlogToProfile = (blog, id) => ({
+    type: 'ADD_BLOG_PROFILE',
+    blog,
+    id
+});

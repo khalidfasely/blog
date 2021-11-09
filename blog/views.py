@@ -32,7 +32,7 @@ def user(request):
     return JsonResponse({ "user": f"{request.user}", "likes": [ comment.comment_id() for comment in comments_liked ], "likes_b": [ blog.blog_id() for blog in blogs_liked ], "blogs_saved": [ f"{blog_saved.id}" for blog_saved in blogs_saved ] }, status=201)    
 
 def user_page(request, uname):
-    blogs = Blog.objects.filter(created_by=uname).all()
+    blogs = Blog.objects.filter(created_by=uname).order_by("-created_at").all()
     profile_bio = Profile.objects.filter(user=uname).first()
     #uid = User.objects.get(username=uname)
     #print(profile_bio.user.id)
@@ -40,13 +40,17 @@ def user_page(request, uname):
     if profile_bio:
         bio = profile_bio.bio
         profile_user = user.id
+        profile_username = user.username
         join_date = user.date_joined.strftime("%b %d %Y, %I:%M %p")
         last_login = user.last_login.strftime("%b %d %Y, %I:%M %p")
         # = profile_bio.id
     #else:
     #    bio = "No Bio Disponible!"
     #    profile_user = User.objects.filter(username=uname).first().id
-    return JsonResponse({ "uid": f"{profile_user}", "uinfo": {
+    return JsonResponse({ "uid": {
+        "id": f"{profile_user}",
+        "username": f"{profile_username}"
+    }, "uinfo": {
         "join_date": join_date,
         "last_login": last_login
     }, "blogs": [ blog.serialize_all() for blog in blogs ], "bio": f"{bio}" }, status=201)

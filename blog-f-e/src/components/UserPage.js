@@ -19,7 +19,7 @@ const UserPage = (props) => {
         props.profileList.map((profileItem) => {    
             //console.log(parseInt(profileItem.uid) === parseInt(props.match.params.uid));
             //console.log(profileItem.uid, parseInt(props.match.params.uid))
-            if(parseInt(profileItem.uid) === parseInt(props.match.params.uid)){
+            if(parseInt(profileItem.uid.id) === parseInt(props.match.params.uid)){
                 profileInList = profileItem;
             };
             num++;
@@ -42,7 +42,7 @@ const UserPage = (props) => {
         } else {
             props.startSetUserPage(parseInt(props.match.params.uid)).then((result) => {
                 setUserPage({
-                    uid: props.match.params.uid,
+                    uid: result.uid,
                     uinfo: result.uinfo,
                     bio: result.bio,
                     blogs: result.blogs
@@ -58,7 +58,7 @@ const UserPage = (props) => {
             <div>{ userPage &&
                 <div>
                     <div>{`joined on: ${userPage.uinfo.join_date}`}</div>
-                    <div>bio: {userPage.bio}</div>
+                    {userPage.bio && <div>bio: {userPage.bio}</div>}
                     <BlogsList blogs={userPage.blogs} />
                 </div>
             }</div>

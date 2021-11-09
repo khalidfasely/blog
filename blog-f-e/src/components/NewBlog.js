@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 import { startAddBlog } from '../actions/blogs';
+import { addBlogToProfile } from '../actions/userPage';
 import { history } from '../router/AppRouter';
 
 const categories = ['Web', 'Ecom', 'Programming', 'Photography']
 
-const NewBlog = ({ startAddBlog }) => {
+const NewBlog = ({ uname, profileList, startAddBlog, addBlogToProfile }) => {
     const [ title, setTitle ] = useState('');
     const [ description, setDescription ] = useState('');
     const [ content, setContent ] = useState('');
@@ -43,6 +44,14 @@ const NewBlog = ({ startAddBlog }) => {
                     setError(result.message);
                 } else {
                     setError('');
+                    profileList.map(profileItem => {
+                        if (profileItem.uid.username === uname) {
+                            // Create addBlogToProfile on userPage Action
+                            addBlogToProfile(result.blog, profileItem.uid.id);
+                        } else {
+                            //console.log(false);
+                        }
+                    });
                     history.push('/');
                 }
             });
@@ -88,11 +97,17 @@ const NewBlog = ({ startAddBlog }) => {
     );
 };
 
-const mapDispatchToProps = (dispatch) => ({
-    startAddBlog: (blog) => dispatch(startAddBlog(blog)),
+const mapStateToProps = (state) => ({
+    uname: state.auth.uname,
+    profileList: state.userPage,
 });
 
-export default connect(undefined, mapDispatchToProps)(NewBlog);
+const mapDispatchToProps = (dispatch) => ({
+    startAddBlog: (blog) => dispatch(startAddBlog(blog)),
+    addBlogToProfile: (blog, id) => dispatch(addBlogToProfile(blog, id)),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(NewBlog);
 
 //fetch('/data/new_blog', {
 //    method: 'POST',

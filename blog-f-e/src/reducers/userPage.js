@@ -7,6 +7,22 @@ export default (state = userPageReducerDefaultState, action) => {
                 action.user,
                 ...state
             ];
+        case 'ADD_BLOG_PROFILE':
+            return [
+                ...state.map(profileItem => {
+                    if (profileItem.uid.id === action.id) {
+                        return {
+                            ...profileItem,
+                            blogs: [
+                                action.blog,
+                                ...profileItem.blogs
+                            ]
+                        }
+                    } else {
+                        return profileItem;
+                    }
+                })
+            ]
         default:
             return state;
     }
