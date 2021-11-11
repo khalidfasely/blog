@@ -166,6 +166,12 @@ def new_blog(request):
     else:
         return JsonResponse({"message": "The method must be POST"}, status=400)
 
+def delete_blog(request, blog_id):
+    blog = Blog.objects.filter(pk=blog_id)
+    blog.delete()
+
+    return JsonResponse({ "message": "Delete Successfully" }, status=201)
+
 @csrf_exempt
 def new_comment(request):
     if request.method == "POST":
@@ -222,14 +228,12 @@ def unlike_comment(request, comment_id):
 def blogs_saved(request):
     if request.user.username:
         profile = Profile.objects.filter(user=request.user).first()
-        if profile:
-            blogs = profile.saves.order_by("-created_at").all()
-        else:
-            blogs = []
-
-        return JsonResponse({ "message": "Profile.", "blogs_saved": [blog.serialize_all() for blog in blogs] }, status=201)
-    
-    return JsonResponse({ "message": "No Profile!" }, status=201)
+        blogs = profile.saves.order_by("-created_at").all()
+    else:
+        blogs = []
+        
+    return JsonResponse({ "message": "Profile.", "blogs_saved": [blog.serialize_all() for blog in blogs] }, status=201)
+    #return JsonResponse({ "message": "No Profile!" }, status=201)
 
 def save_blog(request, blog_id):
     if request.user.username:

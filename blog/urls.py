@@ -19,4 +19,5 @@ urlpatterns = [
     path("blogs_saved", views.blogs_saved, name="blogs_saved"),
     path("save_blog/<int:blog_id>", views.save_blog, name="save_blog"),
     path("unsave_blog/<int:blog_id>", views.unsave_blog, name="unsave_blog"),
+    path("delete_blog/<int:blog_id>", views.delete_blog, name="delete_blog"),
 ]

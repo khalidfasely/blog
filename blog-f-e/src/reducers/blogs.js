@@ -15,6 +15,13 @@ export default (state = blogsReducerDefaultState, action) => {
                     ...state.blogs
                 ]
             };
+        case 'DELETE_BLOG':
+            return {
+                ...state,
+                blogs: [
+                    ...state.blogs.filter(blog => blog.id !== action.bid)
+                ]
+            }
         default:
             return state;
     }
