@@ -96,3 +96,8 @@ export const startUnlikeBlog = (bid) => {
         });
     };
 };
+
+export const removeBlogFromBP = (bid) => ({
+    type: 'REMOVE_BLOG_FROM_BP',
+    bid
+});

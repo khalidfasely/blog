@@ -139,7 +139,24 @@ def blogs(request):
 def blog_page(request, blog_id):
     blog = Blog.objects.filter(pk=blog_id).first()
     comments = Comments.objects.filter(on_blog=blog).all()
-    return JsonResponse({ "blog": blog.serialize(), "comments": [comment.serialize() for comment in comments] }, status=201)
+    if blog:
+        return JsonResponse({ "blog": blog.serialize(), "comments": [comment.serialize() for comment in comments] }, status=201)
+    default_blog = {
+            "isDefault": True,
+            "id": 0,
+            "title": "",
+            "description": "",
+            "created_at": "",
+            "created_by": {
+                "id": 0,
+                "username": ""
+            },
+            "likes": 0,
+            "dislikes": 0,
+            "category": ""
+        }
+    return JsonResponse({ "blog": default_blog, "comments": [comment.serialize() for comment in comments] }, status=201)
+
 
 @csrf_exempt
 def new_blog(request):

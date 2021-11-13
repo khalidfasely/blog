@@ -143,6 +143,10 @@ export default (state = blogPageReducerDefaultState, action) => {
                 };
             })
             return [...blogsUC];
+        case 'REMOVE_BLOG_FROM_BP':
+            return [
+                ...state.filter(blog => blog.id !== action.bid)
+            ]
         default:
             return state;
     }

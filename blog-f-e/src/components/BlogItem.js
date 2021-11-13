@@ -4,15 +4,33 @@ import { connect } from 'react-redux';
 import Modal from 'react-modal';
 import ReactMarkdown from "react-markdown";
 import { startDeleteBlog } from '../actions/blogs';
+import { unsaveBlog } from '../actions/savedBlogs';
+import { removeBlogFromBP } from '../actions/blogPage';
 
-const BlogItem = ({ blog, uname, startDeleteBlog }) => {
+const BlogItem = ({ blog, uname, startDeleteBlog, savedBlogs, unsaveBlog, blogPageList, removeBlogFromBP }) => {
   const [rModalOpen, setRModalOpen] = useState(false);
   const [eModalOpen, setEModalOpen] = useState(false);
 
   const deleteBlog = () => {
-    startDeleteBlog(blog.id);
+    startDeleteBlog(blog.id)
+      .then(() => {
+        // Unsave The Blog After Delete It
+        savedBlogs.map(blogS => {
+          if(blogS.id === blog.id){
+            unsaveBlog(blog.id);
+          }
+        });
+      })
+      .then(() => {
+        //Delete The Blog From The BlogPage If It's There
+        blogPageList.map(blogP => {
+          if(blogP.id === blog.id){
+            removeBlogFromBP(blog.id);
+          }
+        });
+      });
     setRModalOpen(false);
-  }
+  };
 
   return (
     <div>
@@ -40,11 +58,15 @@ const BlogItem = ({ blog, uname, startDeleteBlog }) => {
 };//closeTimeoutMS={200}
 
 const mapStateToProps = (state) => ({
-  uname: state.auth.uname
+  uname: state.auth.uname,
+  savedBlogs: state.savedBlogs.blogs,
+  blogPageList: state.blogPage,
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  startDeleteBlog: (bid) => dispatch(startDeleteBlog(bid))
+  startDeleteBlog: (bid) => dispatch(startDeleteBlog(bid)),
+  unsaveBlog: (bid) => dispatch(unsaveBlog(bid)),
+  removeBlogFromBP: (bid) => dispatch(removeBlogFromBP(bid))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(BlogItem);

@@ -119,6 +119,9 @@ const BlogPage = (props) => {
     };
 
     if(renderBlog) {
+        if (blog.isDefault) {
+            return <div>This Blog Not Available Now. <Link to='/'>Back Home</Link></div>
+        }
         return (
             <div>
                 <h1>{blog.title}</h1>
