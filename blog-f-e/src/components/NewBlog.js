@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import { startAddBlog } from '../actions/blogs';
 import { addBlogToProfile } from '../actions/userPage';
@@ -6,11 +6,15 @@ import { history } from '../router/AppRouter';
 
 const categories = ['Web', 'Ecom', 'Programming', 'Photography']
 
-const NewBlog = ({ uname, profileList, startAddBlog, addBlogToProfile }) => {
-    const [ title, setTitle ] = useState('');
-    const [ description, setDescription ] = useState('');
-    const [ content, setContent ] = useState('');
-    const [ category, setCategory ] = useState('');
+const NewBlog = ({ uname, profileList, startAddBlog, addBlogToProfile, isEdit, blog, edit }) => {
+    const titleDefault = blog ? blog.title : '';
+    const [ title, setTitle ] = useState(titleDefault);
+    const descriptionDefault = blog ? blog.description : '';
+    const [ description, setDescription ] = useState(descriptionDefault);
+    const contentDefault = blog ? blog.content : '';
+    const [ content, setContent ] = useState(contentDefault);
+    const categoryDefault = blog ? blog.category : '';
+    const [ category, setCategory ] = useState(categoryDefault);
     const [ error, setError ] = useState('');
 
     const onTitleChange = (e) => {
@@ -38,7 +42,7 @@ const NewBlog = ({ uname, profileList, startAddBlog, addBlogToProfile }) => {
 
         const availabelData = (title && description && content && category);
 
-        if (availabelData) {
+        if (availabelData && !isEdit) {
             startAddBlog({ title, description, content, category }).then((result) => {
                 if (result.message !== "Blog Created") {
                     setError(result.message);
@@ -55,6 +59,8 @@ const NewBlog = ({ uname, profileList, startAddBlog, addBlogToProfile }) => {
                     history.push('/');
                 }
             });
+        } else if (availabelData && isEdit) {
+            console.log(title, description, content, category)
         } else {
             setError('Fill out all fields And Select a Category!');
         }
@@ -86,16 +92,24 @@ const NewBlog = ({ uname, profileList, startAddBlog, addBlogToProfile }) => {
                   onChange={onContentChange}
                 />
                 <select onChange={onCategoryChange}>
-                    <option disabled selected value=''>--Select Category--</option>
+                    {
+                        isEdit ?
+                        <option disabled selected value={category}>{category}</option> :
+                        <option disabled selected value=''>--Select Category--</option>
+                    }
                     {
                         categories.map((category) => <option value={category}>{category}</option>)
                     }
                 </select>
-                <button>Create Blog</button>
+                {
+                    isEdit ?
+                    <button onClick={edit}>Edit Blog</button> :
+                    <button>Create Blog</button>
+                }
             </form>
         </div>
     );
-};
+};//<option disabled selected value=''>--Select Category--</option>
 
 const mapStateToProps = (state) => ({
     uname: state.auth.uname,
@@ -108,24 +122,3 @@ const mapDispatchToProps = (dispatch) => ({
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(NewBlog);
-
-//fetch('/data/new_blog', {
-//    method: 'POST',
-//    body: JSON.stringify({
-//        title,
-//        description,
-//        content,
-//        category
-//    })
-//})
-//.then(res => res.json())
-//.then(result => {
-//    //console.log(result);
-//    if (result.message !== "Blog Created") {
-//        setError(result.message);
-//    } else {
-//        setError('');
-//        history.push('/');
-//    }
-//})
-//.catch(er => console.log(er));

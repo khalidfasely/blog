@@ -6,6 +6,7 @@ import Comment from './Comment';
 import { Link } from 'react-router-dom';
 import { l_blog, s_blog, u_blog, u_s_blog } from '../actions/auth';
 import { startSaveBlog, startUnsaveBlog } from '../actions/savedBlogs';
+import ModalEdit from './ModalEdit';
 
 const BlogPage = (props) => {
     const [renderBlog, setRenderBlog] = useState(false);
@@ -13,6 +14,7 @@ const BlogPage = (props) => {
     const [newComment, setNewComment] = useState('');
     const [ buttonDis, setButtonDis ] = useState(false);
     const [ sButtonDis, setSButtonDis ] = useState(false);
+    const [eModalOpen, setEModalOpen] = useState(false);
     const disableButton = () => {
         setButtonDis(true);
         setTimeout(() => {
@@ -25,11 +27,6 @@ const BlogPage = (props) => {
             setSButtonDis(false);
         }, 200);
     };
-    //state = {
-    //    renderBlog: false,
-    //    blog: undefined,
-    //    newComment: ''
-    //}
     const blogDidAlreadyLoad = () => {
         let blogInList = undefined;
         props.blogList.map((blogItem) => {
@@ -39,11 +36,7 @@ const BlogPage = (props) => {
         });
         return blogInList;
     }
-    //componentDidUpdate(){
-    //    console.log(this.state.blog)
-    //}
     useEffect(() => {
-        //console.log(this.props.blogsLiked, this.props.match.params.bid, this.props.blogsLiked.includes(this.props.match.params.bid))
         const blog = blogDidAlreadyLoad();
         if (blog) {
             setBlog(blog);
@@ -79,10 +72,6 @@ const BlogPage = (props) => {
     }
 
     const like_b = () => {
-        //fetch(`/data/like_blog/${this.props.match.params.bid}`)
-        //.then(res => res.json())
-        //.then(result => console.log(result))
-        //.catch(er => console.log(er));
         disableButton();
         props.startLikeBlog(parseInt(props.match.params.bid)).then(() => {
             props.l_blog(parseInt(props.match.params.bid));
@@ -132,6 +121,13 @@ const BlogPage = (props) => {
                 <ReactMarkdown>{blog.content}</ReactMarkdown>
                 <p>{blog.likes}</p>
                 <p>{blog.dislikes}</p>
+                {
+                    props.uname && (
+                        props.uname === blog.created_by.username &&
+                        <button onClick={() => setEModalOpen(true)}>Edit</button>
+                    )
+                }
+                <ModalEdit eModalOpen={eModalOpen} blog={blog} setEModalOpen={setEModalOpen} />
                 <div>
                     {
                         props.uname && (
@@ -139,7 +135,6 @@ const BlogPage = (props) => {
                             <button disabled={buttonDis} onClick={unlike_b}>Unlike</button> :
                             <button disabled={buttonDis} onClick={like_b}>Like</button>
                         )
-                        //<button onClick={this.unlike_b}>Unlike</button>
                     }
                 </div>
                 <div>

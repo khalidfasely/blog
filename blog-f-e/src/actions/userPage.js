@@ -24,3 +24,9 @@ export const addBlogToProfile = (blog, id) => ({
     blog,
     id
 });
+
+export const removeBlogFromUP = (uname, bid) => ({
+    type: 'REMOVE_BLOG_FROM_UP',
+    uname,
+    bid
+});

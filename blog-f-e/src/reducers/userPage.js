@@ -22,7 +22,20 @@ export default (state = userPageReducerDefaultState, action) => {
                         return profileItem;
                     }
                 })
-            ]
+            ];
+        case 'REMOVE_BLOG_FROM_UP':
+            return [
+                ...state.map(profileItem => {
+                    if (profileItem.uid.username === action.uname) {
+                        return {
+                            ...profileItem,
+                            blogs: profileItem.blogs.filter(blog => blog.id !== action.bid)
+                        }
+                    } else {
+                        return profileItem;
+                    }
+                })
+            ];
         default:
             return state;
     }
