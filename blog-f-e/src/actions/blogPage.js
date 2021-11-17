@@ -4,6 +4,7 @@ import likeCommentApi from "../fetching/likeComment";
 import unlikeCommentApi from "../fetching/unlikeComment";
 import likeBlogApi from "../fetching/likeBlog";
 import unlikeBlogApi from "../fetching/unlikeBlog";
+import editBlogApi from '../fetching/editBlog';
 
 export const setBlog = ({ blog, comments }) => ({
     type: 'SET_BLOG',
@@ -101,3 +102,18 @@ export const removeBlogFromBP = (bid) => ({
     type: 'REMOVE_BLOG_FROM_BP',
     bid
 });
+
+export const editBlog = (bid, updates) => ({
+    type: 'EDIT_BLOG',
+    bid,
+    updates
+});
+
+export const startEditBlog = (bid, updates) => {
+    return (dispatch) => {
+        return editBlogApi(bid, updates).then(result => {
+            dispatch(editBlog(bid, updates));
+            return result;
+        });
+    };
+};

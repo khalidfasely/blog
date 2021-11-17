@@ -1,12 +1,14 @@
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
+import { startEditBlog } from '../actions/blogPage';
 import { startAddBlog } from '../actions/blogs';
 import { addBlogToProfile } from '../actions/userPage';
+import editBlog from '../fetching/editBlog';
 import { history } from '../router/AppRouter';
 
 const categories = ['Web', 'Ecom', 'Programming', 'Photography']
 
-const NewBlog = ({ uname, profileList, startAddBlog, addBlogToProfile, isEdit, blog, edit }) => {
+const NewBlog = ({ uname, profileList, startAddBlog, addBlogToProfile, isEdit, blog, edit, startEditBlog }) => {
     const titleDefault = blog ? blog.title : '';
     const [ title, setTitle ] = useState(titleDefault);
     const descriptionDefault = blog ? blog.description : '';
@@ -40,7 +42,7 @@ const NewBlog = ({ uname, profileList, startAddBlog, addBlogToProfile, isEdit, b
     const onFormSubmit = (e) => {
         e.preventDefault();
 
-        const availabelData = (title && description && content && category);
+        const availabelData = (title.replace(/\s/g, '') && description.replace(/\s/g, '') && content.replace(/\s/g, '') && category);
 
         if (availabelData && !isEdit) {
             startAddBlog({ title, description, content, category }).then((result) => {
@@ -60,10 +62,25 @@ const NewBlog = ({ uname, profileList, startAddBlog, addBlogToProfile, isEdit, b
                 }
             });
         } else if (availabelData && isEdit) {
-            console.log(title, description, content, category)
+            console.log(title, description, content, category);
+            setError('');
+            //Edit It On blogPageReducer
+            startEditBlog(blog.id, {uname, title, description, content, category});
+            //editBlog({
+            //    bid: blog.id,
+            //    uname,
+            //    title,
+            //    description,
+            //    content,
+            //    category
+            //});
         } else {
             setError('Fill out all fields And Select a Category!');
         }
+    };
+
+    const editing = () => {
+        (title.replace(/\s/g, '') && description.replace(/\s/g, '') && content.replace(/\s/g, '') && category) && edit();
     }
 
     return (
@@ -103,7 +120,7 @@ const NewBlog = ({ uname, profileList, startAddBlog, addBlogToProfile, isEdit, b
                 </select>
                 {
                     isEdit ?
-                    <button onClick={edit}>Edit Blog</button> :
+                    <button onClick={editing}>Edit Blog</button> :
                     <button>Create Blog</button>
                 }
             </form>
@@ -119,6 +136,7 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = (dispatch) => ({
     startAddBlog: (blog) => dispatch(startAddBlog(blog)),
     addBlogToProfile: (blog, id) => dispatch(addBlogToProfile(blog, id)),
+    startEditBlog: (bid, updates) => dispatch(startEditBlog(bid, updates)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(NewBlog);

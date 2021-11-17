@@ -183,6 +183,32 @@ def new_blog(request):
     else:
         return JsonResponse({"message": "The method must be POST"}, status=400)
 
+@csrf_exempt
+def edit_blog(request):
+    if request.method == "POST":
+
+        data = json.loads(request.body)
+        uname = data.get("uname")
+        
+        if request.user is None or request.user.username != uname:
+            return JsonResponse({ "message": "You must be Logged In to Edit Your Blog!" }, status=201)
+        
+        title = data.get("title")
+        description = data.get("description")
+        content = data.get("content")
+        category_f_e = data.get("category")
+        bid = data.get("bid")
+
+        category = Category.objects.get(category=category_f_e)
+
+        Blog.objects.filter(pk=bid).update(title=title, description=description, content=content, category=category)
+
+        return JsonResponse({ "message": "Edit Successfully." }, status=201)
+    
+    else:
+        return JsonResponse({"message": "The method must be POST"}, status=400)
+
+
 def delete_blog(request, blog_id):
     blog = Blog.objects.filter(pk=blog_id)
     blog.delete()

@@ -20,4 +20,6 @@ urlpatterns = [
     path("save_blog/<int:blog_id>", views.save_blog, name="save_blog"),
     path("unsave_blog/<int:blog_id>", views.unsave_blog, name="unsave_blog"),
     path("delete_blog/<int:blog_id>", views.delete_blog, name="delete_blog"),
+    path("edit_blog", views.edit_blog, name="edit_blog"),
+    
 ]

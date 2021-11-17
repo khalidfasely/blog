@@ -147,6 +147,19 @@ export default (state = blogPageReducerDefaultState, action) => {
             return [
                 ...state.filter(blog => blog.id !== action.bid)
             ]
+        case 'EDIT_BLOG':
+            return [
+                ...state.map(blog => {
+                    if(blog.id === action.bid) {
+                        return {
+                            ...blog,
+                            ...action.updates
+                        }
+                    } else {
+                        return blog;
+                    }
+                })
+            ]
         default:
             return state;
     }
