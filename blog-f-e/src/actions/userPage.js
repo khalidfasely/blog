@@ -30,3 +30,10 @@ export const removeBlogFromUP = (uname, bid) => ({
     uname,
     bid
 });
+
+export const editBlogFromUP = ({ uname, bid }, updates) => ({
+    type: 'EDIT_BLOG_FROM_UP',
+    uname,
+    bid,
+    updates
+});

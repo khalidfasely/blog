@@ -43,3 +43,9 @@ export const startDeleteBlog = (bid) => {
         });
     };
 };
+
+export const editBlogFromBP = (bid, updates) => ({
+    type: 'EDIT_BLOG_FROM_BP',
+    bid,
+    updates
+});

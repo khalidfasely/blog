@@ -1,14 +1,28 @@
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import { startEditBlog } from '../actions/blogPage';
-import { startAddBlog } from '../actions/blogs';
-import { addBlogToProfile } from '../actions/userPage';
+import { editBlogFromBP, startAddBlog } from '../actions/blogs';
+import { editBlogFromSB } from '../actions/savedBlogs';
+import { addBlogToProfile, editBlogFromUP } from '../actions/userPage';
 import editBlog from '../fetching/editBlog';
 import { history } from '../router/AppRouter';
 
 const categories = ['Web', 'Ecom', 'Programming', 'Photography']
 
-const NewBlog = ({ uname, profileList, startAddBlog, addBlogToProfile, isEdit, blog, edit, startEditBlog }) => {
+const NewBlog = ({
+        uname,
+        profileList,
+        startAddBlog,
+        addBlogToProfile,
+        isEdit,
+        blog,
+        edit,
+        startEditBlog,
+        editBlogFromBP,
+        savedBlogs,
+        editBlogFromSB,
+        editBlogFromUP
+    }) => {
     const titleDefault = blog ? blog.title : '';
     const [ title, setTitle ] = useState(titleDefault);
     const descriptionDefault = blog ? blog.description : '';
@@ -62,18 +76,34 @@ const NewBlog = ({ uname, profileList, startAddBlog, addBlogToProfile, isEdit, b
                 }
             });
         } else if (availabelData && isEdit) {
-            console.log(title, description, content, category);
             setError('');
             //Edit It On blogPageReducer
-            startEditBlog(blog.id, {uname, title, description, content, category});
-            //editBlog({
-            //    bid: blog.id,
-            //    uname,
-            //    title,
-            //    description,
-            //    content,
-            //    category
-            //});
+            startEditBlog(blog.id, {uname, title, description, content, category})
+            .then(() => {
+                history.push('/');
+                history.push(`/blog/${blog.id}`);
+            })
+            .then(() => {
+                //Edit It On blogPageReducer
+                editBlogFromBP(blog.id, {title, description, category});
+            })
+            .then(() => {
+                //Check if blog is on savedBlogs
+                savedBlogs.map(blogS => {
+                    if (blogS.id === blog.id) {
+                        editBlogFromSB(blog.id, {title, description, category});
+                    }
+                })
+            })
+            .then(() => {
+                //Check if blog.created_by is on profileList
+                profileList.map(profileItem => {
+                    const profileUsername = profileItem.uid.username;
+                    if (profileUsername === uname) {
+                        editBlogFromUP({uname, bid: blog.id}, {title, description, category});
+                    }
+                })
+            });
         } else {
             setError('Fill out all fields And Select a Category!');
         }
@@ -131,12 +161,16 @@ const NewBlog = ({ uname, profileList, startAddBlog, addBlogToProfile, isEdit, b
 const mapStateToProps = (state) => ({
     uname: state.auth.uname,
     profileList: state.userPage,
+    savedBlogs: state.savedBlogs.blogs
 });
 
 const mapDispatchToProps = (dispatch) => ({
     startAddBlog: (blog) => dispatch(startAddBlog(blog)),
     addBlogToProfile: (blog, id) => dispatch(addBlogToProfile(blog, id)),
     startEditBlog: (bid, updates) => dispatch(startEditBlog(bid, updates)),
+    editBlogFromBP: (bid, updates) => dispatch(editBlogFromBP(bid, updates)),
+    editBlogFromSB: (bid, updates) => dispatch(editBlogFromSB(bid, updates)),
+    editBlogFromUP: (bid, updates) => dispatch(editBlogFromUP(bid, updates)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(NewBlog);

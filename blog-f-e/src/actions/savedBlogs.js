@@ -47,3 +47,9 @@ export const startUnsaveBlog = (bid) => {
         });
     };
 };
+
+export const editBlogFromSB = (bid, updates) => ({
+    type: 'EDIT_BLOG_FROM_SB',
+    bid,
+    updates
+});

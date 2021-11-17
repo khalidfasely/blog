@@ -22,6 +22,22 @@ export default (state = blogsReducerDefaultState, action) => {
                     ...state.blogs.filter(blog => blog.id !== action.bid)
                 ]
             }
+        case 'EDIT_BLOG_FROM_BP':
+            return {
+                ...state,
+                blogs: [
+                    ...state.blogs.map(blog => {
+                        if (blog.id === action.bid) {
+                            return {
+                                ...blog,
+                                ...action.updates
+                            }
+                        } else {
+                            return blog;
+                        }
+                    })
+                ]
+            }
         default:
             return state;
     }

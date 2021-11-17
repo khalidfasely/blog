@@ -36,6 +36,28 @@ export default (state = userPageReducerDefaultState, action) => {
                     }
                 })
             ];
+        case 'EDIT_BLOG_FROM_UP':
+            return [
+                ...state.map(profileItem => {
+                    if (profileItem.uid.username === action.uname) {
+                        return {
+                            ...profileItem,
+                            blogs: profileItem.blogs.map(blog => {
+                                if (blog.id === action.bid) {
+                                    return {
+                                        ...blog,
+                                        ...action.updates
+                                    };
+                                } else {
+                                    return blog;
+                                }
+                            })
+                        }
+                    } else {
+                        return profileItem;
+                    }
+                })
+            ];
         default:
             return state;
     }
