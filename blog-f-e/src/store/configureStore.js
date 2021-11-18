@@ -5,6 +5,7 @@ import blogsReducer from '../reducers/blogs';
 import blogPageReducer from '../reducers/blogPage';
 import userPageReducer from '../reducers/userPage';
 import savedBlogsReducer from '../reducers/savedBlogs';
+import categoriesReducer from '../reducers/categories';
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
@@ -13,6 +14,7 @@ export default () => {
         combineReducers({
             auth: authReducer,
             blogs: blogsReducer,
+            categories: categoriesReducer,
             blogPage: blogPageReducer,
             userPage: userPageReducer,
             savedBlogs: savedBlogsReducer,

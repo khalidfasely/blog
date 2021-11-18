@@ -8,6 +8,7 @@ import AppRoute from './router/AppRouter';
 import { startSetUser } from './actions/auth';
 import { startSetBlogs } from './actions/blogs';
 import { startSetSavedBlogs } from './actions/savedBlogs';
+import { startSetCategories } from './actions/categories';
 
 const store = configeStore();
 
@@ -15,6 +16,7 @@ const renderApp = () => {
   store.dispatch(startSetBlogs()).then(()=> {
     store.dispatch(startSetUser()).then(() => {
       store.dispatch(startSetSavedBlogs()).then(() => {
+        store.dispatch(startSetCategories()).then(() => {
         ReactDOM.render(
           <React.StrictMode>
             <Provider store={store}>
@@ -25,8 +27,26 @@ const renderApp = () => {
         );
       })
     })
+    })
   })
 }
+
+//const renderApp = () => {
+//  store.dispatch(startSetBlogs()).then(()=> {
+//    store.dispatch(startSetUser()).then(() => {
+//      store.dispatch(startSetSavedBlogs()).then(() => {
+//        ReactDOM.render(
+//          <React.StrictMode>
+//            <Provider store={store}>
+//              <AppRoute />
+//            </Provider>
+//          </React.StrictMode>,
+//          document.getElementById('root')
+//        );
+//      })
+//    })
+//  })
+//}
 
 renderApp();
 

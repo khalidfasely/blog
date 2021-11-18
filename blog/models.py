@@ -24,6 +24,9 @@ class Category(models.Model):
 
     def __str__(self):
         return self.category
+    
+    def serialize(self):
+        return f"{self.category}"
 
 
 class Blog(models.Model):

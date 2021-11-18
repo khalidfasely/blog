@@ -31,6 +31,10 @@ def user(request):
 
     return JsonResponse({ "user": f"{request.user}", "likes": [ comment.comment_id() for comment in comments_liked ], "likes_b": [ blog.blog_id() for blog in blogs_liked ], "blogs_saved": [ f"{blog_saved.id}" for blog_saved in blogs_saved ] }, status=201)    
 
+def categories(resuest):
+    categories = Category.objects.all()
+    return JsonResponse({ "categories": [ category.serialize() for category in categories ] }, status=201)
+
 def user_page(request, uname):
     blogs = Blog.objects.filter(created_by=uname).order_by("-created_at").all()
     profile_bio = Profile.objects.filter(user=uname).first()

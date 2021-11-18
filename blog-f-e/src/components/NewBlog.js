@@ -7,8 +7,6 @@ import { addBlogToProfile, editBlogFromUP } from '../actions/userPage';
 import editBlog from '../fetching/editBlog';
 import { history } from '../router/AppRouter';
 
-const categories = ['Web', 'Ecom', 'Programming', 'Photography']
-
 const NewBlog = ({
         uname,
         profileList,
@@ -21,7 +19,8 @@ const NewBlog = ({
         editBlogFromBP,
         savedBlogs,
         editBlogFromSB,
-        editBlogFromUP
+        editBlogFromUP,
+        categories
     }) => {
     const titleDefault = blog ? blog.title : '';
     const [ title, setTitle ] = useState(titleDefault);
@@ -161,7 +160,8 @@ const NewBlog = ({
 const mapStateToProps = (state) => ({
     uname: state.auth.uname,
     profileList: state.userPage,
-    savedBlogs: state.savedBlogs.blogs
+    savedBlogs: state.savedBlogs.blogs,
+    categories: state.categories,
 });
 
 const mapDispatchToProps = (dispatch) => ({
