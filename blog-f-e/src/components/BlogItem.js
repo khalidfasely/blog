@@ -1,11 +1,14 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
+import Modal from 'react-modal';
 import { startDeleteBlog } from '../actions/blogs';
 import { unsaveBlog } from '../actions/savedBlogs';
 import { removeBlogFromBP } from '../actions/blogPage';
 import { removeBlogFromUP } from '../actions/userPage';
 import ModalDelete from './ModalDelete';
+import { history } from '../router/AppRouter';
+import PreviewPage from './PreviewPage';
 
 const BlogItem = ({
     blog,
@@ -19,6 +22,7 @@ const BlogItem = ({
     removeBlogFromUP
   }) => {
   const [rModalOpen, setRModalOpen] = useState(false);
+  const [pModalOpen, setPModalOpen] = useState(false);
 
   const deleteBlog = () => {
     startDeleteBlog(blog.id)
@@ -60,6 +64,22 @@ const BlogItem = ({
           <button onClick={() => setRModalOpen(true)}>X</button>
         </div>
       }
+      <button onClick={() => setPModalOpen(true)}>Preview</button>
+      <Modal
+        isOpen={pModalOpen}
+        contentLabel="Preview Blog"
+        closeTimeoutMS={100}
+      >
+        <button onClick={() => {
+          const currentPath = history.location.pathname;
+          history.push('/blog/0');
+          setTimeout(() => {
+            history.push(currentPath);
+          }, 10)
+          //setPModalOpen(false);
+          }}>X</button>
+        <PreviewPage match={{params: {bid: `${blog.id}`}}} />
+      </Modal>
       <ModalDelete rModalOpen={rModalOpen} deleteBlog={deleteBlog} setRModalOpen={setRModalOpen} />
     </div>
   )
