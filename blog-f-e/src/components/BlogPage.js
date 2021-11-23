@@ -7,6 +7,7 @@ import { Link } from 'react-router-dom';
 import { l_blog, s_blog, u_blog, u_s_blog } from '../actions/auth';
 import { startSaveBlog, startUnsaveBlog } from '../actions/savedBlogs';
 import ModalEdit from './ModalEdit';
+import previewContent from '../functions/previewContent';
 
 const BlogPage = (props) => {
     const [renderBlog, setRenderBlog] = useState(false);
@@ -15,6 +16,7 @@ const BlogPage = (props) => {
     const [ buttonDis, setButtonDis ] = useState(false);
     const [ sButtonDis, setSButtonDis ] = useState(false);
     const [eModalOpen, setEModalOpen] = useState(false);
+    const [ previewBlog, setPreviewBlog ] = useState(undefined);
     const disableButton = () => {
         setButtonDis(true);
         setTimeout(() => {
@@ -41,6 +43,7 @@ const BlogPage = (props) => {
         if (blog) {
             setBlog(blog);
             setRenderBlog(true);
+            setPreviewBlog(previewContent(blog.content.substring(0, 300)));
             // Render the blog content.. from Redux
             // Otherwise Fecth it from the backend
             // Store it on Redux
@@ -52,9 +55,13 @@ const BlogPage = (props) => {
                     comments: result.comments
                 });
                 setRenderBlog(true);
+                setPreviewBlog(previewContent(result.blog.content.substring(0, 300)));
                 //this.setState({ renderBlog: true });
             });
         }
+        //return () => {
+        //    setPreviewBlog(undefined);
+        //}
     }, [])
     const onCommentChange = (e) => {
         const newComment = e.target.value;
@@ -110,6 +117,39 @@ const BlogPage = (props) => {
     if(renderBlog) {
         if (blog.isDefault) {
             return <div>This Blog Not Available Now. <Link to='/'>Back Home</Link></div>
+        } else if (props.isPreview) {
+            return (
+                <div>
+                    <h1>{blog.title}</h1>
+                    <p>{blog.created_at}</p>
+                    <p>{blog.created_by.username}</p>
+                    <p>{blog.category}</p>
+                    <p>{blog.description}</p>
+                    <ReactMarkdown>{`${previewBlog}...`}</ReactMarkdown>
+                    <Link to={`/blog/${blog.id}`}>See More</Link>
+                    <p>{blog.likes}</p>
+                    <p>{blog.dislikes}</p>
+                    <div>
+                        {
+                            props.uname && (
+                                props.blogsLiked.includes(props.match.params.bid) ?
+                                <button disabled={buttonDis} onClick={unlike_b}>Unlike</button> :
+                                <button disabled={buttonDis} onClick={like_b}>Like</button>
+                                )
+                        }
+                    </div>
+                    <div>
+                        {
+                            props.uname && (
+                                props.blogsSaved.includes(props.match.params.bid) ?
+                                <button disabled={sButtonDis} onClick={unsave_b}>Unsave</button> :
+                                <button disabled={sButtonDis} onClick={save_b}>Save</button>
+                            )
+                        }
+                    </div>
+                    <div>{blog.comments.length} Comment(s)</div>
+                </div>
+            )
         }
         return (
             <div>

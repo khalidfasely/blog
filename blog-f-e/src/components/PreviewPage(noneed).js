@@ -40,7 +40,7 @@ const BlogPage = (props) => {
             setBlog(blog);
             setRenderBlog(true);
             //setPreviewBlog(blog.content.substring(0, 300));
-            setPreviewBlog(previewContent(blog.content.substring(0, 300)));
+            setPreviewBlog(previewContent(blog.content));
             // Render the blog content.. from Redux
             // Otherwise Fecth it from the backend
             // Store it on Redux
@@ -52,7 +52,7 @@ const BlogPage = (props) => {
                     comments: result.comments
                 });
                 setRenderBlog(true);
-                setPreviewBlog(previewContent(result.blog.content.substring(0, 300)));
+                setPreviewBlog(previewContent(result.blog.content));
                 //setPreviewBlog(result.blog.content.substring(0, 300));
                 //this.setState({ renderBlog: true });
             });

@@ -1,7 +1,9 @@
 export default (text) => {
     let str = text;
+    console.log(text);
     let lastIndex = str.lastIndexOf(" ");
     str = str.substring(0, lastIndex);
+    console.log('pCF');
     return str;
 }
 

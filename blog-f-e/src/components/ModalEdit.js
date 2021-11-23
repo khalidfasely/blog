@@ -7,6 +7,7 @@ const ModalEdit = ({ eModalOpen, blog, setEModalOpen }) => (
         isOpen={eModalOpen}
         contentLabel="Edit Blog"
         closeTimeoutMS={100}
+        onRequestClose={() => setEModalOpen(false)}
     >
         <NewBlog isEdit={true} blog={blog} edit={() => setEModalOpen(false)} />
         <button onClick={() => setEModalOpen(false)}>X</button>

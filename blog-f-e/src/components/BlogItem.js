@@ -8,7 +8,7 @@ import { removeBlogFromBP } from '../actions/blogPage';
 import { removeBlogFromUP } from '../actions/userPage';
 import ModalDelete from './ModalDelete';
 import { history } from '../router/AppRouter';
-import PreviewPage from './PreviewPage';
+import BlogPage from './BlogPage';
 
 const BlogItem = ({
     blog,
@@ -68,17 +68,11 @@ const BlogItem = ({
       <Modal
         isOpen={pModalOpen}
         contentLabel="Preview Blog"
-        closeTimeoutMS={100}
+        closeTimeoutMS={50}
+        onRequestClose={() => setPModalOpen(false)}
       >
-        <button onClick={() => {
-          const currentPath = history.location.pathname;
-          history.push('/blog/0');
-          setTimeout(() => {
-            history.push(currentPath);
-          }, 10)
-          //setPModalOpen(false);
-          }}>X</button>
-        <PreviewPage match={{params: {bid: `${blog.id}`}}} />
+        <button onClick={() => setPModalOpen(false)}>X</button>
+        <BlogPage match={{params: {bid: `${blog.id}`}}} isPreview={true} />
       </Modal>
       <ModalDelete rModalOpen={rModalOpen} deleteBlog={deleteBlog} setRModalOpen={setRModalOpen} />
     </div>
