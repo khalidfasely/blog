@@ -9,6 +9,7 @@ import { removeBlogFromUP } from '../actions/userPage';
 import ModalDelete from './ModalDelete';
 import { history } from '../router/AppRouter';
 import BlogPage from './BlogPage';
+import ModalPreview from './ModalPreview';
 
 const BlogItem = ({
     blog,
@@ -65,15 +66,7 @@ const BlogItem = ({
         </div>
       }
       <button onClick={() => setPModalOpen(true)}>Preview</button>
-      <Modal
-        isOpen={pModalOpen}
-        contentLabel="Preview Blog"
-        closeTimeoutMS={50}
-        onRequestClose={() => setPModalOpen(false)}
-      >
-        <button onClick={() => setPModalOpen(false)}>X</button>
-        <BlogPage match={{params: {bid: `${blog.id}`}}} isPreview={true} />
-      </Modal>
+      <ModalPreview pModalOpen={pModalOpen} setPModalOpen={setPModalOpen} bid={blog.id} />
       <ModalDelete rModalOpen={rModalOpen} deleteBlog={deleteBlog} setRModalOpen={setRModalOpen} />
     </div>
   )
