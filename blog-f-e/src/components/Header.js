@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import { history } from '../router/AppRouter';
 import { startLogout } from '../actions/auth';
 import { unsetSavedBlogs } from '../actions/savedBlogs';
+import SearchBlog from './SearchBlog';
 
 const Header = ({ uname, startLogout, unsetSavedBlogs }) => {
     const logout = () => {
@@ -27,6 +28,9 @@ const Header = ({ uname, startLogout, unsetSavedBlogs }) => {
                     <Link to='/register'>Sign In</Link>
                 </p>
             }
+            <div>
+                <SearchBlog />
+            </div>
         </div>
     )
 };

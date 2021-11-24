@@ -1,14 +1,17 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import { connect } from 'react-redux';
 import BlogsList from "./BlogsList";
 
 
-const Blogs = ({ blogs }) => {
+const Blogs = ({ blogs, searchFilter }) => {
+  useEffect(() => {
+    console.log(searchFilter);
+  })
   return (
     <div>
       <h1>Blogs Section</h1>
-      <BlogsList blogs={blogs} />
+      <BlogsList blogs={blogs} searchFilter={searchFilter} />
       <Link to='/profile'>Profile</Link>
     </div>
   )
@@ -16,6 +19,7 @@ const Blogs = ({ blogs }) => {
 
 const mapStateToProps = (state) => ({
   blogs: state.blogs.blogs,
+  searchFilter: state.filterBlogs.searchValue,
 });
 
 export default connect(mapStateToProps)(Blogs);

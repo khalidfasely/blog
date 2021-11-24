@@ -1,11 +1,11 @@
 import React from 'react';
 import BlogItem from './BlogItem';
 
-const BlogsList = ({ blogs }) => {
+const BlogsList = ({ blogs, searchFilter }) => {
     return (
         <div>
             {
-                blogs.map(blog => (
+                blogs.filter(blog => blog.title.toLowerCase().includes(searchFilter.toLowerCase())).map(blog => (
                   <BlogItem key={blog.id} blog={blog} />
                 ))
             }

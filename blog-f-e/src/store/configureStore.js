@@ -6,6 +6,7 @@ import blogPageReducer from '../reducers/blogPage';
 import userPageReducer from '../reducers/userPage';
 import savedBlogsReducer from '../reducers/savedBlogs';
 import categoriesReducer from '../reducers/categories';
+import filterBlogsReducer from '../reducers/filterBlogs';
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
@@ -18,6 +19,7 @@ export default () => {
             blogPage: blogPageReducer,
             userPage: userPageReducer,
             savedBlogs: savedBlogsReducer,
+            filterBlogs: filterBlogsReducer
         }),
         composeEnhancers(applyMiddleware(thunk))
     );
