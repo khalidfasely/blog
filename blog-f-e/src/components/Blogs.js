@@ -2,15 +2,16 @@ import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import { connect } from 'react-redux';
 import BlogsList from "./BlogsList";
+import SearchBlog from "./SearchBlog";
 
 
 const Blogs = ({ blogs, searchFilter }) => {
-  useEffect(() => {
-    console.log(searchFilter);
-  })
   return (
     <div>
       <h1>Blogs Section</h1>
+      <div>
+          <SearchBlog />
+      </div>
       <BlogsList blogs={blogs} searchFilter={searchFilter} />
       <Link to='/profile'>Profile</Link>
     </div>

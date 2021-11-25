@@ -1,19 +1,13 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { connect } from 'react-redux';
 import { filterBySearch } from '../actions/filterBlogs';
 
-const SearchBlog = ({ filterBySearch }) => {
-    const [ searchValue, setSearchValue ] = useState('');
+const SearchBlog = ({ searchFilter, filterBySearch }) => {
 
     const searchValueChange = (e) => {
-        const searchValue = e.target.value;
-        setSearchValue(searchValue);
+        const searchValue = e.target.value.replace(/\s/g, '');
         //To filter with onChange
-        filterBySearch(searchValue.replace(/\s/g, ''));
-    }
-
-    const monthValueChange = (e) => {
-        console.log(e.target.value.substring(0, 4), e.target.value);
+        filterBySearch(searchValue);
     }
 
     //const searchData = (e) => {
@@ -23,21 +17,23 @@ const SearchBlog = ({ filterBySearch }) => {
     //}
 
     return (
-        <form>
+        <div>
             <input
                 type='text'
                 placeholder='Search...'
-                value={searchValue}
+                value={searchFilter}
                 onChange={searchValueChange}
             />
-            <input type='month' min='2021-09' onChange={monthValueChange} />
-            <button>&#128269; &#128270;</button>
-        </form>
+        </div>
     )
-};
+};//<input type='month' min='2021-09' onChange={monthValueChange} />
+
+const mapStateToProps = (state) => ({
+    searchFilter: state.filterBlogs.searchValue,
+  });
 
 const mapDispatchToProps = (dispatch) => ({
     filterBySearch: (searchValue) => dispatch(filterBySearch(searchValue)),
 });
 
-export default connect(undefined, mapDispatchToProps)(SearchBlog);
+export default connect(mapStateToProps, mapDispatchToProps)(SearchBlog);
