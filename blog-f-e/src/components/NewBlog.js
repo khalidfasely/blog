@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 import { startEditBlog } from '../actions/blogPage';
 import { editBlogFromBP, startAddBlog } from '../actions/blogs';
@@ -31,6 +31,12 @@ const NewBlog = ({
     const categoryDefault = blog ? blog.category : '';
     const [ category, setCategory ] = useState(categoryDefault);
     const [ error, setError ] = useState('');
+
+    useEffect(() => {
+        if(!isEdit){
+            document.title = 'Create a Blog - Blog';
+        }
+    }, [])
 
     const onTitleChange = (e) => {
         const title = e.target.value;

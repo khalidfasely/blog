@@ -34,6 +34,7 @@ const UserPage = (props) => {
         const userPage = blogDidAlreadyLoad();
         if (userPage) {
             setUserPage(userPage);
+            document.title = `${userPage.uid.username} - Blog`;
             setRenderUserPage(true);
             // Render the blog content.. from Redux
             // Otherwise Fecth it from the backend
@@ -47,6 +48,7 @@ const UserPage = (props) => {
                     bio: result.bio,
                     blogs: result.blogs
                 });
+                document.title = `${result.uid.username} - Blog`;
                 setRenderUserPage(true);
                 //this.setState({ renderBlog: true });
             });

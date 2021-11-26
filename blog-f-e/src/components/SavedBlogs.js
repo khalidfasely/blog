@@ -8,6 +8,7 @@ const SavedBlogs = ({ startSetSavedBlogs, blogs }) => {
     //const [ blogs, setBlogs ] = useState();
     useEffect(() => {
         //startSetSavedBlogs();
+        document.title = `Saved Blogs`;
     }, [])
     return (
         <div>

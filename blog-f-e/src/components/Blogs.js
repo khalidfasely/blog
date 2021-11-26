@@ -6,6 +6,11 @@ import SearchBlog from "./SearchBlog";
 
 
 const Blogs = ({ blogs, searchFilter }) => {
+  
+  useEffect(() => {
+    document.title = `Blog`;
+  }, [])
+
   return (
     <div>
       <h1>Blogs Section</h1>

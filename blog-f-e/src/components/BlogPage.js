@@ -42,6 +42,7 @@ const BlogPage = (props) => {
         const blog = blogDidAlreadyLoad();
         if (blog) {
             setBlog(blog);
+            document.title = `${blog.title} (@${blog.created_by.username}) - Blog`;
             setRenderBlog(true);
             setPreviewBlog(previewContent(blog.content.substring(0, 300)));
             // Render the blog content.. from Redux
@@ -54,6 +55,7 @@ const BlogPage = (props) => {
                     ...result.blog,
                     comments: result.comments
                 });
+                document.title = `${result.blog.title} (@${result.blog.created_by.username}) - Blog`;
                 setRenderBlog(true);
                 setPreviewBlog(previewContent(result.blog.content.substring(0, 300)));
                 //this.setState({ renderBlog: true });
