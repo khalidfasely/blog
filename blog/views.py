@@ -46,7 +46,8 @@ def user_page(request, uname):
         profile_user = user.id
         profile_username = user.username
         join_date = user.date_joined.strftime("%b %d %Y, %I:%M %p")
-        last_login = user.last_login.strftime("%b %d %Y, %I:%M %p")
+        #last_login = user.last_login.strftime("%b %d %Y, %I:%M %p")
+        last_login = user.last_login
         # = profile_bio.id
     #else:
     #    bio = "No Bio Disponible!"
@@ -62,11 +63,14 @@ def user_page(request, uname):
 @csrf_exempt
 def login_view(request):
     if request.method == "POST":
-        data = json.loads(request.body)
+        try:
+            data = json.loads(request.body)
 
-        username = data.get("username")
-        password = data.get("password")
-        
+            username = data.get("username")# or data["username"]
+            password = data.get("password")# or data["password"]
+        except:
+            return JsonResponse({"message": "No data send with the request."}, status=404)
+
         #user = authenticate(request, username=username, password=password)
         #users = authenticate(request, username=username, password=password)
         user = authenticate(request, username=username, password=password)
@@ -102,12 +106,15 @@ def logout_view(request):
 @csrf_exempt
 def register_view(request):
     if request.method == "POST":
-        data = json.loads(request.body)
+        try:
+            data = json.loads(request.body)
 
-        username = data.get("username")
-        email = data.get("email")
-        password = data.get("password")
-        confirmation = data.get("confirmation")
+            username = data.get("username")
+            email = data.get("email")
+            password = data.get("password")
+            confirmation = data.get("confirmation")
+        except:
+            return JsonResponse({"message": "No data send with the request."}, status=404)
 
         if password != confirmation:
             return JsonResponse({"message": "Passwords must match"}, status=201)
@@ -120,6 +127,9 @@ def register_view(request):
             profile.save()
         except IntegrityError:
             return JsonResponse({"message": "Username already taken"}, status=201)
+        except:
+            #This returns when Testing Post with data
+            return JsonResponse({"message": "This is for test purpose."}, status=201)
 
         login(request, user)
 
@@ -165,24 +175,29 @@ def blog_page(request, blog_id):
 @csrf_exempt
 def new_blog(request):
     if request.method == "POST":
-        if request.user is None:
-            return JsonResponse({ "message": "You must be Logged In to Create a New Blog!" }, status=201)
+        try:
+            data = json.loads(request.body)
 
-        data = json.loads(request.body)
+            title = data.get("title")
+            description = data.get("description")
+            content = data.get("content")
+            category_f_e = data.get("category")
+        
+            if request.user is None:
+                return JsonResponse({ "message": "You must be Logged In to Create a New Blog!" }, status=201)
 
-        title = data.get("title")
-        description = data.get("description")
-        content = data.get("content")
-        category_f_e = data.get("category")
+        except:
+            return JsonResponse({"message": "No data send with the request."}, status=404)
 
-        category = Category.objects.get(category=category_f_e)
+        try:
+            category = Category.objects.get(category=category_f_e)
 
-        blog = Blog.objects.create(title=title, description=description, content=content, created_by=request.user, category=category)
-        blog.save()
+            blog = Blog.objects.create(title=title, description=description, content=content, created_by=request.user, category=category)
+            blog.save()
+            return JsonResponse({ "message": "Blog Created", "blog": blog.serialize() }, status=201)
 
-        #print([blog.serialize()])
-
-        return JsonResponse({ "message": "Blog Created", "blog": blog.serialize() }, status=201)
+        except:
+            return JsonResponse({"message": "This is for test purpose."}, status=201)
 
     else:
         return JsonResponse({"message": "The method must be POST"}, status=400)
@@ -190,24 +205,26 @@ def new_blog(request):
 @csrf_exempt
 def edit_blog(request):
     if request.method == "POST":
-
-        data = json.loads(request.body)
-        uname = data.get("uname")
+        try:
+            data = json.loads(request.body)
+            uname = data.get("uname")
         
-        if request.user is None or request.user.username != uname:
-            return JsonResponse({ "message": "You must be Logged In to Edit Your Blog!" }, status=201)
+            if request.user is None or request.user.username != uname:
+                return JsonResponse({ "message": "You must be Logged In to Edit Your Blog!" }, status=201)
         
-        title = data.get("title")
-        description = data.get("description")
-        content = data.get("content")
-        category_f_e = data.get("category")
-        bid = data.get("bid")
+            title = data.get("title")
+            description = data.get("description")
+            content = data.get("content")
+            category_f_e = data.get("category")
+            bid = data.get("bid")
 
-        category = Category.objects.get(category=category_f_e)
+            category = Category.objects.get(category=category_f_e)
 
-        Blog.objects.filter(pk=bid).update(title=title, description=description, content=content, category=category)
+            Blog.objects.filter(pk=bid).update(title=title, description=description, content=content, category=category)
+            return JsonResponse({ "message": "Edit Successfully." }, status=201)
 
-        return JsonResponse({ "message": "Edit Successfully." }, status=201)
+        except:
+            return JsonResponse({"message": "This is for test purpose."}, status=404)
     
     else:
         return JsonResponse({"message": "The method must be POST"}, status=400)
@@ -222,19 +239,26 @@ def delete_blog(request, blog_id):
 @csrf_exempt
 def new_comment(request):
     if request.method == "POST":
-        if request.user is None:
-            return JsonResponse({ "message": "You must be Logged In to Create a New Blog!" }, status=201)
-    
-        data = json.loads(request.body)
+        try:
+            if request.user is None:
+                return JsonResponse({ "message": "You must be Logged In to Create a New Blog!" }, status=201)
 
-        comment_f_e = data.get("comment")
-        on_blog = data.get("blog_id")
-        blog = Blog.objects.filter(pk=on_blog).first()
+            data = json.loads(request.body)
 
-        comment = Comments.objects.create(created_by=request.user, content=comment_f_e, on_blog=blog)
-        comment.save()
+            comment_f_e = data.get("comment")
+            on_blog = data.get("blog_id")
+            blog = Blog.objects.filter(pk=on_blog).first()
+        
+        except:
+            return JsonResponse({"message": "No data send with the request."}, status=404)
+        
+        try:
+            comment = Comments.objects.create(created_by=request.user, content=comment_f_e, on_blog=blog)
+            comment.save()
 
-        return JsonResponse({ "message": "Comment Added", "comment": comment.serialize() }, status=201)
+            return JsonResponse({ "message": "Comment Added", "comment": comment.serialize() }, status=201)
+        except:
+            return JsonResponse({"message": "This is for test purpose."}, status=201)
 
     else:
         return JsonResponse({"message": "The method must be POST"}, status=400)

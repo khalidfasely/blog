@@ -74,6 +74,9 @@ class Blog(models.Model):
             "category": self.category.category
         }
 
+    def is_valid_blog(self):
+        return self.title and self.description and self.content and self.created_by and self.category and self.likes.count() >= 0
+
     def likes_num(self):
         return self.likes.all().count()
 
@@ -93,6 +96,10 @@ class Profile(models.Model):
 
     def saves_blogs_num(self):
         return self.saves.all().count()
+    
+    
+    def is_valid_profile(self):
+        return self.user
 
 class Comments(models.Model):
     created_by = models.ForeignKey(User, on_delete=models.CASCADE, related_name="creater_com")
