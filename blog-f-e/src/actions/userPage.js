@@ -1,4 +1,5 @@
 import userPage from '../fetching/userPage';
+import editProfileApi from '../fetching/editProfile';
 
 export const setUserPage = ({ uid, uinfo, blogs, bio }) => ({
     type: 'SET_USER_PAGE',
@@ -37,3 +38,18 @@ export const editBlogFromUP = ({ uname, bid }, updates) => ({
     bid,
     updates
 });
+
+export const editProfile = (uname, updates) => ({
+    type: 'EDIT_PROFILE_INFO',
+    uname,
+    updates
+});
+
+export const startEditProfile = (uname, updates) => {
+    return (dispatch) => {
+        return editProfileApi(uname, updates).then((result) => {
+            dispatch(editProfile(uname, updates));
+            return result;
+        });
+    };
+};

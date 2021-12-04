@@ -8,10 +8,12 @@ import { l_blog, s_blog, u_blog, u_s_blog } from '../actions/auth';
 import { startSaveBlog, startUnsaveBlog } from '../actions/savedBlogs';
 import { startSetUserPage } from '../actions/userPage';
 import BlogsList from './BlogsList';
+import ModalEditProfile from './ModalEditProfile';
 
 const UserPage = (props) => {
     const [renderUserPage, setRenderUserPage] = useState(false);
     const [userPage, setUserPage] = useState();
+    const [ePrModalOpen, setEdPrModalOpen] = useState(false);
     
     const blogDidAlreadyLoad = () => {
         let profileInList = undefined;
@@ -55,12 +57,21 @@ const UserPage = (props) => {
         }
     }, [])
 
+    const resetInfoProfile = (newInfo) => {
+        setUserPage({...userPage, ...newInfo});
+    }
+
     if(renderUserPage) {
         return (
             <div>{ userPage &&
                 <div>
                     <div>{`joined on: ${userPage.uinfo.join_date}`}</div>
                     {userPage.bio && <div>bio: {userPage.bio}</div>}
+                    {
+                        userPage.uid.username === props.uname &&
+                        <button onClick={() => setEdPrModalOpen(true)}>Edit Profile</button>
+                    }
+                    <ModalEditProfile ePrModalOpen={ePrModalOpen} setEdPrModalOpen={setEdPrModalOpen} bio={userPage.bio} resetInfoProfile={resetInfoProfile} />
                     <BlogsList blogs={userPage.blogs} />
                 </div>
             }</div>

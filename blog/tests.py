@@ -4,7 +4,7 @@ import urllib.request
 
 from django.test import TestCase, Client
 from django.urls import reverse, resolve
-from .views import login_view, logout_view, register_view, categories, user, blogs, new_blog, new_comment, blog_page, user_page, like_comment, unlike_comment, like_blog, unlike_blog, blogs_saved, save_blog, unsave_blog, delete_blog, edit_blog
+from .views import login_view, logout_view, register_view, categories, user, blogs, new_blog, new_comment, blog_page, user_page, like_comment, unlike_comment, like_blog, unlike_blog, blogs_saved, save_blog, unsave_blog, delete_blog, edit_blog, edit_profile
 
 # Create your tests here.
 from .models import User, Blog, Category, Profile, Comments
@@ -191,6 +191,10 @@ class TestsWithoutData(TestCase):
     def test_edit_blog_url(self):
         url = reverse('edit_blog')
         self.assertEqual(resolve(url).func, edit_blog)
+    
+    def test_edit_profile_url(self):
+        url = reverse('edit_profile')
+        self.assertEqual(resolve(url).func, edit_profile)
 
     def test_blog_page_url(self):
         #In args you can give it whatever: args=["str"] / args=[int]
@@ -356,9 +360,14 @@ class TestsWithoutData(TestCase):
         response = c.get("/data/blogs_saved")
         self.assertEqual(response.status_code, 201)
 
-    def test_get_edit_data_route(self):
+    def test_get_edit_blog_route(self):
         c = Client()
         response = c.get(reverse("edit_blog"))
+        self.assertEqual(response.status_code, 400)
+
+    def test_get_edit_profile_route(self):
+        c = Client()
+        response = c.get(reverse("edit_profile"))
         self.assertEqual(response.status_code, 400)
 
     def test_post_edit_blog_route_with_data(self):
@@ -366,6 +375,17 @@ class TestsWithoutData(TestCase):
         jsondata = json.dumps({ 'uname': 'Admin', 'title': 'e_t1', 'description': 'e_d1', 'content': 'e_ct1', 'category': 'Web', 'bid': 1})#f"{bid}"
         response = c.post(reverse("edit_blog"), content_type=jsondata)
         self.assertEqual(response.status_code, 201)
+
+    def test_post_edit_profile_route_with_data(self):
+        c = Client()
+        jsondata = json.dumps({ 'uname': 'Admin', 'bio': 'NewBio'})
+        response = c.post(reverse("edit_profile"), content_type=jsondata)
+        self.assertEqual(response.status_code, 201)
+
+    def test_post_edit_profile_route_without_data(self):
+        c = Client()
+        response = c.post(reverse("edit_profile"))
+        self.assertEqual(response.status_code, 404)
 
     def test_not_found_page(self):
         c = Client()

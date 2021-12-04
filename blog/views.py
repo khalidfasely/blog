@@ -61,6 +61,28 @@ def user_page(request, uname):
     }, "blogs": [ blog.serialize_all() for blog in blogs ], "bio": f"{bio}" }, status=201)
 
 @csrf_exempt
+def edit_profile(request):
+    if request.method == "POST":
+        try:
+            data = json.loads(request.body)
+
+            uname = data.get("uname")
+            bio = data.get("bio")
+        except:
+            return JsonResponse({"message": "No data send with the request."}, status=404)
+        
+        try:
+            user = User.objects.get(username=uname)
+            Profile.objects.filter(user=user).update(bio=bio)
+            return JsonResponse({ "message": "Edit Successfully." }, status=201)
+
+        except:
+            return JsonResponse({"message": "This is for test purpose."}, status=201)
+
+    else:
+        return JsonResponse({"message": "The method must be POST"}, status=400)
+
+@csrf_exempt
 def login_view(request):
     if request.method == "POST":
         try:

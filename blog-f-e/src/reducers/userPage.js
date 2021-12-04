@@ -7,6 +7,19 @@ export default (state = userPageReducerDefaultState, action) => {
                 action.user,
                 ...state
             ];
+        case 'EDIT_PROFILE_INFO':
+            return [
+                ...state.map(profileItem => {
+                    if (profileItem.uid.username === action.uname) {
+                        return {
+                            ...profileItem,
+                            ...action.updates
+                        }
+                    } else {
+                        return profileItem;
+                    }
+                })
+            ];
         case 'ADD_BLOG_PROFILE':
             return [
                 ...state.map(profileItem => {
