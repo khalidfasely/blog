@@ -8,6 +8,9 @@ import { l_blog, s_blog, u_blog, u_s_blog } from '../actions/auth';
 import { startSaveBlog, startUnsaveBlog } from '../actions/savedBlogs';
 import ModalEdit from './ModalEdit';
 import previewContent from '../functions/previewContent';
+import { history } from '../router/AppRouter';
+import SocialShare from './SocialShare';
+import MarkdownBlog from './MarkdownBlog';
 
 const BlogPage = (props) => {
     const [renderBlog, setRenderBlog] = useState(false);
@@ -120,14 +123,14 @@ const BlogPage = (props) => {
         if (blog.isDefault) {
             return <div>This Blog Not Available Now. <Link to='/'>Back Home</Link></div>
         } else if (props.isPreview) {
-            return (
+            return (//<ReactMarkdown>{`${previewBlog}...`}</ReactMarkdown>
                 <div>
                     <h1>{blog.title}</h1>
                     <p>{blog.created_at}</p>
                     <p>{blog.created_by.username}</p>
                     <p>{blog.category}</p>
                     <p>{blog.description}</p>
-                    <ReactMarkdown>{`${previewBlog}...`}</ReactMarkdown>
+                    <MarkdownBlog blogContent={`${previewBlog}...`} />
                     <Link to={`/blog/${blog.id}`}>See More</Link>
                     <p>{blog.likes}</p>
                     <p>{blog.dislikes}</p>
@@ -153,14 +156,14 @@ const BlogPage = (props) => {
                 </div>
             )
         }
-        return (
+        return (//<ReactMarkdown>{blog.content}</ReactMarkdown>
             <div>
                 <h1>{blog.title}</h1>
                 <p>{blog.created_at}</p>
                 <p>{blog.created_by.username}</p>
                 <p>{blog.category}</p>
                 <p>{blog.description}</p>
-                <ReactMarkdown>{blog.content}</ReactMarkdown>
+                <MarkdownBlog blogContent={blog.content} />
                 <p>{blog.likes}</p>
                 <p>{blog.dislikes}</p>
                 {
@@ -188,6 +191,7 @@ const BlogPage = (props) => {
                         )
                     }
                 </div>
+                <SocialShare shareUrl={history.location.pathname} />
                 <div>
                     <h5>Comments:</h5>
                     {

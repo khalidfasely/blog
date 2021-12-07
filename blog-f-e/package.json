@@ -14,8 +14,13 @@
     "react-redux": "7.2.4",
     "react-router-dom": "5.2.0",
     "react-scripts": "4.0.3",
+    "react-share": "^4.4.0",
+    "react-syntax-highlighter": "^15.4.5",
     "redux": "4.1.1",
     "redux-thunk": "2.3.0",
+    "rehype-katex": "^6.0.2",
+    "remark-gfm": "^3.0.1",
+    "remark-math": "^5.1.1",
     "web-vitals": "^1.0.1"
   },
   "scripts": {
