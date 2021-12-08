@@ -31,6 +31,10 @@ const NewBlog = ({
     const categoryDefault = blog ? blog.category : '';
     const [ category, setCategory ] = useState(categoryDefault);
     const [ error, setError ] = useState('');
+    const [ titleError, setTitleError ] = useState('');
+    const [ descriptionError, setDescriptionError ] = useState('');
+    const [ contentError, setContentError ] = useState('');
+    const [ categoryError, setCategoryError ] = useState('');
 
     useEffect(() => {
         if(!isEdit){
@@ -61,7 +65,16 @@ const NewBlog = ({
     const onFormSubmit = (e) => {
         e.preventDefault();
 
-        const availabelData = (title.replace(/\s/g, '') && description.replace(/\s/g, '') && content.replace(/\s/g, '') && category);
+        setTitleError('');
+        setDescriptionError('');
+        setContentError('');
+        setCategoryError('');
+
+        //const availabelData = (title.replace(/\s/g, '') && description.replace(/\s/g, '') && content.replace(/\s/g, '') && category);
+        const availabelTitle = title.replace(/\s/g, '').length >= 90;
+        const availabelDescription = description.replace(/\s/g, '').length >= 255;
+        const availabelContent = content.replace(/\s/g, '').length >= 500;
+        const availabelData = (availabelTitle && availabelDescription && availabelContent && category);
 
         if (availabelData && !isEdit) {
             startAddBlog({ title, description, content, category }).then((result) => {
@@ -110,7 +123,19 @@ const NewBlog = ({
                 })
             });
         } else {
-            setError('Fill out all fields And Select a Category!');
+            if(!availabelTitle){
+                setTitleError('The title\'s length should be 90 or more.');
+            }
+            if(!availabelDescription){
+                setDescriptionError('The description\'s length should be 255 or more.');
+            }
+            if(!availabelContent){
+                setContentError('The content\'s length should be 500 or more.');
+            }
+            if(!category){
+                setCategoryError('Set a category to the Blog.');
+            }
+            //setError('Fill out all the fields || The title\'s length should be 90 or more, The description\'s length should be 255 or more, And the content\'s length should be 500 or more.');
         }
     };
 
@@ -122,28 +147,35 @@ const NewBlog = ({
         <div>
             {error && <div>{error}</div>}
             <form onSubmit={onFormSubmit}>
+                <label for='title_new'>Title:</label>
                 <textarea
-                  placeholder='Title'
+                  id='title_new'
+                  placeholder='Title (More than 90 characters)'
                   autoFocus
-                  minLength={90}
                   maxLength={120}
                   value={title}
                   onChange={onTitleChange}
                 />
+                {titleError && <p>{titleError}</p>}
+                <label for='description_new'>Description:</label>
                 <textarea
-                  placeholder='Description'
-                  minLength={255}
+                  id='description_new'
+                  placeholder='Description (More than 255 characters)'
                   maxLength={300}
                   value={description}
                   onChange={onDescriptionChange}
                 />
+                {descriptionError && <p>{descriptionError}</p>}
+                <label for='content_new'>Content:</label>
                 <textarea
-                  placeholder='Content'
-                  minLength={500}
+                  id='content_new'
+                  placeholder='Content (More than 500 characters)'
                   value={content}
                   onChange={onContentChange}
                 />
-                <select onChange={onCategoryChange}>
+                {contentError && <p>{contentError}</p>}
+                <label for='category_new'>Category:</label>
+                <select id='category_new' onChange={onCategoryChange}>
                     {
                         isEdit ?
                         <option disabled selected value={category}>{category}</option> :
@@ -153,6 +185,7 @@ const NewBlog = ({
                         categories.map((category) => <option value={category}>{category}</option>)
                     }
                 </select>
+                {categoryError && <p>{categoryError}</p>}
                 {
                     isEdit ?
                     <button onClick={editing}>Edit Blog</button> :

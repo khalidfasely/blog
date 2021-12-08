@@ -69,7 +69,10 @@ const UserPage = (props) => {
                     {userPage.bio && <div>bio: {userPage.bio}</div>}
                     {
                         userPage.uid.username === props.uname &&
-                        <button onClick={() => setEdPrModalOpen(true)}>Edit Profile</button>
+                        <div>
+                            <Link to='/saves' >Save Blogs</Link>
+                            <button onClick={() => setEdPrModalOpen(true)}>Edit Profile</button>
+                        </div>
                     }
                     <ModalEditProfile ePrModalOpen={ePrModalOpen} setEdPrModalOpen={setEdPrModalOpen} bio={userPage.bio} resetInfoProfile={resetInfoProfile} />
                     <BlogsList blogs={userPage.blogs} />

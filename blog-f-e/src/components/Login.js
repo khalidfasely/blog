@@ -45,7 +45,9 @@ const Login = ({ startLogin }) => {
         <div>
             <form onSubmit={onFormSubmit}>
                 {error && <div>{error}</div>}
+                <label for='username_login'>Username:</label>
                 <input
+                  id='username_login'
                   name='username'
                   autoFocus
                   placeholder='Username'
@@ -53,7 +55,9 @@ const Login = ({ startLogin }) => {
                   value={username}
                   onChange={onUsernameChange}
                 />
+                <label for='password_login'>Password:</label>
                 <input
+                  id='password_login'
                   name='password'
                   placeholder='Password'
                   type='password'

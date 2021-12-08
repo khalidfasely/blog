@@ -55,33 +55,45 @@ const Register = ({ startRegister }) => {
         <div>
             {error && <div>{error}</div>}
             <form onSubmit={onFormSubmit}>
+                <label for='username_new'>Username:</label>
                 <input
+                  id='username_new'
                   name='username'
                   type='text'
                   autoFocus
                   placeholder='Username'
                   value={username}
+                  maxLength={35}
                   onChange={onUsernameChange}
                 />
+                <label for='email_new'>Email:</label>
                 <input
+                  id='email_new'
                   name='email'
                   type='email'
                   placeholder='Email'
                   value={email}
+                  maxLength={70}
                   onChange={onEmailChange}
                 />
+                <label for='password_new'>Password:</label>
                 <input
+                  id='password_new'
                   name='password'
                   type='password'
                   placeholder='Password'
                   value={password}
+                  maxLength={120}
                   onChange={onPasswordChange}
                 />
+                <label for='confirmation_new'>Confirmation:</label>
                 <input
+                  id='confirmation_new'
                   name='confirmation'
                   type='password'
                   placeholder='Password (Again)'
                   value={confirmation}
+                  maxLength={120}
                   onChange={onConfirmationChange}
                 />
                 <button>Submit</button>
