@@ -1,0 +1,74 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Should render Blogs correcly with no props 1`] = `
+<div>
+  <h1>
+    Blogs Section
+  </h1>
+  <div>
+    <React.Memo />
+  </div>
+  <BlogsList />
+  <[object Object]
+    to="/profile"
+  >
+    Profile
+  </[object Object]>
+</div>
+`;
+
+exports[`Should render Blogs correcly with props 1`] = `
+<div>
+  <h1>
+    Blogs Section
+  </h1>
+  <div>
+    <React.Memo />
+  </div>
+  <BlogsList
+    blogs={
+      Array [
+        Object {
+          "category": "Web",
+          "content": "content",
+          "createdAt": "10 Nov 2021",
+          "createdBy": "Admin",
+          "description": "description",
+          "dislikes": 0,
+          "id": 1,
+          "likes": 1,
+          "title": "title",
+        },
+        Object {
+          "category": "Django",
+          "content": "content",
+          "createdAt": "15 Nov 2021",
+          "createdBy": "Anonymous",
+          "description": "description",
+          "dislikes": 0,
+          "id": 2,
+          "likes": 0,
+          "title": "title2",
+        },
+        Object {
+          "category": "React",
+          "content": "content",
+          "createdAt": "29 Nov 2021",
+          "createdBy": "Admin",
+          "description": "description",
+          "dislikes": 0,
+          "id": 3,
+          "likes": 1,
+          "title": "title2",
+        },
+      ]
+    }
+    searchFilter="title2"
+  />
+  <[object Object]
+    to="/profile"
+  >
+    Profile
+  </[object Object]>
+</div>
+`;

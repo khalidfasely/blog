@@ -1,4 +1,6 @@
-const savedBlogsReducerDefaultState = [];
+const savedBlogsReducerDefaultState = {
+    blogs: []
+};
 
 export default (state = savedBlogsReducerDefaultState, action) => {
     switch (action.type) {

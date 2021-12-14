@@ -6,7 +6,7 @@ import likeBlogApi from "../fetching/likeBlog";
 import unlikeBlogApi from "../fetching/unlikeBlog";
 import editBlogApi from '../fetching/editBlog';
 
-export const setBlog = ({ blog, comments }) => ({
+export const setBlog = ({ blog, comments = [] }) => ({
     type: 'SET_BLOG',
     blog: {
         ...blog,

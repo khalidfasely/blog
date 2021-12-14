@@ -1,5 +1,6 @@
 const authReducerDefaultState = {
     uname: undefined,
+    uid: undefined,
     commentsLiked: [],
     blogsLiked: [],
     blogsSaved: []
@@ -11,6 +12,7 @@ export default (state = authReducerDefaultState, action) => {
             return {
                 ...state,
                 uname: action.uname,
+                uid: action.uid,
                 commentsLiked: action.commentsLiked,
                 blogsLiked: action.blogsLiked,
                 blogsSaved: action.blogsSaved
@@ -19,6 +21,7 @@ export default (state = authReducerDefaultState, action) => {
             return {
                 ...state,
                 uname: action.uname,
+                uid: action.uid,
                 commentsLiked: action.commentsLiked,
                 blogsLiked: action.blogsLiked,
                 blogsSaved: action.blogsSaved
@@ -27,6 +30,7 @@ export default (state = authReducerDefaultState, action) => {
             return {
                 ...state,
                 uname: undefined,
+                uid: undefined,
                 commentsLiked: [],
                 blogsLiked: [],
                 blogsSaved: []
@@ -35,6 +39,7 @@ export default (state = authReducerDefaultState, action) => {
             return {
                 ...state,
                 uname: action.uname,
+                uid: action.uid,
                 commentsLiked: action.commentsLiked,
                 blogsLiked: action.blogsLiked,
                 blogsSaved: action.blogsSaved

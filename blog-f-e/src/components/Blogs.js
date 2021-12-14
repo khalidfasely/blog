@@ -5,7 +5,7 @@ import BlogsList from "./BlogsList";
 import SearchBlog from "./SearchBlog";
 
 
-const Blogs = ({ blogs, searchFilter }) => {
+export const Blogs = ({ blogs, searchFilter }) => {
   
   useEffect(() => {
     document.title = `Blog`;

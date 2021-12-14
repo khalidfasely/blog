@@ -8,7 +8,7 @@ import {dark, duotoneLight, materialLight, atomDark} from 'react-syntax-highligh
 
 import 'katex/dist/katex.min.css';
 
-const MarkdownBlog = ({ blogContent }) => {
+export const MarkdownBlog = ({ blogContent }) => {
     return (
         <ReactMarkdown
           remarkPlugins={[remarkGfm, remarkMath]}

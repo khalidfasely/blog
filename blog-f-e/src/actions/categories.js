@@ -1,6 +1,6 @@
 import getCategories from '../fetching/getCategories';
 
-export const setCategories = (categories) => ({
+export const setCategories = (categories = []) => ({
     type: 'SET_CATEGORIES',
     categories
 });

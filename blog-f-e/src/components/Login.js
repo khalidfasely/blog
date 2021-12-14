@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import { startLogin } from '../actions/auth';
 import { history } from '../router/AppRouter';
 
-const Login = ({ startLogin }) => {
+export const Login = ({ startLogin }) => {
     const [ username, setUsername ] = useState('');
     const [ password, setPassword ] = useState('');
     const [ error, setError ] = useState('');
@@ -44,7 +44,7 @@ const Login = ({ startLogin }) => {
     return (
         <div>
             <form onSubmit={onFormSubmit}>
-                {error && <div>{error}</div>}
+                {error && <p>{error}</p>}
                 <label for='username_login'>Username:</label>
                 <input
                   id='username_login'

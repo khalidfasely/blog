@@ -27,6 +27,7 @@ const SearchBlog = ({ searchFilter, filterBySearch }) => {
                     onChange={searchValueChange}
                 />
             </form>
+            {searchFilter && <p>Result of: <b>{searchFilter}</b></p>}
         </div>
     )
 };

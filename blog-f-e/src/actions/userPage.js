@@ -1,7 +1,7 @@
 import userPage from '../fetching/userPage';
 import editProfileApi from '../fetching/editProfile';
 
-export const setUserPage = ({ uid, uinfo, blogs, bio }) => ({
+export const setUserPage = ({ uid, uinfo, blogs, bio } = {}) => ({
     type: 'SET_USER_PAGE',
     user: {
         uid,

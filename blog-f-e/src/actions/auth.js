@@ -5,9 +5,10 @@ import registerApi from '../fetching/register';
 import saveBlogApi from '../fetching/saveBlog';
 import unsaveBlogApi from '../fetching/unsaveBlog';
 
-export const setUser = ({ uname, commentsLiked, blogsLiked, blogsSaved } = {}) => ({
+export const setUser = ({ uname, uid, commentsLiked, blogsLiked, blogsSaved } = {}) => ({
     type: 'SET_USER',
     uname,
+    uid,
     commentsLiked,
     blogsLiked,
     blogsSaved
@@ -19,6 +20,7 @@ export const startSetUser = () => {
             if(result) {
                 dispatch(setUser({
                     uname: result.user,
+                    uid: result.uid,
                     commentsLiked: result.likes,
                     blogsLiked: result.likes_b,
                     blogsSaved: result.blogs_saved
@@ -29,9 +31,10 @@ export const startSetUser = () => {
     };
 };
 
-export const login = ({ uname, commentsLiked, blogsLiked, blogsSaved }) => ({
+export const login = ({ uname, uid, commentsLiked, blogsLiked, blogsSaved } = {}) => ({
     type: 'LOGIN',
     uname,
+    uid,
     commentsLiked,
     blogsLiked,
     blogsSaved
@@ -42,6 +45,7 @@ export const startLogin = ({ username, password }) => {
         return loginApi({ username, password }).then((result) => {
             dispatch(login({
                 uname: result.user,
+                uid: result.uid,
                 commentsLiked: result.likes,
                 blogsLiked: result.likes_b,
                 blogsSaved: result.blogs_saved
@@ -64,9 +68,10 @@ export const startLogout = () => {
     };
 };
 
-export const register = ({ uname, commentsLiked, blogsLiked, blogsSaved }) => ({
+export const register = ({ uname, uid, commentsLiked, blogsLiked, blogsSaved } = {}) => ({
     type: 'REGISTER',
     uname,
+    uid,
     commentsLiked,
     blogsLiked,
     blogsSaved
@@ -78,6 +83,7 @@ export const startRegister = ({ username, email, password, confirmation }) => {
             if(result.message === "Register") {
                 dispatch(register({
                     uname: username,
+                    uid: result.uid,
                     commentsLiked: result.likes,
                     blogsLiked: result.likes_b,
                     blogsSaved: result.blogs_saved

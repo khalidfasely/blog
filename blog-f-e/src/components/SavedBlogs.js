@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { startSetSavedBlogs } from '../actions/savedBlogs';
 import BlogsList from './BlogsList';
 
-const SavedBlogs = ({ startSetSavedBlogs, blogs }) => {
+export const SavedBlogs = ({ startSetSavedBlogs, blogs }) => {
     //const [ blogs, setBlogs ] = useState();
     useEffect(() => {
         //startSetSavedBlogs();

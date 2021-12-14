@@ -2,7 +2,7 @@ import blogsApi from '../fetching/blogs';
 import addBlogApi from '../fetching/newBlog';
 import deleteBlogApi from '../fetching/deleteBlog';
 
-export const setBlogs = (blogs) => ({
+export const setBlogs = (blogs = []) => ({
     type: 'SET_BLOGS',
     blogs
 });
@@ -16,7 +16,7 @@ export const startSetBlogs = () => {
     };
 };
 
-export const addBlog = (blog) => ({
+export const addBlog = (blog = {}) => ({
     type: 'ADD_BLOG',
     blog
 });
@@ -44,7 +44,7 @@ export const startDeleteBlog = (bid) => {
     };
 };
 
-export const editBlogFromBP = (bid, updates) => ({
+export const editBlogFromBP = (bid, updates = {}) => ({
     type: 'EDIT_BLOG_FROM_BP',
     bid,
     updates

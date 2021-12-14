@@ -2,7 +2,7 @@ import savedBlogsApi from '../fetching/savedBlogs';
 import saveBlogApi from '../fetching/saveBlog';
 import unsaveBlogApi from '../fetching/unsaveBlog';
 
-export const setSavedBlogs = (blogs) => ({
+export const setSavedBlogs = (blogs = []) => ({
     type: 'SET_SAVED_BLOGS',
     blogs
 });

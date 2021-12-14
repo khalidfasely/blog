@@ -29,7 +29,7 @@ def user(request):
         blogs_liked = []
         blogs_saved = []
 
-    return JsonResponse({ "user": f"{request.user}", "likes": [ comment.comment_id() for comment in comments_liked ], "likes_b": [ blog.blog_id() for blog in blogs_liked ], "blogs_saved": [ f"{blog_saved.id}" for blog_saved in blogs_saved ] }, status=201)    
+    return JsonResponse({ "user": f"{request.user}", "uid": f"{request.user.id}", "likes": [ comment.comment_id() for comment in comments_liked ], "likes_b": [ blog.blog_id() for blog in blogs_liked ], "blogs_saved": [ f"{blog_saved.id}" for blog_saved in blogs_saved ] }, status=201)    
 
 def categories(resuest):
     categories = Category.objects.all()
@@ -109,7 +109,7 @@ def login_view(request):
             else:
                 blogs_saved = []
 
-            return JsonResponse({"message": "Login Successfully.", "user": f"{request.user}", "likes": [ comment.comment_id() for comment in comments_liked ], "likes_b": [ blog.blog_id() for blog in blogs_liked ], "blogs_saved": [ f"{blog_saved.id}" for blog_saved in blogs_saved ] }, status=201)
+            return JsonResponse({"message": "Login Successfully.", "user": f"{request.user}", "uid": f"{request.user.id}", "likes": [ comment.comment_id() for comment in comments_liked ], "likes_b": [ blog.blog_id() for blog in blogs_liked ], "blogs_saved": [ f"{blog_saved.id}" for blog_saved in blogs_saved ] }, status=201)
 
         else:
             return JsonResponse({"message": "Invalid username and/or password."}, status=201)
@@ -163,7 +163,7 @@ def register_view(request):
             blogs_saved = profile_blogs_saved.saves.all()
         else:
             blogs_saved = []
-        return JsonResponse({"message": "Register", "likes": [ comment.comment_id() for comment in comments_liked ], "likes_b": [ blog.blog_id() for blog in blogs_liked ], "blogs_saved": [ f"{blog_saved.id}" for blog_saved in blogs_saved ] }, status=201)
+        return JsonResponse({"message": "Register", "uid": f"{user.id}", "likes": [ comment.comment_id() for comment in comments_liked ], "likes_b": [ blog.blog_id() for blog in blogs_liked ], "blogs_saved": [ f"{blog_saved.id}" for blog_saved in blogs_saved ] }, status=201)
 
     else:
         return JsonResponse({"message": "The method must be POST"}, status=400)

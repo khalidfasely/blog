@@ -1,0 +1,201 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Should render SocialShare correctly 1`] = `
+<div>
+  <h5>
+    <i>
+      Share This Blog On:
+    </i>
+  </h5>
+  <[object Object]
+    url="http://127.0.0.1:8000/blog/1"
+  >
+    <abbr
+      title="Email"
+    >
+      <Icon
+        bgStyle={Object {}}
+        borderRadius={0}
+        iconFillColor="white"
+        round={true}
+        size={32}
+      />
+    </abbr>
+  </[object Object]>
+  <[object Object]
+    url="http://127.0.0.1:8000/blog/1"
+  >
+    <abbr
+      title="Linkedin"
+    >
+      <Icon
+        bgStyle={Object {}}
+        borderRadius={0}
+        iconFillColor="white"
+        round={true}
+        size={32}
+      />
+    </abbr>
+  </[object Object]>
+  <[object Object]
+    url="http://127.0.0.1:8000/blog/1"
+  >
+    <abbr
+      title="Reddit"
+    >
+      <Icon
+        bgStyle={Object {}}
+        borderRadius={0}
+        iconFillColor="white"
+        round={true}
+        size={32}
+      />
+    </abbr>
+  </[object Object]>
+  <[object Object]
+    url="http://127.0.0.1:8000/blog/1"
+  >
+    <abbr
+      title="Twitter"
+    >
+      <Icon
+        bgStyle={Object {}}
+        borderRadius={0}
+        iconFillColor="white"
+        round={true}
+        size={32}
+      />
+    </abbr>
+  </[object Object]>
+  <[object Object]
+    url="http://127.0.0.1:8000/blog/1"
+  >
+    <abbr
+      title="Facebook"
+    >
+      <Icon
+        bgStyle={Object {}}
+        borderRadius={0}
+        iconFillColor="white"
+        round={true}
+        size={32}
+      />
+    </abbr>
+  </[object Object]>
+  <[object Object]
+    url="http://127.0.0.1:8000/blog/1"
+  >
+    <abbr
+      title="Telegram"
+    >
+      <Icon
+        bgStyle={Object {}}
+        borderRadius={0}
+        iconFillColor="white"
+        round={true}
+        size={32}
+      />
+    </abbr>
+  </[object Object]>
+</div>
+`;
+
+exports[`Should render SocialShare with no url 1`] = `
+<div>
+  <h5>
+    <i>
+      Share This Blog On:
+    </i>
+  </h5>
+  <[object Object]
+    url="http://127.0.0.1:8000/"
+  >
+    <abbr
+      title="Email"
+    >
+      <Icon
+        bgStyle={Object {}}
+        borderRadius={0}
+        iconFillColor="white"
+        round={true}
+        size={32}
+      />
+    </abbr>
+  </[object Object]>
+  <[object Object]
+    url="http://127.0.0.1:8000/"
+  >
+    <abbr
+      title="Linkedin"
+    >
+      <Icon
+        bgStyle={Object {}}
+        borderRadius={0}
+        iconFillColor="white"
+        round={true}
+        size={32}
+      />
+    </abbr>
+  </[object Object]>
+  <[object Object]
+    url="http://127.0.0.1:8000/"
+  >
+    <abbr
+      title="Reddit"
+    >
+      <Icon
+        bgStyle={Object {}}
+        borderRadius={0}
+        iconFillColor="white"
+        round={true}
+        size={32}
+      />
+    </abbr>
+  </[object Object]>
+  <[object Object]
+    url="http://127.0.0.1:8000/"
+  >
+    <abbr
+      title="Twitter"
+    >
+      <Icon
+        bgStyle={Object {}}
+        borderRadius={0}
+        iconFillColor="white"
+        round={true}
+        size={32}
+      />
+    </abbr>
+  </[object Object]>
+  <[object Object]
+    url="http://127.0.0.1:8000/"
+  >
+    <abbr
+      title="Facebook"
+    >
+      <Icon
+        bgStyle={Object {}}
+        borderRadius={0}
+        iconFillColor="white"
+        round={true}
+        size={32}
+      />
+    </abbr>
+  </[object Object]>
+  <[object Object]
+    url="http://127.0.0.1:8000/"
+  >
+    <abbr
+      title="Telegram"
+    >
+      <Icon
+        bgStyle={Object {}}
+        borderRadius={0}
+        iconFillColor="white"
+        round={true}
+        size={32}
+      />
+    </abbr>
+  </[object Object]>
+</div>
+`;

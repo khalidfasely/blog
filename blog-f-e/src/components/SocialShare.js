@@ -8,7 +8,7 @@ import {
     TelegramIcon, TelegramShareButton,
 } from 'react-share';
 
-const SocialShare = ({ shareUrl }) => {
+export const SocialShare = ({ shareUrl = '/' }) => {
     const fullUrl = `http://127.0.0.1:8000${shareUrl}`;
     return (
     <div>

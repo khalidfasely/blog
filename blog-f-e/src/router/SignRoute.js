@@ -19,10 +19,8 @@ export const SignRoute = ({
     )} />
 );
 
-const mapStateToProps = (state) => {
-    console.log("signroute")
-    return({
+const mapStateToProps = (state) =>({
     IsAuthentication: !!state.auth.uname
-})};
+});
 
 export default connect(mapStateToProps)(SignRoute);

@@ -5,7 +5,7 @@ import { history } from '../router/AppRouter';
 import { startLogout } from '../actions/auth';
 import { unsetSavedBlogs } from '../actions/savedBlogs';
 
-const Header = ({ uname, startLogout, unsetSavedBlogs }) => {
+const Header = ({ uname, uid, startLogout, unsetSavedBlogs }) => {
     const logout = () => {
         startLogout().then(() => {
             unsetSavedBlogs();
@@ -18,7 +18,7 @@ const Header = ({ uname, startLogout, unsetSavedBlogs }) => {
             <Link to='/'><h1>Blog</h1></Link>
             {uname ? 
                 <p>
-                    <Link to='/profile'>Profile {uname}</Link>
+                    <Link to={`/user/${uid}`}>Profile {uname}</Link>
                     <Link to='/new'>New Blog</Link>
                     <button onClick={logout}>Logout</button>
                 </p> :
@@ -32,7 +32,8 @@ const Header = ({ uname, startLogout, unsetSavedBlogs }) => {
 };
 
 const mapStateToProps = (state) => ({
-    uname: state.auth.uname
+    uname: state.auth.uname,
+    uid: state.auth.uid
 });
 
 const mapDispatchToProps = (dispatch) => ({

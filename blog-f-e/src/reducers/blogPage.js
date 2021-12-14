@@ -102,11 +102,11 @@ export default (state = blogPageReducerDefaultState, action) => {
                 if(blog.id === action.bid) {
                     blogsLC.push({
                             ...blog,
-                            ...blog.comments.map(comment => {
+                            comments: blog.comments.map(comment => {
                                 if (cid === comment.id) {
                                     return {
                                         ...comment,
-                                        likes: comment.likes++
+                                        likes: comment.likes + 1
                                     }
                                 } else {
                                     return comment;
@@ -121,13 +121,12 @@ export default (state = blogPageReducerDefaultState, action) => {
         case 'UNLIKE_COMMENT':
             const blogsUC = [];
             state.map((blog) => {
-                const cid = action.cid;
                 if(blog.id === action.bid) {
                     blogsUC.push({
                             ...blog,
-                            ...blog.comments.map(comment => {
-                                if (cid === comment.id) {
-                                    const cL = comment.likes--;
+                            comments: blog.comments.map(comment => {
+                                if (action.cid === comment.id) {
+                                    const cL = comment.likes - 1;
                                     //console.log(comment.likes--);
                                     return {
                                         ...comment,
