@@ -4,8 +4,8 @@ import remarkGfm from 'remark-gfm';
 import remarkMath from 'remark-math';
 import rehypeKatex from 'rehype-katex';
 import {Prism as SyntaxHighlighter} from 'react-syntax-highlighter';
-import {dark, duotoneLight, materialLight, atomDark} from 'react-syntax-highlighter/dist/esm/styles/prism';
-
+//import {dark, duotoneLight, materialLight, atomDark} from 'react-syntax-highlighter/dist/esm/styles/prism';
+import { atomDark } from 'react-syntax-highlighter/dist/esm/styles/prism';
 import 'katex/dist/katex.min.css';
 
 export const MarkdownBlog = ({ blogContent }) => {

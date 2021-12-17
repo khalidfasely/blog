@@ -1,139 +1,49 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Should render Login component correctly 1`] = `
-<div>
-  <form
-    onSubmit={[Function]}
-  >
-    <label
-      for="username_login"
+<DocumentFragment>
+  <div>
+    <form
+      data-testid="form"
     >
-      Username:
-    </label>
-    <input
-      autoFocus={true}
-      id="username_login"
-      name="username"
-      onChange={[Function]}
-      placeholder="Username"
-      type="text"
-      value=""
-    />
-    <label
-      for="password_login"
+      <label
+        for="username_login"
+      >
+        Username:
+      </label>
+      <input
+        data-testid="username_input"
+        id="username_login"
+        name="username"
+        placeholder="Username"
+        type="text"
+        value=""
+      />
+      <label
+        for="password_login"
+      >
+        Password:
+      </label>
+      <input
+        data-testid="password_input"
+        id="password_login"
+        name="password"
+        placeholder="Password"
+        type="password"
+        value=""
+      />
+      <button
+        data-testid="button"
+      >
+        Login
+      </button>
+    </form>
+    Have not an account? 
+    <a
+      href="/register"
     >
-      Password:
-    </label>
-    <input
-      id="password_login"
-      name="password"
-      onChange={[Function]}
-      placeholder="Password"
-      type="password"
-      value=""
-    />
-    <button>
-      Login
-    </button>
-  </form>
-  Have not an account? 
-  <[object Object]
-    to="/register"
-  >
-    Create one here.
-  </[object Object]>
-</div>
-`;
-
-exports[`Should render error on Login component if onsubmittion without data 1`] = `
-<div>
-  <form
-    onSubmit={[Function]}
-  >
-    <label
-      for="username_login"
-    >
-      Username:
-    </label>
-    <input
-      autoFocus={true}
-      id="username_login"
-      name="username"
-      onChange={[Function]}
-      placeholder="Username"
-      type="text"
-      value=""
-    />
-    <label
-      for="password_login"
-    >
-      Password:
-    </label>
-    <input
-      id="password_login"
-      name="password"
-      onChange={[Function]}
-      placeholder="Password"
-      type="password"
-      value=""
-    />
-    <button>
-      Login
-    </button>
-  </form>
-  Have not an account? 
-  <[object Object]
-    to="/register"
-  >
-    Create one here.
-  </[object Object]>
-</div>
-`;
-
-exports[`Should render error on Login component if onsubmittion without data 2`] = `
-<div>
-  <form
-    onSubmit={[Function]}
-  >
-    <p>
-      Fill out all fields!
-    </p>
-    <label
-      for="username_login"
-    >
-      Username:
-    </label>
-    <input
-      autoFocus={true}
-      id="username_login"
-      name="username"
-      onChange={[Function]}
-      placeholder="Username"
-      type="text"
-      value=""
-    />
-    <label
-      for="password_login"
-    >
-      Password:
-    </label>
-    <input
-      id="password_login"
-      name="password"
-      onChange={[Function]}
-      placeholder="Password"
-      type="password"
-      value=""
-    />
-    <button>
-      Login
-    </button>
-  </form>
-  Have not an account? 
-  <[object Object]
-    to="/register"
-  >
-    Create one here.
-  </[object Object]>
-</div>
+      Create one here.
+    </a>
+  </div>
+</DocumentFragment>
 `;

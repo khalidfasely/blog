@@ -12,12 +12,12 @@ export const SavedBlogs = ({ startSetSavedBlogs, blogs }) => {
     }, [])
     return (
         <div>
-            <p>saved blogs</p>
+            <h3 data-testid='header'>saved blogs</h3>
             {
                 blogs && <div>{
                     blogs.length !== 0 ?
                     <BlogsList blogs={blogs} /> :
-                    <h5>-No Blogs Saved-</h5>
+                    <p data-testid='empty-blogs-paragraph'>-No Blogs Saved-</p>
                 }</div>
             }
         </div>

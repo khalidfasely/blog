@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
-import { Link } from 'react-router-dom';
+import { BrowserRouter, Link } from 'react-router-dom';
 import { startLogin } from '../actions/auth';
 import { history } from '../router/AppRouter';
 
@@ -23,31 +23,31 @@ export const Login = ({ startLogin }) => {
         e.preventDefault();
 
         if (username && password) {
+            setError('');
             startLogin({ username, password }).then((result) => {
                 if (result.message !== "Login Successfully.") {
                     setError(result.message);
                 } else {
                     setUsername('');
                     setPassword('');
-                    
-                    setError('');
 
                     history.push('/');
                 };
             });
         } else {
-            setError('Fill out all fields!')
+            setError('Fill out all fields!');
         }
         
     }
 
     return (
         <div>
-            <form onSubmit={onFormSubmit}>
-                {error && <p>{error}</p>}
-                <label for='username_login'>Username:</label>
+            <form data-testid='form' onSubmit={onFormSubmit}>
+                {error && <p data-testid='error_message'>{error}</p>}
+                <label htmlFor='username_login'>Username:</label>
                 <input
                   id='username_login'
+                  data-testid='username_input'
                   name='username'
                   autoFocus
                   placeholder='Username'
@@ -55,18 +55,19 @@ export const Login = ({ startLogin }) => {
                   value={username}
                   onChange={onUsernameChange}
                 />
-                <label for='password_login'>Password:</label>
+                <label htmlFor='password_login'>Password:</label>
                 <input
                   id='password_login'
+                  data-testid='password_input'
                   name='password'
                   placeholder='Password'
                   type='password'
                   value={password}
                   onChange={onPasswordChange}
                 />
-                <button>Login</button>
+                <button data-testid='button'>Login</button>
             </form>
-            Have not an account? <Link to='/register'>Create one here.</Link>
+            Have not an account? <BrowserRouter><Link to='/register'>Create one here.</Link></BrowserRouter>
         </div>
     );
 }

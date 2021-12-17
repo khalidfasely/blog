@@ -1,13 +1,13 @@
 import React from 'react';
-import { shallow } from 'enzyme';
+import { render } from "@testing-library/react";
 import { SocialShare } from '../../components/SocialShare';
 
 test('Should render SocialShare correctly', () => {
-    const wrapper = shallow(<SocialShare shareUrl={'/blog/1'} />);
-    expect(wrapper).toMatchSnapshot();
+    const { asFragment } = render(<SocialShare shareUrl={'/blog/1'} />);
+    expect(asFragment()).toMatchSnapshot();
 });
 
 test('Should render SocialShare with no url', () => {
-    const wrapper = shallow(<SocialShare />);
-    expect(wrapper).toMatchSnapshot();
+    const { asFragment } = render(<SocialShare />);
+    expect(asFragment()).toMatchSnapshot();
 });

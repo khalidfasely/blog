@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
-import ReactMarkdown from 'react-markdown';
 import { startAddComment, startLikeBlog, startSetBlog, startUnlikeBlog } from '../actions/blogPage';
 import Comment from './Comment';
 import { Link } from 'react-router-dom';

@@ -1,12 +1,16 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Should render not found page correctly 1`] = `
-<div>
-  404 - Not Found 
-  <[object Object]
-    to="/"
+exports[`Should render not found component correctly 1`] = `
+<DocumentFragment>
+  <div
+    data-testid="404-message"
   >
-    Go Home
-  </[object Object]>
-</div>
+    404 - Not Found 
+    <a
+      href="/"
+    >
+      Go Home
+    </a>
+  </div>
+</DocumentFragment>
 `;

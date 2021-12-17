@@ -1,19 +1,20 @@
 import React from 'react';
-import { shallow } from 'enzyme';
+import { render } from "@testing-library/react";
 import blogs from '../fixtures/blogs';
 import { BlogsList } from '../../components/BlogsList';
+jest.mock('../../components/BlogItem', () => () => 'BlogItem');
 
 test('Should render BlogsList with blogs', () => {
-    const wrapper = shallow(<BlogsList blogs={blogs} />);
-    expect(wrapper).toMatchSnapshot();
+    const { asFragment  } = render(<BlogsList blogs={blogs} />);
+    expect(asFragment()).toMatchSnapshot();
 });
 
 test('Should render BlogsList with searchFilter', () => {
-    const wrapper = shallow(<BlogsList blogs={blogs} searchFilter={'title2'} />);
-    expect(wrapper).toMatchSnapshot();
+    const { asFragment  } = render(<BlogsList blogs={blogs} searchFilter={'title2'} />);
+    expect(asFragment()).toMatchSnapshot();
 });
 
 test('Should render BlogsList with empty array', () => {
-    const wrapper = shallow(<BlogsList blogs={[]} />);
-    expect(wrapper).toMatchSnapshot();
+    const { asFragment  } = render(<BlogsList blogs={[]} />);
+    expect(asFragment()).toMatchSnapshot();
 });

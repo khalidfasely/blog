@@ -1,47 +1,9 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Should render MarkdownBlog correctly with no props 1`] = `
-<ReactMarkdown
-  components={
-    Object {
-      "code": [Function],
-    }
-  }
-  rehypePlugins={
-    Array [
-      [Function],
-    ]
-  }
-  remarkPlugins={
-    Array [
-      [Function],
-      [Function],
-    ]
-  }
-  transformLinkUri={[Function]}
-/>
-`;
+exports[`Should render MarkdownBlog correctly with no props 1`] = `<DocumentFragment />`;
 
 exports[`Should render MarkdownBlog correctly with props 1`] = `
-<ReactMarkdown
-  components={
-    Object {
-      "code": [Function],
-    }
-  }
-  rehypePlugins={
-    Array [
-      [Function],
-    ]
-  }
-  remarkPlugins={
-    Array [
-      [Function],
-      [Function],
-    ]
-  }
-  transformLinkUri={[Function]}
->
+<DocumentFragment>
   content
-</ReactMarkdown>
+</DocumentFragment>
 `;

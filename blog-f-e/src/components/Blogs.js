@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { Link } from "react-router-dom";
+import { BrowserRouter, Link } from "react-router-dom";
 import { connect } from 'react-redux';
 import BlogsList from "./BlogsList";
 import SearchBlog from "./SearchBlog";
@@ -13,12 +13,12 @@ export const Blogs = ({ blogs, searchFilter }) => {
 
   return (
     <div>
-      <h1>Blogs Section</h1>
+      <h1 data-testid='header'>Blogs Section</h1>
       <div>
           <SearchBlog />
       </div>
       <BlogsList blogs={blogs} searchFilter={searchFilter} />
-      <Link to='/profile'>Profile</Link>
+      <BrowserRouter><Link to='/profile'>Profile</Link></BrowserRouter>
     </div>
   )
 };

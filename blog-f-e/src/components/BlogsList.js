@@ -1,7 +1,7 @@
 import React from 'react';
 import BlogItem from './BlogItem';
 
-export const BlogsList = ({ blogs, searchFilter }) => {
+export const BlogsList = ({ blogs = [], searchFilter }) => {
     return (
         <div>
           {
