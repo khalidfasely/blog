@@ -3,21 +3,31 @@ export const blog1 = {
     title: 'title2',
     description: 'description',
     content: 'content',
-    createdBy: 'Anonymous',
+    created_by: {
+        id: 2,
+        username: 'Anonymous'
+    },
     category: 'Django',
-    createdAt: '15 Nov 2021',
+    created_at: '15 Nov 2021',
     likes: 5,
+    dislikes: 0,
     comments: [{
         id: 4,
         content: 'comment',
-        createdBy: 'Admin',
-        createdAt: '15 Nov 2021',
+        created_by: {
+            id: 1,
+            username: 'Admin'
+        },
+        created_at: '15 Nov 2021',
         likes: 0
     }, {
         id: 7,
         content: 'comment2',
-        createdBy: 'Anonymous',
-        createdAt: '16 Nov 2021',
+        created_by: {
+            id: 2,
+            username: 'Anonymous'
+        },
+        created_at: '16 Nov 2021',
         likes: 2
     }]
 };
@@ -27,15 +37,22 @@ export const blog2 = {
     title: 'title5',
     description: 'description',
     content: 'content',
-    createdBy: 'User',
+    created_by: {
+        id: 3,
+        username: 'User'
+    },
     category: 'React',
-    createdAt: '15 Nov 2021',
+    created_at: '15 Nov 2021',
     likes: 3,
+    dislikes: 0,
     comments: [{
         id: 12,
         content: 'comment',
-        createdBy: 'Admin',
-        createdAt: '15 Nov 2021',
+        created_by: {
+            id: 1,
+            username: 'Admin'
+        },
+        created_at: '15 Nov 2021',
         likes: 0
     }]
 };

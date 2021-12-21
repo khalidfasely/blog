@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import { filterBySearch } from '../actions/filterBlogs';
 
-const SearchBlog = ({ searchFilter, filterBySearch }) => {
+export const SearchBlog = ({ searchFilter, filterBySearch }) => {
     const serachValueDefault = searchFilter ? searchFilter : '';
     const [searchValue, setSearchValue] = useState(serachValueDefault);
 
@@ -19,8 +19,9 @@ const SearchBlog = ({ searchFilter, filterBySearch }) => {
 
     return (
         <div>
-            <form onSubmit={searchData}>
+            <form data-testid='form' onSubmit={searchData}>
                 <input
+                    data-testid='search_input'
                     type='text'
                     placeholder='Search...'
                     value={searchValue}

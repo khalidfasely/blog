@@ -10,7 +10,7 @@ import { startSetUserPage } from '../actions/userPage';
 import BlogsList from './BlogsList';
 import ModalEditProfile from './ModalEditProfile';
 
-const UserPage = (props) => {
+export const UserPage = (props) => {
     const [renderUserPage, setRenderUserPage] = useState(false);
     const [userPage, setUserPage] = useState();
     const [ePrModalOpen, setEdPrModalOpen] = useState(false);
@@ -65,13 +65,13 @@ const UserPage = (props) => {
         return (
             <div>{ userPage &&
                 <div>
-                    <div>{`joined on: ${userPage.uinfo.join_date}`}</div>
-                    {userPage.bio && <div>bio: {userPage.bio}</div>}
+                    <div data-testid='join_date' >{`joined on: ${userPage.uinfo.join_date}`}</div>
+                    {userPage.bio && <div data-testid='user_bio' >bio: {userPage.bio}</div>}
                     {
                         userPage.uid.username === props.uname &&
                         <div>
-                            <Link to='/saves' >Save Blogs</Link>
-                            <button onClick={() => setEdPrModalOpen(true)}>Edit Profile</button>
+                            <Link data-testid='save_blogs_link' to='/saves' >Save Blogs</Link>
+                            <button data-testid='edit_profile_button' onClick={() => setEdPrModalOpen(true)}>Edit Profile</button>
                         </div>
                     }
                     <ModalEditProfile ePrModalOpen={ePrModalOpen} setEdPrModalOpen={setEdPrModalOpen} bio={userPage.bio} resetInfoProfile={resetInfoProfile} />

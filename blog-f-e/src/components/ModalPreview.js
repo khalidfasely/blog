@@ -2,7 +2,7 @@ import React from "react";
 import Modal from "react-modal";
 import BlogPage from "./BlogPage";
 
-const ModalPreview = ({ pModalOpen, setPModalOpen, bid }) => {
+export const ModalPreview = ({ pModalOpen, setPModalOpen, bid }) => {
     return (
         <Modal
             isOpen={pModalOpen}
@@ -10,7 +10,7 @@ const ModalPreview = ({ pModalOpen, setPModalOpen, bid }) => {
             closeTimeoutMS={50}
             onRequestClose={() => setPModalOpen(false)}
         >
-            <button onClick={() => setPModalOpen(false)}>X</button>
+            <button data-testid='close_button' onClick={() => setPModalOpen(false)}>X</button>
             <BlogPage match={{params: {bid: `${bid}`}}} isPreview={true} />
         </Modal>
     )

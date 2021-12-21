@@ -1,0 +1,77 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Should render Register component correctly 1`] = `
+<DocumentFragment>
+  <div>
+    <form
+      data-testid="form"
+    >
+      <label
+        for="username_new"
+      >
+        Username:
+      </label>
+      <input
+        data-testid="username"
+        id="username_new"
+        maxlength="35"
+        name="username"
+        placeholder="Username"
+        type="text"
+        value=""
+      />
+      <label
+        for="email_new"
+      >
+        Email:
+      </label>
+      <input
+        data-testid="email"
+        id="email_new"
+        maxlength="70"
+        name="email"
+        placeholder="Email"
+        type="email"
+        value=""
+      />
+      <label
+        for="password_new"
+      >
+        Password:
+      </label>
+      <input
+        data-testid="password"
+        id="password_new"
+        maxlength="120"
+        name="password"
+        placeholder="Password"
+        type="password"
+        value=""
+      />
+      <label
+        for="confirmation_new"
+      >
+        Confirmation:
+      </label>
+      <input
+        data-testid="confirmation"
+        id="confirmation_new"
+        maxlength="120"
+        name="confirmation"
+        placeholder="Password (Again)"
+        type="password"
+        value=""
+      />
+      <button
+        data-testid="button"
+      >
+        Register
+      </button>
+    </form>
+    Already have an account? 
+    <a>
+      Log In here.
+    </a>
+  </div>
+</DocumentFragment>
+`;

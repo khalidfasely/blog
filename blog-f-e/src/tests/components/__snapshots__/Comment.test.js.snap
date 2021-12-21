@@ -1,0 +1,36 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Should render Comment component correctly 1`] = `
+<DocumentFragment>
+  <div>
+    <a>
+      Admin
+    </a>
+    : comment
+    <div>
+      15 Nov 2021 - 0 
+    </div>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`Should render Comment component correctly with props 1`] = `
+<DocumentFragment>
+  <div>
+    <a>
+      Admin
+    </a>
+    : comment
+    <div>
+      15 Nov 2021 - 0 
+      <div>
+        <button
+          data-testid="like_unlike_button"
+        >
+          Unlike
+        </button>
+      </div>
+    </div>
+  </div>
+</DocumentFragment>
+`;

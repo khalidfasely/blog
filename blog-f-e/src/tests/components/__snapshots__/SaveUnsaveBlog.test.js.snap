@@ -1,0 +1,33 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Should render SaveUnsaveBlog component correctly if bid in blogsSaved 1`] = `
+<DocumentFragment>
+  <div>
+    <button
+      data-testid="save_unsave_blog"
+      disabled=""
+    >
+      Unsave
+    </button>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`Should render SaveUnsaveBlog component correctly if bid not in blogsSaved 1`] = `
+<DocumentFragment>
+  <div>
+    <button
+      data-testid="save_unsave_blog"
+      disabled=""
+    >
+      Save
+    </button>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`Should render SaveUnsaveBlog component correctly without uname 1`] = `
+<DocumentFragment>
+  <div />
+</DocumentFragment>
+`;

@@ -1,0 +1,167 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Should render NewBlog(mode: editing) component correctly 1`] = `
+<DocumentFragment>
+  <div>
+    <form
+      data-testid="form"
+    >
+      <label
+        for="title_new"
+      >
+        Title:
+      </label>
+      <textarea
+        data-testid="title_input"
+        id="title_new"
+        maxlength="120"
+        placeholder="Title (More than 90 characters)"
+      >
+        title2
+      </textarea>
+      <label
+        for="description_new"
+      >
+        Description:
+      </label>
+      <textarea
+        data-testid="description_input"
+        id="description_new"
+        maxlength="300"
+        placeholder="Description (More than 255 characters)"
+      >
+        description
+      </textarea>
+      <label
+        for="content_new"
+      >
+        Content:
+      </label>
+      <textarea
+        data-testid="content_input"
+        id="content_new"
+        placeholder="Content (More than 500 characters)"
+      >
+        content
+      </textarea>
+      <label
+        for="category_new"
+      >
+        Category:
+      </label>
+      <select
+        data-testid="category_select"
+        id="category_new"
+      >
+        <option
+          disabled=""
+          selected=""
+          value="Django"
+        >
+          Django
+        </option>
+        <option
+          value="Web"
+        >
+          Web
+        </option>
+        <option
+          value="Programming"
+        >
+          Programming
+        </option>
+        <option
+          value="React"
+        >
+          React
+        </option>
+      </select>
+      <button
+        data-testid="edit_create_button"
+      >
+        Edit Blog
+      </button>
+    </form>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`Should render NewBlog(mode: new blog) component correctly 1`] = `
+<DocumentFragment>
+  <div>
+    <form
+      data-testid="form"
+    >
+      <label
+        for="title_new"
+      >
+        Title:
+      </label>
+      <textarea
+        data-testid="title_input"
+        id="title_new"
+        maxlength="120"
+        placeholder="Title (More than 90 characters)"
+      />
+      <label
+        for="description_new"
+      >
+        Description:
+      </label>
+      <textarea
+        data-testid="description_input"
+        id="description_new"
+        maxlength="300"
+        placeholder="Description (More than 255 characters)"
+      />
+      <label
+        for="content_new"
+      >
+        Content:
+      </label>
+      <textarea
+        data-testid="content_input"
+        id="content_new"
+        placeholder="Content (More than 500 characters)"
+      />
+      <label
+        for="category_new"
+      >
+        Category:
+      </label>
+      <select
+        data-testid="category_select"
+        id="category_new"
+      >
+        <option
+          disabled=""
+          selected=""
+          value=""
+        >
+          --Select Category--
+        </option>
+        <option
+          value="Web"
+        >
+          Web
+        </option>
+        <option
+          value="Programming"
+        >
+          Programming
+        </option>
+        <option
+          value="React"
+        >
+          React
+        </option>
+      </select>
+      <button
+        data-testid="edit_create_button"
+      >
+        Create Blog
+      </button>
+    </form>
+  </div>
+</DocumentFragment>
+`;

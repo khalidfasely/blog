@@ -1,0 +1,12 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Should render ModalEdit component correctly 1`] = `
+<DocumentFragment>
+  NewBlog
+  <button
+    data-testid="close_button"
+  >
+    X
+  </button>
+</DocumentFragment>
+`;

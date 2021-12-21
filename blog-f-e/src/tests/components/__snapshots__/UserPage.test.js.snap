@@ -1,0 +1,75 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Should render UserPage component correctly 1`] = `
+<DocumentFragment>
+  <div>
+    <div>
+      <div
+        data-testid="join_date"
+      >
+        joined on: 7 Oct 2021
+      </div>
+      <div
+        data-testid="user_bio"
+      >
+        bio: MyBio
+      </div>
+      ModalEditProfile
+      <div>
+        BlogItemBlogItem
+      </div>
+    </div>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`Should render UserPage component correctly if uname === userPage(username) 1`] = `
+<DocumentFragment>
+  <div>
+    <div>
+      <div
+        data-testid="join_date"
+      >
+        joined on: 7 Oct 2021
+      </div>
+      <div
+        data-testid="user_bio"
+      >
+        bio: MyBio
+      </div>
+      <div>
+        <a>
+          Save Blogs
+        </a>
+        <button
+          data-testid="edit_profile_button"
+        >
+          Edit Profile
+        </button>
+      </div>
+      ModalEditProfile
+      <div>
+        BlogItemBlogItem
+      </div>
+    </div>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`Should render UserPage component correctly without bio 1`] = `
+<DocumentFragment>
+  <div>
+    <div>
+      <div
+        data-testid="join_date"
+      >
+        joined on: 7 Oct 2021
+      </div>
+      ModalEditProfile
+      <div>
+        BlogItemBlogItem
+      </div>
+    </div>
+  </div>
+</DocumentFragment>
+`;

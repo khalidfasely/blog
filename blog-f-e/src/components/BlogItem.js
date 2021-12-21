@@ -8,10 +8,9 @@ import { removeBlogFromBP } from '../actions/blogPage';
 import { removeBlogFromUP } from '../actions/userPage';
 import ModalDelete from './ModalDelete';
 import { history } from '../router/AppRouter';
-import BlogPage from './BlogPage';
 import ModalPreview from './ModalPreview';
 
-const BlogItem = ({
+export const BlogItem = ({
     blog,
     uname,
     startDeleteBlog,
@@ -56,16 +55,20 @@ const BlogItem = ({
 
   return (
     <div>
-      <Link to={`/blog/${blog.id}`}>{blog.title}</Link> by <Link to={`/user/${blog.created_by.id}`}>{blog.created_by.username}</Link> -- {blog.created_at}
-      <div>{blog.description}</div>
-      <div>{blog.likes} -- {blog.dislikes}</div>
+      <Link data-testid='blog_title_link' to={`/blog/${blog.id}`}>
+        {blog.title}
+      </Link> by <Link data-testid='blog_user_link' to={`/user/${blog.created_by.id}`}>
+        {blog.created_by.username}
+      </Link> -- {blog.created_at}
+      <div data-testid='blog_description' >{blog.description}</div>
+      <div data-testid='likes_dislikes' >{blog.likes} -- {blog.dislikes}</div>
       {
         uname===blog.created_by.username &&
         <div>
-          <button onClick={() => setRModalOpen(true)}>X</button>
+          <button data-testid='remove_button' onClick={() => setRModalOpen(true)}>X</button>
         </div>
       }
-      <button onClick={() => setPModalOpen(true)}>Preview</button>
+      <button data-testid='preview_button' onClick={() => setPModalOpen(true)}>Preview</button>
       <ModalPreview pModalOpen={pModalOpen} setPModalOpen={setPModalOpen} bid={blog.id} />
       <ModalDelete rModalOpen={rModalOpen} deleteBlog={deleteBlog} setRModalOpen={setRModalOpen} />
     </div>

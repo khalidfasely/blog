@@ -1,0 +1,19 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Should render ModalDelete component correctly 1`] = `
+<DocumentFragment>
+  <h5>
+    If you delete this blog there is no way to return it.
+  </h5>
+  <button
+    data-testid="delete_button"
+  >
+    Delete Blog
+  </button>
+  <button
+    data-testid="close_button"
+  >
+    X
+  </button>
+</DocumentFragment>
+`;

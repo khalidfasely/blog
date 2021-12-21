@@ -4,10 +4,9 @@ import { startEditBlog } from '../actions/blogPage';
 import { editBlogFromBP, startAddBlog } from '../actions/blogs';
 import { editBlogFromSB } from '../actions/savedBlogs';
 import { addBlogToProfile, editBlogFromUP } from '../actions/userPage';
-import editBlog from '../fetching/editBlog';
 import { history } from '../router/AppRouter';
 
-const NewBlog = ({
+export const NewBlog = ({
         uname,
         profileList,
         startAddBlog,
@@ -72,7 +71,7 @@ const NewBlog = ({
 
         //const availabelData = (title.replace(/\s/g, '') && description.replace(/\s/g, '') && content.replace(/\s/g, '') && category);
         const availabelTitle = title.replace(/\s/g, '').length >= 90;
-        const availabelDescription = description.replace(/\s/g, '').length >= 255;
+        const availabelDescription = description.replace(/\s/g, '').length >= 200;
         const availabelContent = content.replace(/\s/g, '').length >= 500;
         const availabelData = (availabelTitle && availabelDescription && availabelContent && category);
 
@@ -127,7 +126,7 @@ const NewBlog = ({
                 setTitleError('The title\'s length should be 90 or more.');
             }
             if(!availabelDescription){
-                setDescriptionError('The description\'s length should be 255 or more.');
+                setDescriptionError('The description\'s length should be 200 or more.');
             }
             if(!availabelContent){
                 setContentError('The content\'s length should be 500 or more.');
@@ -146,55 +145,63 @@ const NewBlog = ({
     return (
         <div>
             {error && <div>{error}</div>}
-            <form onSubmit={onFormSubmit}>
-                <label for='title_new'>Title:</label>
+            <form data-testid='form' onSubmit={onFormSubmit}>
+                <label htmlFor='title_new'>Title:</label>
                 <textarea
                   id='title_new'
+                  data-testid='title_input'
                   placeholder='Title (More than 90 characters)'
                   autoFocus
                   maxLength={120}
                   value={title}
                   onChange={onTitleChange}
                 />
-                {titleError && <p>{titleError}</p>}
-                <label for='description_new'>Description:</label>
+                {titleError && <p data-testid='title_error'>{titleError}</p>}
+                <label htmlFor='description_new'>Description:</label>
                 <textarea
                   id='description_new'
+                  data-testid='description_input'
                   placeholder='Description (More than 255 characters)'
                   maxLength={300}
                   value={description}
                   onChange={onDescriptionChange}
                 />
-                {descriptionError && <p>{descriptionError}</p>}
-                <label for='content_new'>Content:</label>
+                {descriptionError && <p data-testid='description_error'>{descriptionError}</p>}
+                <label htmlFor='content_new'>Content:</label>
                 <textarea
                   id='content_new'
+                  data-testid='content_input'
                   placeholder='Content (More than 500 characters)'
                   value={content}
                   onChange={onContentChange}
                 />
-                {contentError && <p>{contentError}</p>}
-                <label for='category_new'>Category:</label>
-                <select id='category_new' onChange={onCategoryChange}>
+                {contentError && <p data-testid='content_error'>{contentError}</p>}
+                <label htmlFor='category_new'>Category:</label>
+                <select
+                    id='category_new'
+                    data-testid='category_select'
+                    defaultValue={category ? category : ''}
+                    onChange={onCategoryChange}
+                >
                     {
                         isEdit ?
-                        <option disabled selected value={category}>{category}</option> :
-                        <option disabled selected value=''>--Select Category--</option>
+                        <option disabled value={category}>{category}</option> :
+                        <option disabled value=''>--Select Category--</option>
                     }
                     {
-                        categories.map((category) => <option value={category}>{category}</option>)
+                        categories.map((category) => <option key={category} value={category}>{category}</option>)
                     }
                 </select>
-                {categoryError && <p>{categoryError}</p>}
+                {categoryError && <p data-testid='category_error'>{categoryError}</p>}
                 {
                     isEdit ?
-                    <button onClick={editing}>Edit Blog</button> :
-                    <button>Create Blog</button>
+                    <button data-testid='edit_create_button' onClick={editing}>Edit Blog</button> :
+                    <button data-testid='edit_create_button'>Create Blog</button>
                 }
             </form>
         </div>
     );
-};//<option disabled selected value=''>--Select Category--</option>
+};
 
 const mapStateToProps = (state) => ({
     uname: state.auth.uname,

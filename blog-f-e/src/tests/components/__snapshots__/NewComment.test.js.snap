@@ -1,0 +1,44 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Should render NewComment component correctly 1`] = `
+<DocumentFragment>
+  <div>
+    <h5>
+      Add comments:
+    </h5>
+    <form
+      data-testid="new_comment_form"
+    >
+      <textarea
+        data-testid="new_comment_input"
+        placeholder="Comment"
+      >
+        New Comment
+      </textarea>
+      <button>
+        Add Comment
+      </button>
+    </form>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`Should render NewComment component correctly with no prop 1`] = `
+<DocumentFragment>
+  <div>
+    <h5>
+      Add comments:
+    </h5>
+    <h5>
+      <a>
+        Login
+      </a>
+       or 
+      <a>
+        Sign In
+      </a>
+       to Add a Comment!
+    </h5>
+  </div>
+</DocumentFragment>
+`;

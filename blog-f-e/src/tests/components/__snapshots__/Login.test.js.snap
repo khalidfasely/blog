@@ -39,9 +39,7 @@ exports[`Should render Login component correctly 1`] = `
       </button>
     </form>
     Have not an account? 
-    <a
-      href="/register"
-    >
+    <a>
       Create one here.
     </a>
   </div>

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
-import { BrowserRouter, Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { startLogin } from '../actions/auth';
 import { history } from '../router/AppRouter';
 
@@ -67,7 +67,7 @@ export const Login = ({ startLogin }) => {
                 />
                 <button data-testid='button'>Login</button>
             </form>
-            Have not an account? <BrowserRouter><Link to='/register'>Create one here.</Link></BrowserRouter>
+            Have not an account? <Link to='/register'>Create one here.</Link>
         </div>
     );
 }

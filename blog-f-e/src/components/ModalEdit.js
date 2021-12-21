@@ -2,7 +2,7 @@ import React from 'react';
 import Modal from 'react-modal';
 import NewBlog from './NewBlog';
 
-const ModalEdit = ({ eModalOpen, blog, setEModalOpen }) => (
+export const ModalEdit = ({ eModalOpen, blog, setEModalOpen }) => (
     <Modal
         isOpen={eModalOpen}
         contentLabel="Edit Blog"
@@ -10,7 +10,7 @@ const ModalEdit = ({ eModalOpen, blog, setEModalOpen }) => (
         onRequestClose={() => setEModalOpen(false)}
     >
         <NewBlog isEdit={true} blog={blog} edit={() => setEModalOpen(false)} />
-        <button onClick={() => setEModalOpen(false)}>X</button>
+        <button data-testid='close_button' onClick={() => setEModalOpen(false)}>X</button>
     </Modal>
 );
 

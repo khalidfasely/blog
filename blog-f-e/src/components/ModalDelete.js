@@ -1,7 +1,7 @@
 import React from 'react';
 import Modal from 'react-modal';
 
-const ModalDelete = ({ rModalOpen, deleteBlog, setRModalOpen }) => (
+export const ModalDelete = ({ rModalOpen, deleteBlog, setRModalOpen }) => (
     <Modal
         isOpen={rModalOpen}
         contentLabel="Delete Blog"
@@ -9,8 +9,8 @@ const ModalDelete = ({ rModalOpen, deleteBlog, setRModalOpen }) => (
         onRequestClose={() => setRModalOpen(false)}
       >
         <h5>If you delete this blog there is no way to return it.</h5>
-        <button onClick={deleteBlog}>Delete Blog</button>
-        <button onClick={() => setRModalOpen(false)}>X</button>
+        <button data-testid='delete_button' onClick={deleteBlog}>Delete Blog</button>
+        <button data-testid='close_button' onClick={() => setRModalOpen(false)}>X</button>
     </Modal>
 );
 

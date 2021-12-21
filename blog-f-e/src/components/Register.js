@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import { startRegister } from '../actions/auth';
 import { history } from '../router/AppRouter';
 
-const Register = ({ startRegister }) => {
+export const Register = ({ startRegister }) => {
     const [username, setUsername] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
@@ -38,11 +38,12 @@ const Register = ({ startRegister }) => {
         
         if (availableData) {
             //console.log('available data!');
+            setError('');
             startRegister({ username, email, password, confirmation }).then((result) => {
                 if (result.message !== "Register") {
                     setError(result.message);
                 } else {
-                    setError('');
+                    
                     history.push('/');
                 }
             });
@@ -53,11 +54,12 @@ const Register = ({ startRegister }) => {
 
     return (
         <div>
-            {error && <div>{error}</div>}
-            <form onSubmit={onFormSubmit}>
-                <label for='username_new'>Username:</label>
+            <form data-testid='form' onSubmit={onFormSubmit}>
+                {error && <p data-testid='error_message'>{error}</p>}
+                <label htmlFor='username_new'>Username:</label>
                 <input
                   id='username_new'
+                  data-testid='username'
                   name='username'
                   type='text'
                   autoFocus
@@ -66,9 +68,10 @@ const Register = ({ startRegister }) => {
                   maxLength={35}
                   onChange={onUsernameChange}
                 />
-                <label for='email_new'>Email:</label>
+                <label htmlFor='email_new'>Email:</label>
                 <input
                   id='email_new'
+                  data-testid='email'
                   name='email'
                   type='email'
                   placeholder='Email'
@@ -76,9 +79,10 @@ const Register = ({ startRegister }) => {
                   maxLength={70}
                   onChange={onEmailChange}
                 />
-                <label for='password_new'>Password:</label>
+                <label htmlFor='password_new'>Password:</label>
                 <input
                   id='password_new'
+                  data-testid='password'
                   name='password'
                   type='password'
                   placeholder='Password'
@@ -86,9 +90,10 @@ const Register = ({ startRegister }) => {
                   maxLength={120}
                   onChange={onPasswordChange}
                 />
-                <label for='confirmation_new'>Confirmation:</label>
+                <label htmlFor='confirmation_new'>Confirmation:</label>
                 <input
                   id='confirmation_new'
+                  data-testid='confirmation'
                   name='confirmation'
                   type='password'
                   placeholder='Password (Again)'
@@ -96,7 +101,7 @@ const Register = ({ startRegister }) => {
                   maxLength={120}
                   onChange={onConfirmationChange}
                 />
-                <button>Submit</button>
+                <button data-testid='button'>Register</button>
             </form>
             Already have an account? <Link to='/login'>Log In here.</Link>
         </div>

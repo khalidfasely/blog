@@ -16,9 +16,7 @@ exports[`Should render Blogs correcly with no props 1`] = `
         No blogs
       </p>
     </div>
-    <a
-      href="/profile"
-    >
+    <a>
       Profile
     </a>
   </div>
@@ -39,9 +37,7 @@ exports[`Should render Blogs correcly with props 1`] = `
     <div>
       BlogItemBlogItem
     </div>
-    <a
-      href="/profile"
-    >
+    <a>
       Profile
     </a>
   </div>

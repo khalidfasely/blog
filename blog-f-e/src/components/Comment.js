@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import { l_comment, u_comment } from "../actions/auth";
 import { startLikeComment, startUnlikeComment } from "../actions/blogPage";
 
-const Comment = ({ blogId, comment, uname, commentsLiked, startLikeComment, startUnlikeComment, l_comment, u_comment }) => {
+export const Comment = ({ blogId, comment, uname, commentsLiked, startLikeComment, startUnlikeComment, l_comment, u_comment }) => {
     const [ buttonDis, setButtonDis ] = useState(false);
     const disableButton = () => {
         setButtonDis(true);
@@ -26,18 +26,20 @@ const Comment = ({ blogId, comment, uname, commentsLiked, startLikeComment, star
     }
     return (
         <div>
-            <Link to={`/user/${comment.created_by.id}`}>{comment.created_by.username}</Link>: {comment.content}
-            <p>{comment.created_at} - {comment.likes} {
-                uname &&
-                <div>
-                    {
-                        commentsLiked.includes(`${comment.id}`) ?
-                        <button disabled={buttonDis} onClick={unlike}>Unlike</button> :
-                        <button disabled={buttonDis} onClick={like}>Like</button>
-                    }
-                </div>
-            }
-            </p>
+            <Link data-testid='user_profile' to={`/user/${comment.created_by.id}`}>{comment.created_by.username}</Link>
+            : {comment.content}
+            <div>
+                {comment.created_at} - {comment.likes} {
+                    uname &&
+                    <div>
+                        {
+                            commentsLiked.includes(`${comment.id}`) ?
+                            <button data-testid='like_unlike_button' disabled={buttonDis} onClick={unlike}>Unlike</button> :
+                            <button data-testid='like_unlike_button' disabled={buttonDis} onClick={like}>Like</button>
+                        }
+                    </div>
+                }
+            </div>
         </div>
     )
 };

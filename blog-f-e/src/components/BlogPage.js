@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 import { startAddComment, startLikeBlog, startSetBlog, startUnlikeBlog } from '../actions/blogPage';
-import Comment from './Comment';
 import { Link } from 'react-router-dom';
 import { l_blog, s_blog, u_blog, u_s_blog } from '../actions/auth';
 import { startSaveBlog, startUnsaveBlog } from '../actions/savedBlogs';
@@ -10,8 +9,13 @@ import previewContent from '../functions/previewContent';
 import { history } from '../router/AppRouter';
 import SocialShare from './SocialShare';
 import MarkdownBlog from './MarkdownBlog';
+import NewComment from './NewComment';
+import CommentsList from './CommentsList';
+import SaveUnsaveBlog from './SaveUnsaveBlog';
+import LikeUnlikeBlog from './LikeUnlikeBlog';
+import BlogPageItems from './BlogPageItems';
 
-const BlogPage = (props) => {
+export const BlogPage = (props) => {
     const [renderBlog, setRenderBlog] = useState(false);
     const [blog, setBlog] = useState(undefined);
     const [newComment, setNewComment] = useState('');
@@ -64,12 +68,8 @@ const BlogPage = (props) => {
                 }
                 setRenderBlog(true);
                 setPreviewBlog(previewContent(result.blog.content.substring(0, 300)));
-                //this.setState({ renderBlog: true });
             });
         }
-        //return () => {
-        //    setPreviewBlog(undefined);
-        //}
     }, [])
     const onCommentChange = (e) => {
         const newComment = e.target.value;
@@ -126,49 +126,35 @@ const BlogPage = (props) => {
         if (blog.isDefault) {
             return <div>This Blog Not Available Now. <Link to='/'>Back Home</Link></div>
         } else if (props.isPreview) {
-            return (//<ReactMarkdown>{`${previewBlog}...`}</ReactMarkdown>
+            return (
                 <div>
-                    <h1>{blog.title}</h1>
-                    <p>{blog.created_at}</p>
-                    <p>{blog.created_by.username}</p>
-                    <p>{blog.category}</p>
-                    <p>{blog.description}</p>
-                    <MarkdownBlog blogContent={`${previewBlog}...`} />
-                    <Link to={`/blog/${blog.id}`}>See More</Link>
-                    <p>{blog.likes}</p>
-                    <p>{blog.dislikes}</p>
-                    <div>
-                        {
-                            props.uname && (
-                                props.blogsLiked.includes(props.match.params.bid) ?
-                                <button disabled={buttonDis} onClick={unlike_b}>Unlike</button> :
-                                <button disabled={buttonDis} onClick={like_b}>Like</button>
-                                )
-                        }
-                    </div>
-                    <div>
-                        {
-                            props.uname && (
-                                props.blogsSaved.includes(props.match.params.bid) ?
-                                <button disabled={sButtonDis} onClick={unsave_b}>Unsave</button> :
-                                <button disabled={sButtonDis} onClick={save_b}>Save</button>
-                            )
-                        }
-                    </div>
+                    <BlogPageItems
+                        blog={{...blog, content: `${previewBlog}...`}}
+                        isPreview={true}
+                    />
+                    <LikeUnlikeBlog
+                        uname={props.uname}
+                        blogsLiked={props.blogsLiked}
+                        bid={props.match.params.bid}
+                        buttonDis={buttonDis}
+                        unlike_b={unlike_b}
+                        like_b={like_b}
+                    />
+                    <SaveUnsaveBlog
+                        uname={props.uname}
+                        blogsSaved={props.blogsSaved}
+                        bid={props.match.params.bid}
+                        sButtonDis={sButtonDis}
+                        unsave_b={unsave_b}
+                        save_b={save_b}
+                    />
                     <div>{blog.comments.length} Comment(s)</div>
                 </div>
             )
         }
-        return (//<ReactMarkdown>{blog.content}</ReactMarkdown>
+        return (
             <div>
-                <h1>{blog.title}</h1>
-                <p>{blog.created_at}</p>
-                <p>{blog.created_by.username}</p>
-                <p>{blog.category}</p>
-                <p>{blog.description}</p>
-                <MarkdownBlog blogContent={blog.content} />
-                <p>{blog.likes}</p>
-                <p>{blog.dislikes}</p>
+                <BlogPageItems blog={blog} />
                 {
                     props.uname && (
                         props.uname === blog.created_by.username &&
@@ -176,48 +162,33 @@ const BlogPage = (props) => {
                     )
                 }
                 <ModalEdit eModalOpen={eModalOpen} blog={blog} setEModalOpen={setEModalOpen} />
-                <div>
-                    {
-                        props.uname && (
-                            props.blogsLiked.includes(props.match.params.bid) ?
-                            <button disabled={buttonDis} onClick={unlike_b}>Unlike</button> :
-                            <button disabled={buttonDis} onClick={like_b}>Like</button>
-                        )
-                    }
-                </div>
-                <div>
-                    {
-                        props.uname && (
-                            props.blogsSaved.includes(props.match.params.bid) ?
-                            <button disabled={sButtonDis} onClick={unsave_b}>Unsave</button> :
-                            <button disabled={sButtonDis} onClick={save_b}>Save</button>
-                        )
-                    }
-                </div>
+                <LikeUnlikeBlog
+                    uname={props.uname}
+                    blogsLiked={props.blogsLiked}
+                    bid={props.match.params.bid}
+                    buttonDis={buttonDis}
+                    unlike_b={unlike_b}
+                    like_b={like_b}
+                />
+                <SaveUnsaveBlog
+                    uname={props.uname}
+                    blogsSaved={props.blogsSaved}
+                    bid={props.match.params.bid}
+                    sButtonDis={sButtonDis}
+                    unsave_b={unsave_b}
+                    save_b={save_b}
+                />
                 <SocialShare shareUrl={history.location.pathname} />
-                <div>
-                    <h5>Comments:</h5>
-                    {
-                        blog.comments.length !== 0 ?
-                        blog.comments.map(comment => <Comment key={comment.id} blogId={blog.id} comment={comment} />) :
-                        <div>-NO COMMENTS-</div>
-                    }
-                </div>
-                <div>
-                    <h5>Add comments:</h5>
-                    {
-                        props.uname ?
-                        <form onSubmit={onFormSubmit}>
-                            <textarea
-                            placeholder='Comment'
-                            onChange={onCommentChange}
-                            value={newComment}
-                            />
-                            <button disabled={!newComment.replace(/\s/g, '')}>Add Comment</button>
-                        </form> :
-                        <h5><Link to='/login'>Login</Link> or <Link to='/register'>Sign In</Link> to Add a Comment!</h5>
-                    }
-                </div>
+                <CommentsList
+                    comments={blog.comments}
+                    blogId={blog.id}
+                />
+                <NewComment
+                    uname={props.uname}
+                    onFormSubmit={onFormSubmit}
+                    onCommentChange={onCommentChange}
+                    newComment={newComment}
+                />
             </div>
         )
     } else {
@@ -246,108 +217,3 @@ const mapDispatchToProps = (dispatch) => ({
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(BlogPage);
-
-//import React, { useEffect, useState } from 'react';
-//import { connect } from 'react-redux';
-//import ReactMarkdown from 'react-markdown';
-//import { startAddComment, startSetBlog } from '../actions/blogPage';
-//import Comment from './Comment';
-//
-//const BlogPage = (props) => {
-//    const [renderBlog, setRenderBlog] = useState(false);
-//    const [blog, setBlog] = useState(undefined);
-//    const [newComment, setNewComment] = useState('');
-//
-//    const blogDidAlreadyLoad = () => {
-//        let blogInList = undefined;
-//        props.blogList.map((blogItem) => {
-//            if(blogItem.id === parseInt(props.match.params.bid)){
-//                blogInList = blogItem;
-//            };
-//        });
-//        return blogInList;
-//    }
-//    useEffect(() => {
-//        const blog = blogDidAlreadyLoad();
-//        if (blog) {
-//            setBlog(blog);
-//            setRenderBlog(true);
-//            // Render the blog content.. from Redux
-//            // Otherwise Fecth it from the backend
-//            // Store it on Redux
-//            // Then render the content from Redux
-//        } else {
-//            props.startSetBlog(parseInt(props.match.params.bid)).then((result) => {
-//                setBlog({
-//                    ...result.blog,
-//                    comments: result.comments
-//                });
-//                setRenderBlog(true);
-//                //this.setState({ renderBlog: true });
-//            });
-//        }
-//    }, [])
-//
-//    const onCommentChange = (e) => {
-//        const newComment = e.target.value;
-//        setNewComment(newComment);
-//    }
-//
-//    const onFormSubmit = (e) => {
-//        e.preventDefault();
-//        const id = parseInt(props.match.params.bid);
-//        if (newComment.replace(/\s/g, '')) {    
-//            props.startAddComment(id, newComment)//.then((result) => {
-//
-////            })
-//            setNewComment('');
-//        }
-//    }
-//
-//    if(renderBlog) {
-//        return (
-//            <div>
-//                <h1>{blog.title}</h1>
-//                <p>{blog.created_at}</p>
-//                <p>{blog.created_by.username}</p>
-//                <p>{blog.category}</p>
-//                <p>{blog.description}</p>
-//                <ReactMarkdown>{blog.content}</ReactMarkdown>
-//                <p>{blog.likes}</p>
-//                <p>{blog.dislikes}</p>
-//                <div>
-//                    <h5>Comments:</h5>
-//                    {
-//                        blog.comments.length !== 0 ?
-//                        blog.comments.map(comment => <Comment key={comment.id} comment={comment} />) :
-//                        <div>-NO COMMENTS-</div>
-//                    }
-//                </div>
-//                <div>
-//                    <h5>Add comments:</h5>
-//                    <form onSubmit={onFormSubmit}>
-//                        <textarea
-//                          placeholder='Comment'
-//                          onChange={onCommentChange}
-//                          value={newComment}
-//                        />
-//                        <button disabled={!newComment.replace(/\s/g, '')}>Add Comment</button>
-//                    </form>
-//                </div>
-//            </div>
-//        )
-//    } else {
-//        return <div>Blog Page {props.match.params.bid}</div>
-//    };
-//};
-//
-//const mapStateToProps = (state) => ({
-//    blogList: state.blogPage
-//});
-//
-//const mapDispatchToProps = (dispatch) => ({
-//    startSetBlog: (id) => dispatch(startSetBlog(id)),
-//    startAddComment: (blog_id, comment) => dispatch(startAddComment({ blog_id, comment }))
-//});
-//
-//export default connect(mapStateToProps, mapDispatchToProps)(BlogPage);

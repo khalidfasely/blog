@@ -1,0 +1,33 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Should render LikeUnlikeBlog component correctly if bid in blogsLiked 1`] = `
+<DocumentFragment>
+  <div>
+    <button
+      data-testid="like_unlike_blog"
+      disabled=""
+    >
+      Unlike
+    </button>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`Should render LikeUnlikeBlog component correctly if bid not in blogsLiked 1`] = `
+<DocumentFragment>
+  <div>
+    <button
+      data-testid="like_unlike_blog"
+      disabled=""
+    >
+      Like
+    </button>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`Should render LikeUnlikeBlog component correctly without uname 1`] = `
+<DocumentFragment>
+  <div />
+</DocumentFragment>
+`;

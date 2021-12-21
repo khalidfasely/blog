@@ -1,0 +1,41 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Should render SearchBlog component correctly 1`] = `
+<DocumentFragment>
+  <div>
+    <form
+      data-testid="form"
+    >
+      <input
+        data-testid="search_input"
+        placeholder="Search..."
+        type="text"
+        value=""
+      />
+    </form>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`Should render SearchBlog component with search value filter correctly 1`] = `
+<DocumentFragment>
+  <div>
+    <form
+      data-testid="form"
+    >
+      <input
+        data-testid="search_input"
+        placeholder="Search..."
+        type="text"
+        value="React"
+      />
+    </form>
+    <p>
+      Result of: 
+      <b>
+        React
+      </b>
+    </p>
+  </div>
+</DocumentFragment>
+`;

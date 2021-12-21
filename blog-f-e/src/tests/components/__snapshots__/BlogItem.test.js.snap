@@ -1,0 +1,106 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Should render BlogItem component correctly with all props 1`] = `
+<DocumentFragment>
+  <div>
+    <a>
+      title2
+    </a>
+     by 
+    <a>
+      Anonymous
+    </a>
+     -- 15 Nov 2021
+    <div
+      data-testid="blog_description"
+    >
+      description
+    </div>
+    <div
+      data-testid="likes_dislikes"
+    >
+      5 -- 0
+    </div>
+    <div>
+      <button
+        data-testid="remove_button"
+      >
+        X
+      </button>
+    </div>
+    <button
+      data-testid="preview_button"
+    >
+      Preview
+    </button>
+    <button
+      data-testid="close_button"
+    >
+      X
+    </button>
+    BlogPage
+    <h5>
+      If you delete this blog there is no way to return it.
+    </h5>
+    <button
+      data-testid="delete_button"
+    >
+      Delete Blog
+    </button>
+    <button
+      data-testid="close_button"
+    >
+      X
+    </button>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`Should render BlogItem component correctly without uname 1`] = `
+<DocumentFragment>
+  <div>
+    <a>
+      title2
+    </a>
+     by 
+    <a>
+      Anonymous
+    </a>
+     -- 15 Nov 2021
+    <div
+      data-testid="blog_description"
+    >
+      description
+    </div>
+    <div
+      data-testid="likes_dislikes"
+    >
+      5 -- 0
+    </div>
+    <button
+      data-testid="preview_button"
+    >
+      Preview
+    </button>
+    <button
+      data-testid="close_button"
+    >
+      X
+    </button>
+    BlogPage
+    <h5>
+      If you delete this blog there is no way to return it.
+    </h5>
+    <button
+      data-testid="delete_button"
+    >
+      Delete Blog
+    </button>
+    <button
+      data-testid="close_button"
+    >
+      X
+    </button>
+  </div>
+</DocumentFragment>
+`;

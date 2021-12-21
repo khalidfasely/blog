@@ -12,8 +12,3 @@ test('Should render not found page correctly', () => {
     const message = getByTestId("404-message");
     expect(message.textContent).toBe('404 - Not Found Go Home');
 });
-
-//test('Should render not found component correctly', () => {
-//    const { container } = render(<NotFound />);
-//    console.log(container.outerHTML);
-//});

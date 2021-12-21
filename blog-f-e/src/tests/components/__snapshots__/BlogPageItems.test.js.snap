@@ -1,0 +1,100 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Should render BlogPageItems component correclty with blog prop 1`] = `
+<DocumentFragment>
+  <div>
+    <div>
+      <h1
+        data-testid="title_item"
+      >
+        title2
+      </h1>
+      <p
+        data-testid="time_item"
+      >
+        15 Nov 2021
+      </p>
+      <p
+        data-testid="user_item"
+      >
+        Anonymous
+      </p>
+      <p
+        data-testid="category_item"
+      >
+        Django
+      </p>
+      <p
+        data-testid="description_item"
+      >
+        description
+      </p>
+      content
+      <p
+        data-testid="likes_item"
+      >
+        5
+      </p>
+      <p
+        data-testid="dislikes_item"
+      >
+        0
+      </p>
+    </div>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`Should render BlogPageItems component correclty with no prop 1`] = `
+<DocumentFragment>
+  <div />
+</DocumentFragment>
+`;
+
+exports[`Should render BlogPageItems component with all props 1`] = `
+<DocumentFragment>
+  <div>
+    <div>
+      <h1
+        data-testid="title_item"
+      >
+        title2
+      </h1>
+      <p
+        data-testid="time_item"
+      >
+        15 Nov 2021
+      </p>
+      <p
+        data-testid="user_item"
+      >
+        Anonymous
+      </p>
+      <p
+        data-testid="category_item"
+      >
+        Django
+      </p>
+      <p
+        data-testid="description_item"
+      >
+        description
+      </p>
+      content
+      <a>
+        See More
+      </a>
+      <p
+        data-testid="likes_item"
+      >
+        5
+      </p>
+      <p
+        data-testid="dislikes_item"
+      >
+        0
+      </p>
+    </div>
+  </div>
+</DocumentFragment>
+`;

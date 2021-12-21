@@ -6,9 +6,7 @@ exports[`Should render not found component correctly 1`] = `
     data-testid="404-message"
   >
     404 - Not Found 
-    <a
-      href="/"
-    >
+    <a>
       Go Home
     </a>
   </div>

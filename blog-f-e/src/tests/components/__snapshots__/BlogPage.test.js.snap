@@ -1,0 +1,164 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Should render BlogPage component correctly with isPreview 1`] = `
+<DocumentFragment>
+  <div>
+    <div>
+      BlogPageItems
+    </div>
+    <div>
+      LikeUnlikeBlog
+    </div>
+    <div>
+      SaveUnsaveBlog
+    </div>
+    <div>
+      2 Comment(s)
+    </div>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`Should render BlogPage component correctly with props 1`] = `
+<DocumentFragment>
+  <div>
+    <div>
+      BlogPageItems
+    </div>
+    <button>
+      Edit
+    </button>
+    <div>
+      NewBlog
+    </div>
+    <button
+      data-testid="close_button"
+    >
+      X
+    </button>
+    <div>
+      LikeUnlikeBlog
+    </div>
+    <div>
+      SaveUnsaveBlog
+    </div>
+    <div>
+      SocialShare
+    </div>
+    <div>
+      CommentsList
+    </div>
+    <div>
+      <h5>
+        Add comments:
+      </h5>
+      <form
+        data-testid="new_comment_form"
+      >
+        <textarea
+          data-testid="new_comment_input"
+          placeholder="Comment"
+        />
+        <button
+          disabled=""
+        >
+          Add Comment
+        </button>
+      </form>
+    </div>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`Should render BlogPage component correctly with uname!==blogPage(created_by) 1`] = `
+<DocumentFragment>
+  <div>
+    <div>
+      BlogPageItems
+    </div>
+    <div>
+      NewBlog
+    </div>
+    <button
+      data-testid="close_button"
+    >
+      X
+    </button>
+    <div>
+      LikeUnlikeBlog
+    </div>
+    <div>
+      SaveUnsaveBlog
+    </div>
+    <div>
+      SocialShare
+    </div>
+    <div>
+      CommentsList
+    </div>
+    <div>
+      <h5>
+        Add comments:
+      </h5>
+      <form
+        data-testid="new_comment_form"
+      >
+        <textarea
+          data-testid="new_comment_input"
+          placeholder="Comment"
+        />
+        <button
+          disabled=""
+        >
+          Add Comment
+        </button>
+      </form>
+    </div>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`Should render BlogPage component correctly with undefined uname 1`] = `
+<DocumentFragment>
+  <div>
+    <div>
+      BlogPageItems
+    </div>
+    <div>
+      NewBlog
+    </div>
+    <button
+      data-testid="close_button"
+    >
+      X
+    </button>
+    <div>
+      LikeUnlikeBlog
+    </div>
+    <div>
+      SaveUnsaveBlog
+    </div>
+    <div>
+      SocialShare
+    </div>
+    <div>
+      CommentsList
+    </div>
+    <div>
+      <h5>
+        Add comments:
+      </h5>
+      <h5>
+        <a>
+          Login
+        </a>
+         or 
+        <a>
+          Sign In
+        </a>
+         to Add a Comment!
+      </h5>
+    </div>
+  </div>
+</DocumentFragment>
+`;

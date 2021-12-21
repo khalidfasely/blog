@@ -1,0 +1,25 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Should render CommentsList component correctly 1`] = `
+<DocumentFragment>
+  <div>
+    <h5>
+      Comments:
+    </h5>
+    CommentComment
+  </div>
+</DocumentFragment>
+`;
+
+exports[`Should render CommentsList component correctly with empty comments array 1`] = `
+<DocumentFragment>
+  <div>
+    <h5>
+      Comments:
+    </h5>
+    <div>
+      -NO COMMENTS-
+    </div>
+  </div>
+</DocumentFragment>
+`;
