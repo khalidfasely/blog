@@ -6,6 +6,7 @@ import { startLikeComment, startUnlikeComment } from "../actions/blogPage";
 
 export const Comment = ({ blogId, comment, uname, commentsLiked, startLikeComment, startUnlikeComment, l_comment, u_comment }) => {
     const [ buttonDis, setButtonDis ] = useState(false);
+    const [ likes, setLikes ] = useState(parseInt(comment.likes));
     const disableButton = () => {
         setButtonDis(true);
         setTimeout(() => {
@@ -15,13 +16,15 @@ export const Comment = ({ blogId, comment, uname, commentsLiked, startLikeCommen
     const like = () => {
         disableButton();
         startLikeComment(comment.id, blogId).then(() => {
-            l_comment(comment.id)
+            l_comment(comment.id);
+            setLikes(likes + 1);
         });
     }
     const unlike = () => {
         disableButton();
         startUnlikeComment(comment.id, blogId).then(() => {
-            u_comment(comment.id)
+            u_comment(comment.id);
+            setLikes(likes - 1);
         });
     }
     return (
@@ -29,7 +32,7 @@ export const Comment = ({ blogId, comment, uname, commentsLiked, startLikeCommen
             <Link data-testid='user_profile' to={`/user/${comment.created_by.id}`}>{comment.created_by.username}</Link>
             : {comment.content}
             <div>
-                {comment.created_at} - {comment.likes} {
+                {comment.created_at} - {likes} {
                     uname &&
                     <div>
                         {
