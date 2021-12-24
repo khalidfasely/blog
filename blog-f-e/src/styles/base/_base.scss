@@ -1,0 +1,32 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    font-size: 62.5%;
+    /*background-color: lighten($main-color, 10%);*/
+}
+
+body {
+    color: $dark-grey;
+    font-family: monospace, Helvetica, Arial ,sans-serif;
+    font-size: $m-size;
+    line-height: 1.6;
+    @media (max-width: $desktop-breakpoint) {
+        line-height: 1.3;
+    }
+}
+
+button {
+    cursor: pointer;
+}
+
+button:disabled {
+    cursor: default;
+}
+
+/*.is-active {
+    font-weight: bold;
+}*/

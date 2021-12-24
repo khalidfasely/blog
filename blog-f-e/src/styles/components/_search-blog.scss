@@ -1,0 +1,31 @@
+.search__form_input {
+    width: 100%;
+    height: 3rem;
+    border: 0.5mm solid lighten($second-color, 25%);
+    border-radius: .1rem;
+    margin: $xs-size 0;
+    padding-left: $s-size;
+    display: inline-block;
+
+    @media (max-width: $desktop-breakpoint) {
+        height: 2rem;
+        margin: $xxs-size 0;
+        padding-left: $xs-size;
+    }
+
+    &:focus {
+        outline: none;
+    }
+}
+
+.search__resultvalue {
+    background-color: antiquewhite;
+    word-break: break-all;
+}
+
+.search__result {
+    font-size: 1.4rem;
+    @media (max-width: $desktop-breakpoint) {
+        font-size: 1.2rem;
+    }
+}

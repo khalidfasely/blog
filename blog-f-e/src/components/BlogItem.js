@@ -53,22 +53,42 @@ export const BlogItem = ({
     setRModalOpen(false);
   };
 
-  return (
-    <div>
-      <Link data-testid='blog_title_link' to={`/blog/${blog.id}`}>
-        {blog.title}
-      </Link> by <Link data-testid='blog_user_link' to={`/user/${blog.created_by.id}`}>
-        {blog.created_by.username}
-      </Link> -- {blog.created_at}
-      <div data-testid='blog_description' >{blog.description}</div>
-      <div data-testid='likes_dislikes' >{blog.likes} -- {blog.dislikes}</div>
-      {
-        uname===blog.created_by.username &&
-        <div>
-          <button data-testid='remove_button' onClick={() => setRModalOpen(true)}>X</button>
+  return (//<div data-testid='likes_dislikes' >{blog.likes} -- {blog.dislikes}</div>
+    <div className='blog-item'>
+      <div className='blog-item__top'>
+        <Link className='blog-item__link' data-testid='blog_title_link' to={`/blog/${blog.id}`}>
+          <h5>{blog.title.substring(0, 35)}...</h5>
+          <div data-testid='blog_description'>
+            {blog.description.substring(0, 75)}...
+          </div>
+        </Link>
+      </div>
+      <div className='blog-item__bottom'>
+        <div className='blog-item__buttons'>
+          <button className='blog-item__prebutton' data-testid='preview_button' onClick={() => setPModalOpen(true)}>
+            <abbr className='none-decoration' title='Preview The Blog'>Preview</abbr>
+          </button>
+          {
+            uname===blog.created_by.username &&
+              <button
+                className='blog-item__delbutton'
+                data-testid='remove_button'
+                onClick={() => setRModalOpen(true)}
+              >
+                <abbr className='none-decoration' title='Delete Blog'>Delete</abbr>
+              </button>
+          }
         </div>
-      }
-      <button data-testid='preview_button' onClick={() => setPModalOpen(true)}>Preview</button>
+        <div className='blog-item__usertime'>
+          <Link className='blog-item__user' data-testid='blog_user_link' to={`/user/${blog.created_by.id}`}>
+            <abbr className='none-decoration' title={blog.created_by.username}>
+              {blog.created_by.username}
+            </abbr>
+          </Link>
+          <span className='blog-item__between'>|</span>
+          <span>{blog.created_at.substring(0, 11)}</span>
+        </div>
+      </div>
       <ModalPreview pModalOpen={pModalOpen} setPModalOpen={setPModalOpen} bid={blog.id} />
       <ModalDelete rModalOpen={rModalOpen} deleteBlog={deleteBlog} setRModalOpen={setRModalOpen} />
     </div>
@@ -84,6 +104,15 @@ export const BlogItem = ({
 //<NewBlog isEdit={true} blog={blog} />
 //<button onClick={() => setEModalOpen(false)}>X</button>
 //</Modal>
+
+//<abbr className='none-decoration' title={blog.title.substring(0, 50)}>
+//  <h5>{blog.title.substring(0, 35)}...</h5>
+//</abbr>
+//<div data-testid='blog_description'>
+//  <abbr className='none-decoration' title={blog.description.substring(0, 120)}>
+//    {blog.description.substring(0, 75)}...
+//  </abbr>
+//</div>
 
 const mapStateToProps = (state) => ({
   uname: state.auth.uname,

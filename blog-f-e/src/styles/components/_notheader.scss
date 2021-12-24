@@ -1,0 +1,51 @@
+.header {
+    background-color: $main-color;
+}
+
+.header__title {
+    color: $off-white;
+    /*float: left;*/
+    font-size: $l-size;
+    text-decoration: none;
+}
+
+.header__link {
+    color: $second-color;
+    font-size: $m-size;
+    text-decoration: none;
+    padding: $s-size;
+}
+
+.header__button {
+    background-color: $second-color;
+    color: $off-white;
+    font-size: medium;
+    margin-top: 4rem;
+    padding: 1.5rem 6rem;
+    border: none;
+
+    &:hover{
+        background-color: lighten($second-color, 10%);
+    }
+}
+
+/*.header__login, .header__logout{
+    margin: $xs-size;
+    float: right;
+}*/
+
+/*
+<div className='header'>
+                <Link to='/' className='header__title'><span data-testid='title_header'>Blog</span></Link>
+                {uname ? 
+                    <p className='header__login'>
+                        <Link data-testid='profile_login_link' to={`/user/${uid}`} className='header__link'>Profile {uname}</Link>
+                        <Link to='/new' className='header__link'>New Blog</Link>
+                        <button onClick={logout} className='header__button'>Logout</button>
+                    </p> :
+                    <p className='header__logout'>
+                        <Link data-testid='profile_login_link' to='/login' className='header__link'>Login</Link>
+                        <Link to='/register' className='header__link'>Sign In</Link>
+                    </p>
+                }
+            </div>*/

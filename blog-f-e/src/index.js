@@ -9,6 +9,7 @@ import { startSetUser } from './actions/auth';
 import { startSetBlogs } from './actions/blogs';
 import { startSetSavedBlogs } from './actions/savedBlogs';
 import { startSetCategories } from './actions/categories';
+import './styles/styles.scss';
 
 const store = configeStore();
 

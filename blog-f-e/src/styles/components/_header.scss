@@ -1,0 +1,84 @@
+li, .nav__link_a, .nav__link_b {
+    font-weight: 500;
+    //font-size: $s-size;
+    color: rgba(255, 255, 255, 1);//$off-white;
+    text-decoration: none;
+    @media (max-width: $desktop-breakpoint) {
+        font-size: 1.1rem;
+    }
+}
+
+header {
+    background-color: lighten($main-color, 15%);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: .7rem 1rem;
+    font-size: 1.2rem;
+
+    @media (max-width: $desktop-breakpoint) {
+        padding: .6rem .8rem;
+    }
+}
+
+.logo {
+    cursor: pointer;
+    font-size: 2.1rem;
+    @media (max-width: $desktop-breakpoint) {
+        font-size: 1.8rem;
+    }
+}
+
+.nav__links {
+    list-style: none;
+
+    & li {
+        display: inline-block;
+        padding: 0 .9rem;
+
+        @media (max-width: $desktop-breakpoint) {
+            padding: 0 .6rem;
+        }
+
+        & a {
+            transition: all 0.3s ease 0s;
+
+            &:hover {
+                color: rgba(255, 255, 255, 0.8);//lighten($second-color, 10%);
+            }
+        }
+    }
+}
+
+.nav__link_b {
+    padding: 0.4rem 1.1rem;
+    background: none;
+    border: 0.4mm ridge lighten($main-color, 25%);
+    color: lighten(rgb(118, 74, 188), 25%);
+    //border-radius: .2rem;
+    font-size: 1.2rem;
+    transition: all 0.3s ease 0s;
+
+    @media (max-width: $desktop-breakpoint) {
+        padding: 0.3rem 0.8rem;
+        border: 0.3mm ridge lighten($main-color, 25%);
+        font-size: 1.1rem;
+    }
+
+    &:hover {
+        background-color: rgba(118, 74, 188, 0.8);
+        color: $off-white;
+    }
+}
+
+.nav__links_icon {
+    height: 2rem;
+    width: 2rem;
+    margin: -.6rem .2rem;
+
+    @media (max-width: $desktop-breakpoint) {
+        height: 1.5rem;
+        width: 1.5rem;
+        margin: -.3rem .2rem;
+    }
+}

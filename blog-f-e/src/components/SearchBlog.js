@@ -7,7 +7,7 @@ export const SearchBlog = ({ searchFilter, filterBySearch }) => {
     const [searchValue, setSearchValue] = useState(serachValueDefault);
 
     const searchValueChange = (e) => {
-        const searchValue = e.target.value.replace(/\s/g, '');
+        const searchValue = e.target.value;
         setSearchValue(searchValue);
     }
 
@@ -18,17 +18,21 @@ export const SearchBlog = ({ searchFilter, filterBySearch }) => {
     }
 
     return (
-        <div>
-            <form data-testid='form' onSubmit={searchData}>
-                <input
-                    data-testid='search_input'
-                    type='text'
-                    placeholder='Search...'
-                    value={searchValue}
-                    onChange={searchValueChange}
-                />
-            </form>
-            {searchFilter && <p>Result of: <b>{searchFilter}</b></p>}
+        <div className="search content-container">
+            <div className='content-container'>
+                <form data-testid='form' className='search__form' onSubmit={searchData}>
+                    <input
+                        data-testid='search_input'
+                        className='search__form_input'
+                        type='text'
+                        placeholder='Search...'
+                        value={searchValue}
+                        maxLength={100}
+                        onChange={searchValueChange}
+                    />
+                </form>
+                {searchFilter && <p className='search__result'>Result of: <b className='search__resultvalue'>{searchFilter}</b></p>}
+            </div>
         </div>
     )
 };

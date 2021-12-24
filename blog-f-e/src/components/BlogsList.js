@@ -3,7 +3,7 @@ import BlogItem from './BlogItem';
 
 export const BlogsList = ({ blogs = [], searchFilter }) => {
     return (
-        <div>
+        <div className='blogs-container'>
           {
             blogs.length === 0 ? (
               <p>No blogs</p>

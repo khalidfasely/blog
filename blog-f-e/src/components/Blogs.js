@@ -13,12 +13,11 @@ export const Blogs = ({ blogs, searchFilter }) => {
 
   return (
     <div>
-      <h1 data-testid='header'>Blogs Section</h1>
-      <div>
-          <SearchBlog />
+      <SearchBlog />
+      <div className='content-container'>
+        <h1 data-testid='header'>Blogs Section</h1>
+        <BlogsList blogs={blogs} searchFilter={searchFilter} />
       </div>
-      <BlogsList blogs={blogs} searchFilter={searchFilter} />
-      <Link to='/profile'>Profile</Link>
     </div>
   )
 };

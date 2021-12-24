@@ -1,0 +1,119 @@
+.none-decoration {
+    text-decoration: none;
+}
+
+.blogs-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;//space-around;
+    //align-items: center;
+    //align-content: center;
+}
+
+//.blog-item {
+//    margin: .5rem;
+//    //margin: 0 auto;
+//    height: 22rem;
+//    max-width: 20rem;
+//    padding: $xs-size;
+//    border: 1px solid red;
+//    word-break: break-all;
+//    font-family: cursive;
+//    font-size: 1.3rem;
+//}
+
+.blog-item {
+    //New
+    display: flex;
+    flex-wrap: wrap;
+    align-content: space-between;
+    justify-content: center;
+
+    margin: 0.7rem;
+    max-width: 20rem;
+    padding: 0.8rem 1.2rem;
+    border: 1px solid darken($off-white, 7%);
+    word-break: break-all;
+    text-decoration: none;
+    font-family: cursive;
+    font-size: 1.3rem;
+    transition: background .3s ease;
+    &:hover {
+        background: $off-white;
+    }
+    @media (max-width: $desktop-breakpoint) {
+        margin: .3rem;
+        padding: 0.4rem 0.6rem;
+    }
+}
+
+.blog-item__link {
+    text-decoration: none;
+    color: $dark-grey;
+
+    & > h5 {
+        font-size: 1.5rem;
+        margin-bottom: 1rem;
+
+        @media (max-width: $desktop-breakpoint) {
+            font-size: 1.1rem;
+            margin-bottom: .5rem;
+        }
+    }
+}
+
+.blog-item__bottom {
+    width: 100%;
+}
+
+.blog-item__buttons {
+    margin-top: $xs-size;
+    display: flex;
+    justify-content: space-around;
+}
+
+.blog-item__usertime {
+    margin-top: $xs-size;
+    padding-top: .5rem;
+    color: $grey;
+    display: flex;
+    justify-content: space-around;
+    border-top: 1.8px solid lighten($grey, 20%);
+
+    @media (max-width: $desktop-breakpoint) {
+        margin-top: $xxs-size;
+        padding-top: .3rem;
+    }
+}
+
+.blog-item__between {
+    color: lighten($grey, 20%);
+}
+
+.blog-item__prebutton, .blog-item__delbutton {
+    @extend .nav__link_b;
+}
+
+.blog-item__prebutton {
+    color: lighten(rgb(118, 74, 188), 15%);
+
+    &:hover {
+        background-color: rgba(118, 74, 188, 0.6);
+    }
+}
+
+.blog-item__delbutton {
+    color: lighten(firebrick, 17%);
+    font-size: 1.2rem;
+    transition: all 0.3s ease 0s;
+
+    &:hover {
+        background-color: lighten(firebrick, 17%);
+        color: $off-white;
+    }
+}
+
+.blog-item__user {
+    text-decoration: none;
+    color: $dark-grey;
+}
