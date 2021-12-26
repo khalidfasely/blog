@@ -26,6 +26,10 @@
         height: 2.5rem;
         width: 16rem;
     }
+    @media (max-width: 255px) {
+        height: 2.1rem;
+        width: 10rem;
+    }
 }
 
 .login-form div label {

@@ -1,12 +1,10 @@
 .error-404 {
     text-align: center;
-    font-size: x-large;
     font-weight: 600;
     color: firebrick;
     margin: 15rem 0;
     
     @media (max-width: $desktop-breakpoint) {
-        font-size: large;
         margin: 13rem 0;
     }
 
