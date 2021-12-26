@@ -3,11 +3,14 @@
 exports[`Should render not found component correctly 1`] = `
 <DocumentFragment>
   <div
+    class="content-container error-404"
     data-testid="404-message"
   >
-    404 - Not Found 
+    <span>
+      404 - Not Found 
+    </span>
     <a>
-      Go Home
+      Go Home.
     </a>
   </div>
 </DocumentFragment>
