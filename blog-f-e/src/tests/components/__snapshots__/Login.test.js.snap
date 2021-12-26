@@ -2,46 +2,59 @@
 
 exports[`Should render Login component correctly 1`] = `
 <DocumentFragment>
-  <div>
+  <div
+    class="content-container"
+  >
     <form
+      class="login-form"
       data-testid="form"
     >
-      <label
-        for="username_login"
+      <div>
+        <label
+          for="username_login"
+        >
+          Username:
+        </label>
+        <input
+          data-testid="username_input"
+          id="username_login"
+          name="username"
+          placeholder="Username"
+          type="text"
+          value=""
+        />
+      </div>
+      <div>
+        <label
+          for="password_login"
+        >
+          Password:
+        </label>
+        <input
+          data-testid="password_input"
+          id="password_login"
+          name="password"
+          placeholder="Password"
+          type="password"
+          value=""
+        />
+      </div>
+      <div>
+        <button
+          data-testid="button"
+        >
+          Login
+        </button>
+      </div>
+      <div
+        class="login-form__link"
       >
-        Username:
-      </label>
-      <input
-        data-testid="username_input"
-        id="username_login"
-        name="username"
-        placeholder="Username"
-        type="text"
-        value=""
-      />
-      <label
-        for="password_login"
-      >
-        Password:
-      </label>
-      <input
-        data-testid="password_input"
-        id="password_login"
-        name="password"
-        placeholder="Password"
-        type="password"
-        value=""
-      />
-      <button
-        data-testid="button"
-      >
-        Login
-      </button>
+        Have not an account? 
+        <a>
+          Create one here.
+        </a>
+      </div>
     </form>
-    Have not an account? 
-    <a>
-      Create one here.
-    </a>
   </div>
 </DocumentFragment>
 `;

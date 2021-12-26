@@ -41,33 +41,39 @@ export const Login = ({ startLogin }) => {
     }
 
     return (
-        <div>
-            <form data-testid='form' onSubmit={onFormSubmit}>
-                {error && <p data-testid='error_message'>{error}</p>}
-                <label htmlFor='username_login'>Username:</label>
-                <input
-                  id='username_login'
-                  data-testid='username_input'
-                  name='username'
-                  autoFocus
-                  placeholder='Username'
-                  type='text'
-                  value={username}
-                  onChange={onUsernameChange}
-                />
-                <label htmlFor='password_login'>Password:</label>
-                <input
-                  id='password_login'
-                  data-testid='password_input'
-                  name='password'
-                  placeholder='Password'
-                  type='password'
-                  value={password}
-                  onChange={onPasswordChange}
-                />
-                <button data-testid='button'>Login</button>
+        <div className='content-container'>
+            <form className='login-form' data-testid='form' onSubmit={onFormSubmit}>
+                {error && <p className='login-form__error' data-testid='error_message'>{error}</p>}
+                <div>
+                    <label htmlFor='username_login'>Username:</label>
+                    <input
+                      id='username_login'
+                      data-testid='username_input'
+                      name='username'
+                      autoFocus
+                      placeholder='Username'
+                      type='text'
+                      value={username}
+                      onChange={onUsernameChange}
+                    />
+                </div>
+                <div>
+                    <label htmlFor='password_login'>Password:</label>
+                    <input
+                      id='password_login'
+                      data-testid='password_input'
+                      name='password'
+                      placeholder='Password'
+                      type='password'
+                      value={password}
+                      onChange={onPasswordChange}
+                    />
+                </div>
+                <div>
+                    <button data-testid='button'>Login</button>
+                </div>
+                <div className='login-form__link'>Have not an account? <Link to='/register'>Create one here.</Link></div>
             </form>
-            Have not an account? <Link to='/register'>Create one here.</Link>
         </div>
     );
 }

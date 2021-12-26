@@ -1,0 +1,65 @@
+.login-form {
+    max-width: 38rem;
+    padding: 7rem 0;
+    margin: 10rem auto;
+    border: 1px solid $main-color;
+    background: #f8f8f8;
+    border-radius: 1rem;
+
+    @media (max-width: $desktop-breakpoint) {
+        max-width: 30rem;
+        padding: 5rem 0;
+        margin: 7.5rem auto;
+    }
+}
+
+.login-form div, .login-form p {
+    text-align: center;
+}
+
+.login-form div input {
+    height: 3rem;
+    width: 19rem;
+    padding: .2rem 0 .2rem .5rem;
+    margin: .2rem;
+    @media (max-width: $desktop-breakpoint) {
+        height: 2.5rem;
+        width: 16rem;
+    }
+}
+
+.login-form div label {
+    margin-right: 1rem;
+    font-size: medium;
+    font-weight: 600;
+    @media (max-width: $desktop-breakpoint) {
+        margin-right: .7rem;
+        font-size: small;
+    }
+}
+
+.login-form div button {
+    @extend .nav__link_b;
+    margin: 1rem 0;
+    background-color: lighten($main-color, 15%);
+    color: $off-white;
+    transition: all 0.3s ease 0s;
+
+    &:hover {
+        background-color: lighten($main-color, 25%);
+        color: $off-white;
+    }
+}
+
+.login-form p {
+    color: lighten(firebrick, 10%);
+    font-size: smaller;
+    margin-bottom: 1rem;
+}
+
+.login-form__link {
+    font-size: 1.4rem;
+    @media (max-width: $desktop-breakpoint) {
+        font-size: 1.2rem;
+    }
+}
