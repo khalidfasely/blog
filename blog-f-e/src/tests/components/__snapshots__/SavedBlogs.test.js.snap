@@ -21,7 +21,9 @@ exports[`Should render SavedBlogs correctly with props 1`] = `
       saved blogs
     </h3>
     <div>
-      <div>
+      <div
+        class="blogs-container"
+      >
         BlogItemBlogItemBlogItem
       </div>
     </div>

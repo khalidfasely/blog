@@ -34,17 +34,14 @@ test('Should render X button correctly', () => {
     const { getByTestId } = render(<BlogItem {...props} />);
 
     const removeButtonEl = getByTestId('remove_button');
-    expect(removeButtonEl.textContent).toBe('X');
+    expect(removeButtonEl.textContent).toBe('Delete');
 });
 
 test('Should render all elements correctly', () => {
     const { getByTestId } = render(<BlogItem {...{...props, uname: undefined}} />);
 
     const blogDescriptionEl = getByTestId('blog_description');
-    expect(blogDescriptionEl.textContent).toBe(props.blog.description);
-
-    const likesDislikesEl = getByTestId('likes_dislikes');
-    expect(likesDislikesEl.textContent).toBe(`${props.blog.likes} -- ${props.blog.dislikes}`);
+    expect(blogDescriptionEl.textContent).toBe(`${props.blog.description}...`);
 
     const previewButtonEl = getByTestId('preview_button');
     expect(previewButtonEl.textContent).toBe('Preview');

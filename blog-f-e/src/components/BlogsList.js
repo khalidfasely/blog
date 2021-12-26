@@ -1,12 +1,13 @@
 import React from 'react';
 import BlogItem from './BlogItem';
+import { Link } from 'react-router-dom';
 
 export const BlogsList = ({ blogs = [], searchFilter }) => {
     return (
         <div className='blogs-container'>
           {
             blogs.length === 0 ? (
-              <p>No blogs</p>
+              <div className='empty-blogs-list'>No blogs - <Link to='/new'>Create One Here!</Link></div>
             ) : (
               searchFilter ?
               //To filter with title |AND| description

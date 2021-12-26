@@ -2,6 +2,7 @@ import React from "react";
 import { Router, Switch, Route } from "react-router-dom";
 import createHistory from 'history/createBrowserHistory';
 import Header from "../components/Header";
+import Footer from "../components/Footer";
 import Blogs from "../components/Blogs";
 import Login from "../components/Login";
 import Register from "../components/Register";
@@ -18,17 +19,20 @@ export const history = createHistory();
 const AppRoute = () => (
     <Router history={history}>
         <div>
-        <Header />
-        <Switch>
-            <Route path="/" component={Blogs} exact={true} />
-            <SignRoute path="/login" component={Login} />
-            <SignRoute path="/register" component={Register} />
-            <PrivateRoute path="/new" component={NewBlog} />
-            <Route path="/blog/:bid" component={BlogPage} />
-            <Route path="/user/:uid" component={UserPage} />
-            <PrivateRoute path="/saves" component={SavedBlogs} />
-            <Route component={NotFound} />
-        </Switch>
+            <div className="body-app">
+                <Header />
+                <Switch>
+                <Route path="/" component={Blogs} exact={true} />
+                    <SignRoute path="/login" component={Login} />
+                    <SignRoute path="/register" component={Register} />
+                    <PrivateRoute path="/new" component={NewBlog} />
+                    <Route path="/blog/:bid" component={BlogPage} />
+                    <Route path="/user/:uid" component={UserPage} />
+                    <PrivateRoute path="/saves" component={SavedBlogs} />
+                    <Route component={NotFound} />
+                </Switch>
+            </div>
+            <Footer />
         </div>
     </Router>
 )

@@ -9,6 +9,15 @@ html {
     /*background-color: lighten($main-color, 10%);*/
 }
 
+.body-app {
+    min-height: 100vh;
+    padding-bottom: $l-size;
+}
+
+html, body {
+    height: 100%;
+}
+
 body {
     color: $dark-grey;
     font-family: monospace, Helvetica, Arial ,sans-serif;

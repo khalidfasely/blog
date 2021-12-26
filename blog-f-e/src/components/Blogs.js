@@ -11,11 +11,10 @@ export const Blogs = ({ blogs, searchFilter }) => {
     document.title = `Blog`;
   }, [])
 
-  return (
+  return (//<h1 data-testid='header'>Blogs Section</h1>
     <div>
       <SearchBlog />
       <div className='content-container'>
-        <h1 data-testid='header'>Blogs Section</h1>
         <BlogsList blogs={blogs} searchFilter={searchFilter} />
       </div>
     </div>

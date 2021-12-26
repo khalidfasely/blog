@@ -3,22 +3,23 @@
 exports[`Should render Blogs correcly with no props 1`] = `
 <DocumentFragment>
   <div>
-    <h1
-      data-testid="header"
+    SearchBlog
+    <div
+      class="content-container"
     >
-      Blogs Section
-    </h1>
-    <div>
-      SearchBlog
+      <div
+        class="blogs-container"
+      >
+        <div
+          class="empty-blogs-list"
+        >
+          No blogs - 
+          <a>
+            Create One Here!
+          </a>
+        </div>
+      </div>
     </div>
-    <div>
-      <p>
-        No blogs
-      </p>
-    </div>
-    <a>
-      Profile
-    </a>
   </div>
 </DocumentFragment>
 `;
@@ -26,20 +27,16 @@ exports[`Should render Blogs correcly with no props 1`] = `
 exports[`Should render Blogs correcly with props 1`] = `
 <DocumentFragment>
   <div>
-    <h1
-      data-testid="header"
+    SearchBlog
+    <div
+      class="content-container"
     >
-      Blogs Section
-    </h1>
-    <div>
-      SearchBlog
+      <div
+        class="blogs-container"
+      >
+        BlogItemBlogItem
+      </div>
     </div>
-    <div>
-      BlogItemBlogItem
-    </div>
-    <a>
-      Profile
-    </a>
   </div>
 </DocumentFragment>
 `;

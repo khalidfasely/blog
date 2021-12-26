@@ -2,47 +2,71 @@
 
 exports[`Should render Header component correctly 1`] = `
 <DocumentFragment>
-  <div>
+  <header>
     <a>
-      <h1
+      <span
         data-testid="title_header"
       >
         Blog
-      </h1>
+      </span>
     </a>
-    <p>
-      <a>
-        Login
-      </a>
-      <a>
-        Sign In
-      </a>
-    </p>
-  </div>
+    <nav>
+      <ul
+        class="nav__links"
+      >
+        <li>
+          <a>
+            Login
+          </a>
+        </li>
+        <li>
+          <a>
+            Sign In
+          </a>
+        </li>
+      </ul>
+    </nav>
+  </header>
 </DocumentFragment>
 `;
 
 exports[`Should render Header component with props correctly 1`] = `
 <DocumentFragment>
-  <div>
+  <header>
     <a>
-      <h1
+      <span
         data-testid="title_header"
       >
         Blog
-      </h1>
+      </span>
     </a>
-    <p>
-      <a>
-        Profile User
-      </a>
-      <a>
-        New Blog
-      </a>
-      <button>
-        Logout
-      </button>
-    </p>
-  </div>
+    <nav>
+      <ul
+        class="nav__links"
+      >
+        <li>
+          <a>
+            New Blog
+          </a>
+        </li>
+        <li>
+          <a>
+            <img
+              class="nav__links_icon"
+              src="64572.png"
+            />
+            User
+          </a>
+        </li>
+        <li>
+          <button
+            class="nav__link_b"
+          >
+            Logout
+          </button>
+        </li>
+      </ul>
+    </nav>
+  </header>
 </DocumentFragment>
 `;

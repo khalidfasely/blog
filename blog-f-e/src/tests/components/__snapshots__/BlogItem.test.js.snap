@@ -2,37 +2,73 @@
 
 exports[`Should render BlogItem component correctly with all props 1`] = `
 <DocumentFragment>
-  <div>
-    <a>
-      title2
-    </a>
-     by 
-    <a>
-      Anonymous
-    </a>
-     -- 15 Nov 2021
+  <div
+    class="blog-item"
+  >
     <div
-      data-testid="blog_description"
+      class="blog-item__top"
     >
-      description
+      <a>
+        <h5>
+          title2...
+        </h5>
+        <div
+          data-testid="blog_description"
+        >
+          description...
+        </div>
+      </a>
     </div>
     <div
-      data-testid="likes_dislikes"
+      class="blog-item__bottom"
     >
-      5 -- 0
-    </div>
-    <div>
-      <button
-        data-testid="remove_button"
+      <div
+        class="blog-item__buttons"
       >
-        X
-      </button>
+        <button
+          class="blog-item__prebutton"
+          data-testid="preview_button"
+        >
+          <abbr
+            class="none-decoration"
+            title="Preview The Blog"
+          >
+            Preview
+          </abbr>
+        </button>
+        <button
+          class="blog-item__delbutton"
+          data-testid="remove_button"
+        >
+          <abbr
+            class="none-decoration"
+            title="Delete Blog"
+          >
+            Delete
+          </abbr>
+        </button>
+      </div>
+      <div
+        class="blog-item__usertime"
+      >
+        <a>
+          <abbr
+            class="none-decoration"
+            title="Anonymous"
+          >
+            Anonymous
+          </abbr>
+        </a>
+        <span
+          class="blog-item__between"
+        >
+          |
+        </span>
+        <span>
+          15 Nov 2021
+        </span>
+      </div>
     </div>
-    <button
-      data-testid="preview_button"
-    >
-      Preview
-    </button>
     <button
       data-testid="close_button"
     >
@@ -58,30 +94,62 @@ exports[`Should render BlogItem component correctly with all props 1`] = `
 
 exports[`Should render BlogItem component correctly without uname 1`] = `
 <DocumentFragment>
-  <div>
-    <a>
-      title2
-    </a>
-     by 
-    <a>
-      Anonymous
-    </a>
-     -- 15 Nov 2021
+  <div
+    class="blog-item"
+  >
     <div
-      data-testid="blog_description"
+      class="blog-item__top"
     >
-      description
+      <a>
+        <h5>
+          title2...
+        </h5>
+        <div
+          data-testid="blog_description"
+        >
+          description...
+        </div>
+      </a>
     </div>
     <div
-      data-testid="likes_dislikes"
+      class="blog-item__bottom"
     >
-      5 -- 0
+      <div
+        class="blog-item__buttons"
+      >
+        <button
+          class="blog-item__prebutton"
+          data-testid="preview_button"
+        >
+          <abbr
+            class="none-decoration"
+            title="Preview The Blog"
+          >
+            Preview
+          </abbr>
+        </button>
+      </div>
+      <div
+        class="blog-item__usertime"
+      >
+        <a>
+          <abbr
+            class="none-decoration"
+            title="Anonymous"
+          >
+            Anonymous
+          </abbr>
+        </a>
+        <span
+          class="blog-item__between"
+        >
+          |
+        </span>
+        <span>
+          15 Nov 2021
+        </span>
+      </div>
     </div>
-    <button
-      data-testid="preview_button"
-    >
-      Preview
-    </button>
     <button
       data-testid="close_button"
     >
