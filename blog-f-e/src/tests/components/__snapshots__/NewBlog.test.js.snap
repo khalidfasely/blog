@@ -2,85 +2,128 @@
 
 exports[`Should render NewBlog(mode: editing) component correctly 1`] = `
 <DocumentFragment>
-  <div>
+  <div
+    class="content-container"
+  >
     <form
+      class="blog-edit-form"
       data-testid="form"
     >
-      <label
-        for="title_new"
+      <div
+        class="blog-form__lab-inp"
       >
-        Title:
-      </label>
-      <textarea
-        data-testid="title_input"
-        id="title_new"
-        maxlength="120"
-        placeholder="Title (More than 90 characters)"
+        <div>
+          <label
+            for="title_new"
+          >
+            Title:
+          </label>
+        </div>
+        <div>
+          <textarea
+            class="title-input"
+            data-testid="title_input"
+            id="title_new"
+            maxlength="120"
+            placeholder="Title (More than 90 characters)"
+          >
+            title2
+          </textarea>
+        </div>
+      </div>
+      <div
+        class="blog-form__lab-inp"
       >
-        title2
-      </textarea>
-      <label
-        for="description_new"
+        <div>
+          <label
+            for="description_new"
+          >
+            Description:
+          </label>
+        </div>
+        <div>
+          <textarea
+            class="description-input"
+            data-testid="description_input"
+            id="description_new"
+            maxlength="300"
+            placeholder="Description (More than 255 characters)"
+          >
+            description
+          </textarea>
+        </div>
+      </div>
+      <div
+        class="blog-form__lab-inp"
       >
-        Description:
-      </label>
-      <textarea
-        data-testid="description_input"
-        id="description_new"
-        maxlength="300"
-        placeholder="Description (More than 255 characters)"
+        <div>
+          <label
+            for="content_new"
+          >
+            Content:
+          </label>
+        </div>
+        <div>
+          <textarea
+            class="content-input"
+            data-testid="content_input"
+            id="content_new"
+            placeholder="Content (More than 500 characters)"
+          >
+            content
+          </textarea>
+        </div>
+      </div>
+      <div
+        class="blog-form__lab-inp"
       >
-        description
-      </textarea>
-      <label
-        for="content_new"
+        <div>
+          <label
+            for="category_new"
+          >
+            Category:
+          </label>
+        </div>
+        <div>
+          <select
+            class="category-selector"
+            data-testid="category_select"
+            id="category_new"
+          >
+            <option
+              disabled=""
+              selected=""
+              value="Django"
+            >
+              Django
+            </option>
+            <option
+              value="Web"
+            >
+              Web
+            </option>
+            <option
+              value="Programming"
+            >
+              Programming
+            </option>
+            <option
+              value="React"
+            >
+              React
+            </option>
+          </select>
+        </div>
+      </div>
+      <div
+        class="blog-form__button"
       >
-        Content:
-      </label>
-      <textarea
-        data-testid="content_input"
-        id="content_new"
-        placeholder="Content (More than 500 characters)"
-      >
-        content
-      </textarea>
-      <label
-        for="category_new"
-      >
-        Category:
-      </label>
-      <select
-        data-testid="category_select"
-        id="category_new"
-      >
-        <option
-          disabled=""
-          selected=""
-          value="Django"
+        <button
+          data-testid="edit_create_button"
         >
-          Django
-        </option>
-        <option
-          value="Web"
-        >
-          Web
-        </option>
-        <option
-          value="Programming"
-        >
-          Programming
-        </option>
-        <option
-          value="React"
-        >
-          React
-        </option>
-      </select>
-      <button
-        data-testid="edit_create_button"
-      >
-        Edit Blog
-      </button>
+          Edit Blog
+        </button>
+      </div>
     </form>
   </div>
 </DocumentFragment>
@@ -88,79 +131,122 @@ exports[`Should render NewBlog(mode: editing) component correctly 1`] = `
 
 exports[`Should render NewBlog(mode: new blog) component correctly 1`] = `
 <DocumentFragment>
-  <div>
+  <div
+    class="content-container"
+  >
     <form
+      class="blog-new-form"
       data-testid="form"
     >
-      <label
-        for="title_new"
+      <div
+        class="blog-form__lab-inp"
       >
-        Title:
-      </label>
-      <textarea
-        data-testid="title_input"
-        id="title_new"
-        maxlength="120"
-        placeholder="Title (More than 90 characters)"
-      />
-      <label
-        for="description_new"
+        <div>
+          <label
+            for="title_new"
+          >
+            Title:
+          </label>
+        </div>
+        <div>
+          <textarea
+            class="title-input"
+            data-testid="title_input"
+            id="title_new"
+            maxlength="120"
+            placeholder="Title (More than 90 characters)"
+          />
+        </div>
+      </div>
+      <div
+        class="blog-form__lab-inp"
       >
-        Description:
-      </label>
-      <textarea
-        data-testid="description_input"
-        id="description_new"
-        maxlength="300"
-        placeholder="Description (More than 255 characters)"
-      />
-      <label
-        for="content_new"
+        <div>
+          <label
+            for="description_new"
+          >
+            Description:
+          </label>
+        </div>
+        <div>
+          <textarea
+            class="description-input"
+            data-testid="description_input"
+            id="description_new"
+            maxlength="300"
+            placeholder="Description (More than 255 characters)"
+          />
+        </div>
+      </div>
+      <div
+        class="blog-form__lab-inp"
       >
-        Content:
-      </label>
-      <textarea
-        data-testid="content_input"
-        id="content_new"
-        placeholder="Content (More than 500 characters)"
-      />
-      <label
-        for="category_new"
+        <div>
+          <label
+            for="content_new"
+          >
+            Content:
+          </label>
+        </div>
+        <div>
+          <textarea
+            class="content-input"
+            data-testid="content_input"
+            id="content_new"
+            placeholder="Content (More than 500 characters)"
+          />
+        </div>
+      </div>
+      <div
+        class="blog-form__lab-inp"
       >
-        Category:
-      </label>
-      <select
-        data-testid="category_select"
-        id="category_new"
+        <div>
+          <label
+            for="category_new"
+          >
+            Category:
+          </label>
+        </div>
+        <div>
+          <select
+            class="category-selector"
+            data-testid="category_select"
+            id="category_new"
+          >
+            <option
+              disabled=""
+              selected=""
+              value=""
+            >
+              --Select Category--
+            </option>
+            <option
+              value="Web"
+            >
+              Web
+            </option>
+            <option
+              value="Programming"
+            >
+              Programming
+            </option>
+            <option
+              value="React"
+            >
+              React
+            </option>
+          </select>
+        </div>
+      </div>
+      <div
+        class="blog-form__button"
       >
-        <option
-          disabled=""
-          selected=""
-          value=""
+        <button
+          data-testid="edit_create_button"
         >
-          --Select Category--
-        </option>
-        <option
-          value="Web"
-        >
-          Web
-        </option>
-        <option
-          value="Programming"
-        >
-          Programming
-        </option>
-        <option
-          value="React"
-        >
-          React
-        </option>
-      </select>
-      <button
-        data-testid="edit_create_button"
-      >
-        Create Blog
-      </button>
+          Create Blog
+        </button>
+      </div>
     </form>
   </div>
 </DocumentFragment>

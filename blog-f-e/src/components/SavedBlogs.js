@@ -17,7 +17,7 @@ export const SavedBlogs = ({ startSetSavedBlogs, blogs }) => {
                 blogs && <div>{
                     blogs.length !== 0 ?
                     <BlogsList blogs={blogs} /> :
-                    <p data-testid='empty-blogs-paragraph'>-No Blogs Saved-</p>
+                    <p className='empty-blogs-list' data-testid='empty-blogs-paragraph'>-No Blogs Saved-</p>
                 }</div>
             }
         </div>

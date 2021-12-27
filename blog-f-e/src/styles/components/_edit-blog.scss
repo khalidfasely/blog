@@ -1,0 +1,57 @@
+.blog-edit-form {
+    //text-align: center;
+    margin: 3rem 2rem;
+
+    & .blog-form__button {
+        text-align: end;
+        width: 100%;
+
+        & button {
+            background-color: lighten($main-color, 25%);
+            color: $off-white;
+            padding: .5rem 1rem;
+            margin-top: 1rem;
+            font-size: 1.2rem;
+            border: none;
+        }
+    }
+}
+
+.blog-edit-form .blog-form__lab-inp {
+    & div label {
+        font-size: medium;
+        font-weight: 600;
+    }
+
+    & div p {
+        font-size: 1.3rem;
+        color: lighten(firebrick, 10%);
+        margin-bottom: 2rem;
+    }
+}
+
+.blog-edit-form .blog-form__lab-inp div .title-input {
+    height: 4rem;
+    width: 100%;
+    resize: none;
+    padding: .8rem 0 0 1rem;
+}
+
+.blog-edit-form .blog-form__lab-inp div .description-input {
+    height: 8rem;
+    width: 100%;
+    resize: none;
+    padding: .8rem 0 0 1rem;
+}
+
+.blog-edit-form .blog-form__lab-inp div .content-input {
+    height: 30rem;
+    width: 100%;
+    resize: vertical;
+    padding: .8rem 0 0 1rem;
+}
+
+.blog-edit-form .blog-form__lab-inp div .category-selector {
+    width: 100%;
+    padding: .5rem 1rem;
+}

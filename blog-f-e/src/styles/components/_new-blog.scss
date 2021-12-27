@@ -1,0 +1,87 @@
+.blog-new-form {
+    //text-align: center;
+    margin: 6rem 10rem;
+
+    & .blog-form__button {
+        text-align: end;
+
+        & button {
+            background-color: lighten($main-color, 25%);
+            color: $off-white;
+            padding: .5rem 1rem;
+            margin-top: 1rem;
+            font-size: 1.2rem;
+            border: none;
+        }
+
+        @media (max-width: 760px) {
+            width: 60rem;
+        }
+
+        @media (max-width: 644px) {
+            width: 100%;
+        }
+    }
+
+    @media (max-width: 960px) {
+        margin: 6rem 0;
+    }
+}
+
+.blog-new-form .blog-form__lab-inp {
+    display: flex;
+    justify-content: space-between;
+
+    & div label {
+        font-size: medium;
+        font-weight: 600;
+    }
+
+    & div p {
+        font-size: 1.3rem;
+        color: lighten(firebrick, 10%);
+        margin-bottom: 2rem;
+    }
+
+    @media (max-width: 760px) {
+        display: block;
+    }
+}
+
+.blog-new-form .blog-form__lab-inp div .title-input {
+    height: 4rem;
+    width: 60rem;
+    resize: none;
+    padding: .8rem 0 0 1rem;
+    @media (max-width: 644px) {
+        width: 100%;
+    }
+}
+
+.blog-new-form .blog-form__lab-inp div .description-input {
+    height: 8rem;
+    width: 60rem;
+    resize: none;
+    padding: .8rem 0 0 1rem;
+    @media (max-width: 644px) {
+        width: 100%;
+    }
+}
+
+.blog-new-form .blog-form__lab-inp div .content-input {
+    height: 30rem;
+    width: 60rem;
+    resize: vertical;
+    padding: .8rem 0 0 1rem;
+    @media (max-width: 644px) {
+        width: 100%;
+    }
+}
+
+.blog-new-form .blog-form__lab-inp div .category-selector {
+    width: 60rem;
+    padding: .5rem 1rem;
+    @media (max-width: 644px) {
+        width: 100%;
+    }
+}

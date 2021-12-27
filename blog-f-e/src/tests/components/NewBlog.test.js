@@ -238,5 +238,6 @@ test('Should edit() call correctly', () => {
 
     expect(props.edit).toHaveBeenCalledTimes(0);
     fireEvent.click(buttonEditEl);
-    expect(props.edit).toHaveBeenCalledTimes(1);
+    //Because the data is not available(availableData === false)
+    expect(props.edit).toHaveBeenCalledTimes(0);
 });

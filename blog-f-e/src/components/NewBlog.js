@@ -21,14 +21,18 @@ export const NewBlog = ({
         editBlogFromUP,
         categories
     }) => {
-    const titleDefault = blog ? blog.title : '';
-    const [ title, setTitle ] = useState(titleDefault);
-    const descriptionDefault = blog ? blog.description : '';
-    const [ description, setDescription ] = useState(descriptionDefault);
-    const contentDefault = blog ? blog.content : '';
-    const [ content, setContent ] = useState(contentDefault);
-    const categoryDefault = blog ? blog.category : '';
-    const [ category, setCategory ] = useState(categoryDefault);
+    //const titleDefault = blog ? blog.title : '';
+    //const [ title, setTitle ] = useState(titleDefault);
+    //const descriptionDefault = blog ? blog.description : '';
+    //const [ description, setDescription ] = useState(descriptionDefault);
+    //const contentDefault = blog ? blog.content : '';
+    //const [ content, setContent ] = useState(contentDefault);
+    //const categoryDefault = blog ? blog.category : '';
+    //const [ category, setCategory ] = useState(categoryDefault);
+    const [ title, setTitle ] = useState(blog ? blog.title : '');
+    const [ description, setDescription ] = useState(blog ? blog.description : '');
+    const [ content, setContent ] = useState(blog ? blog.content : '');
+    const [ category, setCategory ] = useState(blog ? blog.category : '');
     const [ error, setError ] = useState('');
     const [ titleError, setTitleError ] = useState('');
     const [ descriptionError, setDescriptionError ] = useState('');
@@ -139,65 +143,99 @@ export const NewBlog = ({
     };
 
     const editing = () => {
-        (title.replace(/\s/g, '') && description.replace(/\s/g, '') && content.replace(/\s/g, '') && category) && edit();
+        const availabelTitle = title.replace(/\s/g, '').length >= 90;
+        const availabelDescription = description.replace(/\s/g, '').length >= 200;
+        const availabelContent = content.replace(/\s/g, '').length >= 500;
+        const availabelData = (availabelTitle && availabelDescription && availabelContent && category);
+        (availabelData) && edit();
     }
 
     return (
-        <div>
+        <div className='content-container'>
             {error && <div>{error}</div>}
-            <form data-testid='form' onSubmit={onFormSubmit}>
-                <label htmlFor='title_new'>Title:</label>
-                <textarea
-                  id='title_new'
-                  data-testid='title_input'
-                  placeholder='Title (More than 90 characters)'
-                  autoFocus
-                  maxLength={120}
-                  value={title}
-                  onChange={onTitleChange}
-                />
-                {titleError && <p data-testid='title_error'>{titleError}</p>}
-                <label htmlFor='description_new'>Description:</label>
-                <textarea
-                  id='description_new'
-                  data-testid='description_input'
-                  placeholder='Description (More than 255 characters)'
-                  maxLength={300}
-                  value={description}
-                  onChange={onDescriptionChange}
-                />
-                {descriptionError && <p data-testid='description_error'>{descriptionError}</p>}
-                <label htmlFor='content_new'>Content:</label>
-                <textarea
-                  id='content_new'
-                  data-testid='content_input'
-                  placeholder='Content (More than 500 characters)'
-                  value={content}
-                  onChange={onContentChange}
-                />
-                {contentError && <p data-testid='content_error'>{contentError}</p>}
-                <label htmlFor='category_new'>Category:</label>
-                <select
-                    id='category_new'
-                    data-testid='category_select'
-                    defaultValue={category ? category : ''}
-                    onChange={onCategoryChange}
-                >
+            <form className={isEdit ? 'blog-edit-form' : 'blog-new-form'} data-testid='form' onSubmit={onFormSubmit}>
+                <div className='blog-form__lab-inp'>
+                    <div>
+                        <label htmlFor='title_new'>Title:</label>
+                    </div>
+                    <div>
+                        <textarea
+                          className='title-input'
+                          id='title_new'
+                          data-testid='title_input'
+                          placeholder='Title (More than 90 characters)'
+                          autoFocus
+                          maxLength={120}
+                          value={title}
+                          onChange={onTitleChange}
+                        />
+                        {titleError && <p data-testid='title_error'>{titleError}</p>}
+                    </div>
+                </div>
+                <div className='blog-form__lab-inp'>
+                    <div>
+                        <label htmlFor='description_new'>Description:</label>
+                    </div>
+                    <div>
+                        <textarea
+                          className='description-input'
+                          id='description_new'
+                          data-testid='description_input'
+                          placeholder='Description (More than 255 characters)'
+                          maxLength={300}
+                          value={description}
+                          onChange={onDescriptionChange}
+                        />
+                        {descriptionError && <p data-testid='description_error'>{descriptionError}</p>}
+                    </div>
+                </div>
+                <div className='blog-form__lab-inp'>
+                    <div>
+                        <label htmlFor='content_new'>Content:</label>
+                    </div>
+                    <div>
+                        <textarea
+                          className='content-input'
+                          id='content_new'
+                          data-testid='content_input'
+                          placeholder='Content (More than 500 characters)'
+                          value={content}
+                          onChange={onContentChange}
+                        />
+                        {contentError && <p data-testid='content_error'>{contentError}</p>}
+                    </div>
+                </div>
+                <div className='blog-form__lab-inp'>
+                    <div>
+                        <label htmlFor='category_new'>Category:</label>
+                    </div>
+                    <div>
+                        <select
+                            className='category-selector'
+                            id='category_new'
+                            data-testid='category_select'
+                            defaultValue={category ? category : ''}
+                            onChange={onCategoryChange}
+                        >
+                            {
+                                isEdit ?
+                                <option disabled value={category}>{category}</option> :
+                                <option disabled value=''>--Select Category--</option>
+                            }
+                            {
+                                categories.map((category) => <option key={category} value={category}>{category}</option>)
+                            }
+                        </select>
+                        {categoryError && <p data-testid='category_error'>{categoryError}</p>}
+                    </div>
+                </div>
+                <div className='blog-form__button'>
                     {
                         isEdit ?
-                        <option disabled value={category}>{category}</option> :
-                        <option disabled value=''>--Select Category--</option>
+                        <button data-testid='edit_create_button' onClick={editing}>Edit Blog</button> :
+                        <button data-testid='edit_create_button'>Create Blog</button>
                     }
-                    {
-                        categories.map((category) => <option key={category} value={category}>{category}</option>)
-                    }
-                </select>
-                {categoryError && <p data-testid='category_error'>{categoryError}</p>}
-                {
-                    isEdit ?
-                    <button data-testid='edit_create_button' onClick={editing}>Edit Blog</button> :
-                    <button data-testid='edit_create_button'>Create Blog</button>
-                }
+                </div>
             </form>
         </div>
     );
