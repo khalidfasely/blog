@@ -2,28 +2,48 @@
 
 exports[`Should render ModalEditProfile component correctly 1`] = `
 <DocumentFragment>
-  <button
-    data-testid="close_button"
+  <h5
+    class="modal-edit-profile__title"
   >
-    X
-  </button>
-  <h5>
     Edit profile
   </h5>
   <form
+    class="modal-edit-profile__form"
     data-testid="form"
   >
-    <input
+    <textarea
       data-testid="bio_input"
       placeholder="Bio"
       type="text"
-      value=""
     />
-    <button
-      data-testid="save_button"
+    <div
+      class="modal-edit-profile__buttons"
     >
-      Save New Infos
-    </button>
+      <abbr
+        title="Save Changes"
+      >
+        <button
+          class="save-button"
+          data-testid="save_button"
+        >
+          Save New Infos
+        </button>
+      </abbr>
+    </div>
   </form>
+  <div
+    class="modal-edit-profile__buttons"
+  >
+    <abbr
+      title="Close"
+    >
+      <button
+        class="close-button"
+        data-testid="close_button"
+      >
+        X
+      </button>
+    </abbr>
+  </div>
 </DocumentFragment>
 `;

@@ -1,0 +1,49 @@
+.modal-edit-profile {
+    background: $off-white;
+    border-radius: .3rem;
+    color: $dark-grey;
+    max-width: 30rem;
+    outline: none;
+    padding: $l-size;
+    text-align: center;
+    width: 80%;
+    border: 1px solid rgb(204, 204, 204);
+}
+
+.modal-edit-profile__title {
+    margin: 0 0 $m-size 0;
+}
+
+.modal-edit-profile__form textarea {
+    width: 100%;
+    height: 3rem;
+    resize: none;
+    margin-bottom: 1rem;
+    padding: .3rem 0 0 .5rem;
+}
+
+.modal-edit-profile__buttons {
+    //display: flex;
+    justify-content: space-between;
+
+    .save-button {
+        background-color: lighten($main-color, 15%);
+        color: $off-white;
+        font-size: 1.2rem;
+        float: left;
+        padding: 0.4rem 1.1rem;
+        border: 0.4mm ridge lighten($main-color, 25%);
+        font-weight: 500;
+        text-decoration: none;
+    }
+
+    .close-button {
+        @extend .blog-item__delbutton;
+        color: lighten($dark-grey, 17%);
+        float: right;
+
+        &:hover {
+        background-color: lighten($dark-grey, 17%);
+        }
+    }
+}

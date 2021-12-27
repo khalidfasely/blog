@@ -21,35 +21,47 @@ export const ModalEditProfile = ({ ePrModalOpen, setEdPrModalOpen, bio, resetInf
 
   return (
     <Modal
-        isOpen={ePrModalOpen}
-        contentLabel="Edit Profile"
-        closeTimeoutMS={100}
-        onRequestClose={() => setEdPrModalOpen(false)}
-      >
-      <button
-        data-testid='close_button'
-        onClick={() => setEdPrModalOpen(false)}
-      >
-        X
-      </button>
-      <h5>Edit profile</h5>
+      className='modal-edit-profile'
+      isOpen={ePrModalOpen}
+      contentLabel="Edit Profile"
+      closeTimeoutMS={100}
+      onRequestClose={() => setEdPrModalOpen(false)}
+    >
+      <h5 className='modal-edit-profile__title'>Edit profile</h5>
       <form
+        className='modal-edit-profile__form'
         data-testid='form'
         onSubmit={onFormEditProfileSub}
       >
-        <input
+        <textarea
           data-testid='bio_input'
           type='text'
           placeholder='Bio'
           value={bioVal}
           onChange={onBioChange}
         />
-        <button
-          data-testid='save_button'
-        >
-          Save New Infos
-        </button>
+        <div className='modal-edit-profile__buttons'>
+          <abbr title='Save Changes'>
+            <button
+              className='save-button'
+              data-testid='save_button'
+            >
+              Save New Infos
+            </button>
+          </abbr>
+        </div>
       </form>
+      <div className='modal-edit-profile__buttons'>
+        <abbr title='Close'>
+            <button
+              className='close-button'
+              data-testid='close_button'
+              onClick={() => setEdPrModalOpen(false)}
+            >
+              X
+            </button>
+        </abbr>
+      </div>
     </Modal>
 )};
 
