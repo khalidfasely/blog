@@ -2,18 +2,34 @@
 
 exports[`Should render ModalDelete component correctly 1`] = `
 <DocumentFragment>
-  <h5>
+  <h5
+    class="delete-modal__title"
+  >
     If you delete this blog there is no way to return it.
   </h5>
-  <button
-    data-testid="delete_button"
+  <div
+    class="delete-modal__buttons"
   >
-    Delete Blog
-  </button>
-  <button
-    data-testid="close_button"
-  >
-    X
-  </button>
+    <abbr
+      title="Delete Blog"
+    >
+      <button
+        class="delete-modal__delete-button"
+        data-testid="delete_button"
+      >
+        Delete Blog
+      </button>
+    </abbr>
+    <abbr
+      title="Close"
+    >
+      <button
+        class="delete-modal__close-button"
+        data-testid="close_button"
+      >
+        X
+      </button>
+    </abbr>
+  </div>
 </DocumentFragment>
 `;

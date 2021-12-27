@@ -1,0 +1,32 @@
+.delete-modal {
+    background: lighten($main-color, 10%);
+    border-radius: .3rem;
+    color: $off-white;
+    max-width: 30rem;
+    outline: none;
+    padding: $l-size;
+    text-align: center;
+    width: 80%;
+}
+
+.delete-modal__title {
+    margin: 0 0 $m-size 0;
+}
+
+.delete-modal__buttons {
+    display: flex;
+    justify-content: space-around;
+
+    & .delete-modal__delete-button {
+        @extend .blog-item__delbutton;
+    }
+
+    & .delete-modal__close-button {
+        @extend .blog-item__delbutton;
+        color: lighten(rgb(32, 126, 3), 17%);
+
+        &:hover {
+            background-color: lighten(rgb(32, 126, 3), 17%);
+        }
+    }
+}
