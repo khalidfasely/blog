@@ -232,7 +232,7 @@ export const NewBlog = ({
                 <div className='blog-form__button'>
                     {
                         isEdit ?
-                        <button data-testid='edit_create_button' onClick={editing}>Edit Blog</button> :
+                        <button data-testid='edit_create_button' onClick={editing}>Apply Changes</button> :
                         <button data-testid='edit_create_button'>Create Blog</button>
                     }
                 </div>

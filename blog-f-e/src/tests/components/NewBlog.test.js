@@ -55,7 +55,7 @@ test('Should render NewBlog(mode: editing) component correctly', () => {
     expect(categorySelectEl.value).toBe(blog1.category);
 
     const buttonEl = getByTestId('edit_create_button');
-    expect(buttonEl.textContent).toBe('Edit Blog');
+    expect(buttonEl.textContent).toBe('Apply Changes');
 });
 
 test('Should change inputs on NewBlog(mode: new blog) work correctly', () => {
@@ -234,7 +234,7 @@ test('Should edit() call correctly', () => {
     const { getByTestId } = render(<NewBlog {...{...props, isEdit: true, blog: blog1}} />);
 
     const buttonEditEl = getByTestId('edit_create_button');
-    expect(buttonEditEl.textContent).toBe('Edit Blog');
+    expect(buttonEditEl.textContent).toBe('Apply Changes');
 
     expect(props.edit).toHaveBeenCalledTimes(0);
     fireEvent.click(buttonEditEl);

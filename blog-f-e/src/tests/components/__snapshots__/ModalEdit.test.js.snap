@@ -2,11 +2,24 @@
 
 exports[`Should render ModalEdit component correctly 1`] = `
 <DocumentFragment>
-  NewBlog
-  <button
-    data-testid="close_button"
+  <div
+    class="edit-modal__buttons"
   >
-    X
-  </button>
+    <abbr
+      title="Close"
+    >
+      <button
+        class="edit-modal__close-button"
+        data-testid="close_button"
+      >
+        X
+      </button>
+    </abbr>
+  </div>
+  <div
+    class="edit-modal__form"
+  >
+    NewBlog
+  </div>
 </DocumentFragment>
 `;

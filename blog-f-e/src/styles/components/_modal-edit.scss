@@ -1,0 +1,44 @@
+.edit-modal {
+    background-color: $off-white;
+    border-radius: .3rem;
+    max-width: 70rem;
+    outline: none;
+    padding: $l-size;
+    position: absolute;
+    width: 70%;
+    margin: 0 auto;
+
+    
+    inset: 40px;
+    border: 1px solid rgb(204, 204, 204);
+    overflow: auto;
+
+    @media (max-width: $desktop-breakpoint) {
+        padding: .5rem;
+        width: 80%;
+    }
+}
+
+.edit-modal__buttons {
+    text-align: end;
+}
+
+.edit-modal__close-button {
+    color: lighten($dark-grey, 17%);
+    border: none;
+    background: none;
+    font-size: large;
+    transition: all 0.3s ease 0s;
+
+    &:hover {
+        font-size: larger;
+    }
+}
+
+.edit-modal__form {
+    margin: 1rem 2rem;
+
+    @media (max-width: $desktop-breakpoint) {
+        margin: .5rem 1;
+    }
+}

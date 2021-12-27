@@ -28,14 +28,27 @@ exports[`Should render BlogPage component correctly with props 1`] = `
     <button>
       Edit
     </button>
-    <div>
-      NewBlog
-    </div>
-    <button
-      data-testid="close_button"
+    <div
+      class="edit-modal__buttons"
     >
-      X
-    </button>
+      <abbr
+        title="Close"
+      >
+        <button
+          class="edit-modal__close-button"
+          data-testid="close_button"
+        >
+          X
+        </button>
+      </abbr>
+    </div>
+    <div
+      class="edit-modal__form"
+    >
+      <div>
+        NewBlog
+      </div>
+    </div>
     <div>
       LikeUnlikeBlog
     </div>
@@ -76,14 +89,27 @@ exports[`Should render BlogPage component correctly with uname!==blogPage(create
     <div>
       BlogPageItems
     </div>
-    <div>
-      NewBlog
-    </div>
-    <button
-      data-testid="close_button"
+    <div
+      class="edit-modal__buttons"
     >
-      X
-    </button>
+      <abbr
+        title="Close"
+      >
+        <button
+          class="edit-modal__close-button"
+          data-testid="close_button"
+        >
+          X
+        </button>
+      </abbr>
+    </div>
+    <div
+      class="edit-modal__form"
+    >
+      <div>
+        NewBlog
+      </div>
+    </div>
     <div>
       LikeUnlikeBlog
     </div>
@@ -124,14 +150,27 @@ exports[`Should render BlogPage component correctly with undefined uname 1`] = `
     <div>
       BlogPageItems
     </div>
-    <div>
-      NewBlog
-    </div>
-    <button
-      data-testid="close_button"
+    <div
+      class="edit-modal__buttons"
     >
-      X
-    </button>
+      <abbr
+        title="Close"
+      >
+        <button
+          class="edit-modal__close-button"
+          data-testid="close_button"
+        >
+          X
+        </button>
+      </abbr>
+    </div>
+    <div
+      class="edit-modal__form"
+    >
+      <div>
+        NewBlog
+      </div>
+    </div>
     <div>
       LikeUnlikeBlog
     </div>

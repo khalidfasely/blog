@@ -121,7 +121,7 @@ exports[`Should render NewBlog(mode: editing) component correctly 1`] = `
         <button
           data-testid="edit_create_button"
         >
-          Edit Blog
+          Apply Changes
         </button>
       </div>
     </form>
