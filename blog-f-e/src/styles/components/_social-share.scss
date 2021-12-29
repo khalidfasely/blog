@@ -1,0 +1,20 @@
+.social-share {
+    padding: 2rem 7rem;
+    display: flex;
+    justify-content: end;
+
+    & button:not(:last-child) {
+        margin-right: .5rem;
+    }
+
+    & h5 {
+        margin: auto 0;
+        font-size: 1.3rem;
+        margin-right: .5rem;
+    }
+
+    @media (max-width: $desktop-breakpoint) {
+        padding: 1rem 2rem;
+        display: block;
+    }
+}

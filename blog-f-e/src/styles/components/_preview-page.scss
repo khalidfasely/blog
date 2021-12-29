@@ -1,0 +1,47 @@
+.modal-preview {
+    position: absolute;
+    inset: 40px;
+    border: 1px solid rgb(204, 204, 204);
+    background: rgb(255, 255, 255);
+    overflow: auto;
+    border-radius: 4px;
+    outline: none;
+    padding: 20px;
+    width: 80%;
+    margin: auto;
+}
+
+.preview-page .preview-page__interactions {
+    display: flex;
+    justify-content: end;
+}
+
+.preview-page__comments-count {
+    text-align: end;
+    font-size: 1.3rem;
+}
+
+.preview-page .blog-items__likes {
+    text-align: end;
+    color: grey;
+    font-size: 1.1rem;
+    
+    & span {
+        font-size: 1.3rem;
+        color: darken(grey, 10%);
+    }
+
+    @media (max-width: $desktop-breakpoint) {
+        margin-bottom: .8rem;
+    }
+}
+
+.modal-preview__button-container {
+    text-align: end;
+
+    .modal-preview__close-button {
+        border: none;
+        background: none;
+        font-size: 2rem;
+    }
+}

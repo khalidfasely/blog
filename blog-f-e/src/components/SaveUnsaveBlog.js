@@ -1,4 +1,7 @@
 import React from "react";
+import {ReactComponent as ReactSaveIcon} from '../images/bookmark-regular.svg';
+import {ReactComponent as ReactUnsaveIcon} from '../images/bookmark-solid.svg';
+
 
 export const SaveUnsaveBlog = (props) => {
     return (
@@ -6,20 +9,26 @@ export const SaveUnsaveBlog = (props) => {
             {
                 props.uname && (
                     props.blogsSaved.includes(props.bid) ?
-                    <button
+                    <a
+                        className="unsave-container"
                         data-testid='save_unsave_blog'
                         disabled={props.sButtonDis}
                         onClick={props.unsave_b}
                     >
-                        Unsave
-                    </button> :
-                    <button
+                        <abbr title="Unsave Blog">
+                            <ReactUnsaveIcon className='unsave-icon' />
+                        </abbr>
+                    </a> :
+                    <a
+                        className="save-container"
                         data-testid='save_unsave_blog'
                         disabled={props.sButtonDis}
                         onClick={props.save_b}
                     >
-                        Save
-                    </button>
+                        <abbr title="Save Blog">
+                            <ReactSaveIcon className='save-icon' />
+                        </abbr>
+                    </a>
                 )
             }
         </div>

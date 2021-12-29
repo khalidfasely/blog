@@ -3,12 +3,21 @@
 exports[`Should render LikeUnlikeBlog component correctly if bid in blogsLiked 1`] = `
 <DocumentFragment>
   <div>
-    <button
+    <a
+      class="unlike-container"
       data-testid="like_unlike_blog"
       disabled=""
     >
-      Unlike
-    </button>
+      <abbr
+        title="Unlike Blog"
+      >
+        <svg
+          class="unlike-icon"
+        >
+          heart-solid.svg
+        </svg>
+      </abbr>
+    </a>
   </div>
 </DocumentFragment>
 `;
@@ -16,12 +25,21 @@ exports[`Should render LikeUnlikeBlog component correctly if bid in blogsLiked 1
 exports[`Should render LikeUnlikeBlog component correctly if bid not in blogsLiked 1`] = `
 <DocumentFragment>
   <div>
-    <button
+    <a
+      class="like-container"
       data-testid="like_unlike_blog"
       disabled=""
     >
-      Like
-    </button>
+      <abbr
+        title="Like Blog"
+      >
+        <svg
+          class="like-icon"
+        >
+          heart-regular.svg
+        </svg>
+      </abbr>
+    </a>
   </div>
 </DocumentFragment>
 `;

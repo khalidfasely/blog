@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 export const NewComment = (props) => {
     return (
-        <div>
+        <div className="comments-section__form">
             <h5>Add comments:</h5>
             {
                 props.uname ?

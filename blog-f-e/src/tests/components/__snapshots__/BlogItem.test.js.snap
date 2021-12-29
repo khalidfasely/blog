@@ -69,12 +69,21 @@ exports[`Should render BlogItem component correctly with all props 1`] = `
         </span>
       </div>
     </div>
-    <button
-      data-testid="close_button"
+    <div
+      class="modal-preview__container"
     >
-      X
-    </button>
-    BlogPage
+      <div
+        class="modal-preview__button-container"
+      >
+        <button
+          class="modal-preview__close-button"
+          data-testid="close_button"
+        >
+          X
+        </button>
+      </div>
+      BlogPage
+    </div>
     <h5
       class="delete-modal__title"
     >
@@ -166,12 +175,21 @@ exports[`Should render BlogItem component correctly without uname 1`] = `
         </span>
       </div>
     </div>
-    <button
-      data-testid="close_button"
+    <div
+      class="modal-preview__container"
     >
-      X
-    </button>
-    BlogPage
+      <div
+        class="modal-preview__button-container"
+      >
+        <button
+          class="modal-preview__close-button"
+          data-testid="close_button"
+        >
+          X
+        </button>
+      </div>
+      BlogPage
+    </div>
     <h5
       class="delete-modal__title"
     >

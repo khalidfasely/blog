@@ -2,7 +2,9 @@
 
 exports[`Should render NewComment component correctly 1`] = `
 <DocumentFragment>
-  <div>
+  <div
+    class="comments-section__form"
+  >
     <h5>
       Add comments:
     </h5>
@@ -25,7 +27,9 @@ exports[`Should render NewComment component correctly 1`] = `
 
 exports[`Should render NewComment component correctly with no prop 1`] = `
 <DocumentFragment>
-  <div>
+  <div
+    class="comments-section__form"
+  >
     <h5>
       Add comments:
     </h5>

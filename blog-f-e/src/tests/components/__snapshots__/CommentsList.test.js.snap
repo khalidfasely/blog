@@ -2,10 +2,9 @@
 
 exports[`Should render CommentsList component correctly 1`] = `
 <DocumentFragment>
-  <div>
-    <h5>
-      Comments:
-    </h5>
+  <div
+    class="comments-section__list"
+  >
     CommentComment
   </div>
 </DocumentFragment>
@@ -13,11 +12,12 @@ exports[`Should render CommentsList component correctly 1`] = `
 
 exports[`Should render CommentsList component correctly with empty comments array 1`] = `
 <DocumentFragment>
-  <div>
-    <h5>
-      Comments:
-    </h5>
-    <div>
+  <div
+    class="comments-section__list"
+  >
+    <div
+      class="comments-section__empty-list"
+    >
       -NO COMMENTS-
     </div>
   </div>

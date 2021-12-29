@@ -2,13 +2,40 @@
 
 exports[`Should render Comment component correctly 1`] = `
 <DocumentFragment>
-  <div>
-    <a>
-      Admin
-    </a>
-    : comment
+  <div
+    class="comments-section__item"
+  >
+    <div
+      class="comments-section__user-item"
+    >
+      <a>
+        <p
+          class="comments-section__username-item"
+        >
+          Admin
+        </p>
+      </a>
+      <p
+        class="comments-section__time-item"
+      >
+        15 Nov 2021
+      </p>
+    </div>
     <div>
-      15 Nov 2021 - 0 
+      <div
+        class="comments-section__content-item"
+      >
+        comment
+      </div>
+      <div
+        class="comments-section__likes-container"
+      >
+        <div
+          class="comments-section__likes-count-item"
+        >
+          0
+        </div>
+      </div>
     </div>
   </div>
 </DocumentFragment>
@@ -16,19 +43,50 @@ exports[`Should render Comment component correctly 1`] = `
 
 exports[`Should render Comment component correctly with props 1`] = `
 <DocumentFragment>
-  <div>
-    <a>
-      Admin
-    </a>
-    : comment
-    <div>
-      15 Nov 2021 - 0 
-      <div>
-        <button
-          data-testid="like_unlike_button"
+  <div
+    class="comments-section__item"
+  >
+    <div
+      class="comments-section__user-item"
+    >
+      <a>
+        <p
+          class="comments-section__username-item"
         >
-          Unlike
-        </button>
+          Admin
+        </p>
+      </a>
+      <p
+        class="comments-section__time-item"
+      >
+        15 Nov 2021
+      </p>
+    </div>
+    <div>
+      <div
+        class="comments-section__content-item"
+      >
+        comment
+      </div>
+      <div
+        class="comments-section__likes-container"
+      >
+        <div
+          class="comments-section__likes-count-item"
+        >
+          0
+        </div>
+        <div>
+          <a
+            data-testid="like_unlike_button"
+          >
+            <svg
+              class="unlike-comment-icon"
+            >
+              heart-solid.svg
+            </svg>
+          </a>
+        </div>
       </div>
     </div>
   </div>

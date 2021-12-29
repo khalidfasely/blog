@@ -1,0 +1,28 @@
+.blog-page {
+    background-color: lighten($main-color, 10%);
+    color: lightgrey;
+    padding: 5rem 3rem;
+}
+
+.blog-page .blog-page__interactions {
+    display: flex;
+    justify-content: end;
+    position: sticky;
+    top: 3rem;
+}
+
+.blog-page__error-data {
+    text-align: center;
+    font-size: large;
+    color: $dark-blue;
+    margin: 10rem;
+}
+
+.blog-page__error-server {
+    text-align: center;
+    padding: 10rem;
+
+    .loader__image {
+        height: 4rem;
+    }
+}

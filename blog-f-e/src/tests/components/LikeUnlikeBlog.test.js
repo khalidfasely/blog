@@ -25,7 +25,7 @@ test('Should render LikeUnlikeBlog component correctly if bid in blogsLiked', ()
     expect(asFragment()).toMatchSnapshot();
 
     const unlikeButtonEl = getByTestId('like_unlike_blog');
-    expect(unlikeButtonEl.textContent).toBe('Unlike');
+    expect(unlikeButtonEl.className).toBe('unlike-container');
 });
 
 test('Should render LikeUnlikeBlog component correctly if bid not in blogsLiked', () => {
@@ -33,5 +33,5 @@ test('Should render LikeUnlikeBlog component correctly if bid not in blogsLiked'
     expect(asFragment()).toMatchSnapshot();
 
     const likeButtonEl = getByTestId('like_unlike_blog');
-    expect(likeButtonEl.textContent).toBe('Like');
+    expect(likeButtonEl.className).toBe('like-container');
 });

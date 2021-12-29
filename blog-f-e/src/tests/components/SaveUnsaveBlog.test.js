@@ -25,7 +25,7 @@ test('Should render SaveUnsaveBlog component correctly if bid in blogsSaved', ()
     expect(asFragment()).toMatchSnapshot();
 
     const unsaveButtonEl = getByTestId('save_unsave_blog');
-    expect(unsaveButtonEl.textContent).toBe('Unsave');
+    expect(unsaveButtonEl.className).toBe('unsave-container');
 });
 
 test('Should render SaveUnsaveBlog component correctly if bid not in blogsSaved', () => {
@@ -33,5 +33,5 @@ test('Should render SaveUnsaveBlog component correctly if bid not in blogsSaved'
     expect(asFragment()).toMatchSnapshot();
 
     const saveButtonEl = getByTestId('save_unsave_blog');
-    expect(saveButtonEl.textContent).toBe('Save');
+    expect(saveButtonEl.className).toBe('save-container');
 });

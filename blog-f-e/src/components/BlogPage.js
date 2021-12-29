@@ -14,6 +14,8 @@ import CommentsList from './CommentsList';
 import SaveUnsaveBlog from './SaveUnsaveBlog';
 import LikeUnlikeBlog from './LikeUnlikeBlog';
 import BlogPageItems from './BlogPageItems';
+import { ReactComponent as ReactEditIcon } from '../images/edit-regular.svg';
+import imageLoader from '../images/loader.gif';
 
 export const BlogPage = (props) => {
     const [renderBlog, setRenderBlog] = useState(false);
@@ -79,10 +81,20 @@ export const BlogPage = (props) => {
     const onFormSubmit = (e) => {
         e.preventDefault();
         if (newComment.replace(/\s/g, '')) {    
-            props.startAddComment(parseInt(props.match.params.bid), newComment)//.then((result) => {
-
-//            })
+            props.startAddComment(parseInt(props.match.params.bid), newComment)//.then(() => {
             setNewComment('');
+            history.push('/');
+            history.push(`/blog/${blog.id}`);
+            //});
+//.then((result) => {
+//                setBlog({
+//                    ...blog,
+//                    comments: [
+//                        ...blog.comments,
+//                        ...result.comment
+//                    ]
+//                })
+//            })
         }
     }
 
@@ -124,14 +136,39 @@ export const BlogPage = (props) => {
 
     if(renderBlog) {
         if (blog.isDefault) {
-            return <div>This Blog Not Available Now. <Link to='/'>Back Home</Link></div>
+            return <div className='blog-page__error-data'>This Blog Not Available Now. <Link to='/'>Back Home</Link></div>
         } else if (props.isPreview) {
             return (
-                <div>
+                <div className='preview-page'>
                     <BlogPageItems
                         blog={{...blog, content: `${previewBlog}...`}}
                         isPreview={true}
                     />
+                    <div className='preview-page__comments-count'>{blog.comments.length} Comment(s)</div>
+                    <div className='preview-page__interactions'>
+                        <LikeUnlikeBlog
+                            uname={props.uname}
+                            blogsLiked={props.blogsLiked}
+                            bid={props.match.params.bid}
+                            buttonDis={buttonDis}
+                            unlike_b={unlike_b}
+                            like_b={like_b}
+                        />
+                        <SaveUnsaveBlog
+                            uname={props.uname}
+                            blogsSaved={props.blogsSaved}
+                            bid={props.match.params.bid}
+                            sButtonDis={sButtonDis}
+                            unsave_b={unsave_b}
+                            save_b={save_b}
+                        />
+                    </div>
+                </div>
+            )
+        }
+        return (
+            <div className='blog-page'>
+                <div className='blog-page__interactions'>
                     <LikeUnlikeBlog
                         uname={props.uname}
                         blogsLiked={props.blogsLiked}
@@ -140,6 +177,17 @@ export const BlogPage = (props) => {
                         unlike_b={unlike_b}
                         like_b={like_b}
                     />
+                    {
+                        props.uname && (
+                            props.uname === blog.created_by.username &&
+                            <a onClick={() => setEModalOpen(true)}>
+                                <abbr title='Edit Blog'>
+                                    <ReactEditIcon className='edit-blog-icon' />
+                                </abbr>
+                            </a>
+                        )
+                    }
+                    <ModalEdit eModalOpen={eModalOpen} blog={blog} setEModalOpen={setEModalOpen} />
                     <SaveUnsaveBlog
                         uname={props.uname}
                         blogsSaved={props.blogsSaved}
@@ -148,51 +196,25 @@ export const BlogPage = (props) => {
                         unsave_b={unsave_b}
                         save_b={save_b}
                     />
-                    <div>{blog.comments.length} Comment(s)</div>
                 </div>
-            )
-        }
-        return (
-            <div>
                 <BlogPageItems blog={blog} />
-                {
-                    props.uname && (
-                        props.uname === blog.created_by.username &&
-                        <button onClick={() => setEModalOpen(true)}>Edit</button>
-                    )
-                }
-                <ModalEdit eModalOpen={eModalOpen} blog={blog} setEModalOpen={setEModalOpen} />
-                <LikeUnlikeBlog
-                    uname={props.uname}
-                    blogsLiked={props.blogsLiked}
-                    bid={props.match.params.bid}
-                    buttonDis={buttonDis}
-                    unlike_b={unlike_b}
-                    like_b={like_b}
-                />
-                <SaveUnsaveBlog
-                    uname={props.uname}
-                    blogsSaved={props.blogsSaved}
-                    bid={props.match.params.bid}
-                    sButtonDis={sButtonDis}
-                    unsave_b={unsave_b}
-                    save_b={save_b}
-                />
                 <SocialShare shareUrl={history.location.pathname} />
-                <CommentsList
-                    comments={blog.comments}
-                    blogId={blog.id}
-                />
-                <NewComment
-                    uname={props.uname}
-                    onFormSubmit={onFormSubmit}
-                    onCommentChange={onCommentChange}
-                    newComment={newComment}
-                />
+                <div className='comments-section'>
+                    <CommentsList
+                        comments={blog.comments}
+                        blogId={blog.id}
+                    />
+                    <NewComment
+                        uname={props.uname}
+                        onFormSubmit={onFormSubmit}
+                        onCommentChange={onCommentChange}
+                        newComment={newComment}
+                    />
+                </div>
             </div>
         )
     } else {
-        return <div>Blog Page {props.match.params.bid}</div>
+        return <div className='blog-page__error-server'><img className="loader__image" src={imageLoader} alt="Loading..." /></div>
     };
 };
 

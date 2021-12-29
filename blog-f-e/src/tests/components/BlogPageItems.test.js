@@ -28,10 +28,11 @@ test('Should render BlogPageItems component correclty with blog prop', () => {
     expect(descriptionEl.textContent).toBe(blog1.description);
 
     const likesEl = getByTestId('likes_item');
-    expect(likesEl.textContent).toBe(`${blog1.likes}`);
+    expect(likesEl.textContent).toBe(`${blog1.likes} People(s) like this Blog`);
 
-    const dislikesEl = getByTestId('dislikes_item');
-    expect(dislikesEl.textContent).toBe(`${blog1.dislikes}`);
+    // As we remove the dilikes from the component we have to remove the tests too
+    //const dislikesEl = getByTestId('dislikes_item');
+    //expect(dislikesEl.textContent).toBe(`${blog1.dislikes}`);
 });
 
 test('Should render BlogPageItems component with all props', () => {

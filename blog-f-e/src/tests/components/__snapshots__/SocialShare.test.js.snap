@@ -2,7 +2,9 @@
 
 exports[`Should render SocialShare correctly 1`] = `
 <DocumentFragment>
-  <div>
+  <div
+    class="social-share"
+  >
     <h5>
       <i>
         Share This Blog On:
@@ -170,7 +172,9 @@ exports[`Should render SocialShare correctly 1`] = `
 
 exports[`Should render SocialShare with no url 1`] = `
 <DocumentFragment>
-  <div>
+  <div
+    class="social-share"
+  >
     <h5>
       <i>
         Share This Blog On:

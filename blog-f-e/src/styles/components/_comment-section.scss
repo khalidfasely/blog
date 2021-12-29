@@ -1,0 +1,119 @@
+.comments-section {
+    text-align: center;
+    margin: 0 auto;
+    padding-top: 10rem;
+    border-top: 1px solid lightgrey;
+
+    @media (max-width: $desktop-breakpoint) {
+        padding-top: 3rem;
+    }
+}
+
+.comments-section__list {
+    /*display: grid;
+    justify-content: center;*/
+    /*text-align: initial;
+     margin: auto; 
+    margin: 0 20rem;*/
+    text-align: left;
+    /* text-align: initial; */
+    max-width: 50rem;
+    margin: 0 auto;
+}
+
+.comments-section__empty-list {
+    border: 1px solid grey;
+    font-weight: 500;
+    min-width: 17rem;
+    text-align: center;
+}
+
+.comments-section__form {
+    margin-top: 2rem;
+}
+
+.comments-section__form form {
+    display: inline-grid;
+    min-width: 25rem;
+    margin-top: 1rem;
+
+    & textarea {
+        width: 100%;
+        resize: none;
+        height: 5rem;
+        width: 100%;
+        background-color: lighten(lighten($main-color, 10%), 10%);
+        color: $off-white;
+        padding: .5rem;
+    }
+
+    & button {
+        width: 10rem;
+        place-self: end;
+        margin-top: .5rem;
+
+        background-color: lighten($main-color, 25%);
+        color: $off-white;
+        padding: .5rem 1rem;
+//        margin-top: 1rem;
+        font-size: 1.2rem;
+        border: none;
+
+        &:disabled {
+            background-color: lighten(lighten($main-color, 25%), 10%);
+            color: darken($off-white, 10%);
+        }
+    }
+}
+
+.comments-section__item:not(:last-child) {
+    margin: 2rem 0px;
+    border-bottom: 1px solid grey;
+    padding: 1rem 0;
+}
+
+.comments-section__likes-container {
+    display: flex;
+}
+
+.comments-section__user-item {
+    @extend .blog-items__user;
+    padding: 0;
+
+    .comments-section__username-item {
+        @extend .blog-items__username;
+    }
+    
+    .comments-section__time-item {
+        @extend .blog-items__time;
+        font-size: 1.2rem;
+        margin: auto 0;
+    }
+}
+
+
+.unlike-comment-icon {
+    @extend .unlike-icon;
+    height: 1.3rem;
+    color: darkorange;
+}
+
+.like-comment-icon {
+    @extend .like-icon;
+    height: 1.3rem;
+    color: darkorange;
+}
+
+.comments-section__likes-count-item {
+    font-size: 1.5rem;
+    margin-right: 0.2rem;
+    color: darkorange;
+}
+
+.comments-section__content-item {
+    padding-left: 1.5rem;
+    word-break: break-all;
+    @media (max-width: $desktop-breakpoint) {
+        font-size: 1.4rem;
+    }
+}

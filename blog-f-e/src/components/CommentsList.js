@@ -3,12 +3,11 @@ import Comment from "./Comment";
 
 export const CommentsList = ({ comments, blogId }) => {
     return (
-        <div>
-            <h5>Comments:</h5>
+        <div className="comments-section__list">
             {
                 comments.length !== 0 ?
                 comments.map(comment => <Comment key={comment.id} blogId={blogId} comment={comment} />) :
-                <div>-NO COMMENTS-</div>
+                <div className="comments-section__empty-list">-NO COMMENTS-</div>
             }
         </div>
     )

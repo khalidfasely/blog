@@ -31,11 +31,11 @@ test('Should render Comment component correctly with props', () => {
 test('Should render like button', () => {
     const { getByTestId } = render(<Comment {...{...props, commentsLiked: []}} />);
     const likeUnlikeButtonEl = getByTestId('like_unlike_button');
-    expect(likeUnlikeButtonEl.textContent).toBe('Like');
+    expect(likeUnlikeButtonEl.tagName).toBe('A');
 });
 
 test('Should render unlike button', () => {
     const { getByTestId } = render(<Comment {...props} />);
     const likeUnlikeButtonEl = getByTestId('like_unlike_button');
-    expect(likeUnlikeButtonEl.textContent).toBe('Unlike');
+    expect(likeUnlikeButtonEl.tagName).toBe('A');
 });

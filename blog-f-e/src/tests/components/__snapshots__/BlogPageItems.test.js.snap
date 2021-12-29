@@ -2,43 +2,61 @@
 
 exports[`Should render BlogPageItems component correclty with blog prop 1`] = `
 <DocumentFragment>
-  <div>
-    <div>
-      <h1
-        data-testid="title_item"
+  <div
+    class="blog-items__container"
+  >
+    <div
+      class="blog-items"
+    >
+      <div
+        class="solid-border-bottom"
       >
-        title2
-      </h1>
-      <p
-        data-testid="time_item"
-      >
-        15 Nov 2021
-      </p>
-      <p
-        data-testid="user_item"
-      >
-        Anonymous
-      </p>
-      <p
-        data-testid="category_item"
-      >
-        Django
-      </p>
-      <p
-        data-testid="description_item"
-      >
-        description
-      </p>
+        <p
+          class="blog-items__category"
+          data-testid="category_item"
+        >
+          Django
+        </p>
+        <h3
+          class="blog-items__title"
+          data-testid="title_item"
+        >
+          title2
+        </h3>
+        <div
+          class="blog-items__user"
+        >
+          <a>
+            <p
+              class="blog-items__username"
+              data-testid="user_item"
+            >
+              Anonymous
+            </p>
+          </a>
+          <p
+            class="blog-items__time"
+            data-testid="time_item"
+          >
+            15 Nov 2021
+          </p>
+        </div>
+        <p
+          class="blog-items__description"
+          data-testid="description_item"
+        >
+          description
+        </p>
+      </div>
       content
       <p
+        class="blog-items__likes"
         data-testid="likes_item"
       >
-        5
-      </p>
-      <p
-        data-testid="dislikes_item"
-      >
-        0
+        <span>
+          5
+        </span>
+         People(s) like this Blog
       </p>
     </div>
   </div>
@@ -47,52 +65,76 @@ exports[`Should render BlogPageItems component correclty with blog prop 1`] = `
 
 exports[`Should render BlogPageItems component correclty with no prop 1`] = `
 <DocumentFragment>
-  <div />
+  <div
+    class="blog-items__container"
+  />
 </DocumentFragment>
 `;
 
 exports[`Should render BlogPageItems component with all props 1`] = `
 <DocumentFragment>
-  <div>
-    <div>
-      <h1
-        data-testid="title_item"
+  <div
+    class="blog-items__container"
+  >
+    <div
+      class="blog-items"
+    >
+      <div
+        class="solid-border-bottom"
       >
-        title2
-      </h1>
-      <p
-        data-testid="time_item"
-      >
-        15 Nov 2021
-      </p>
-      <p
-        data-testid="user_item"
-      >
-        Anonymous
-      </p>
-      <p
-        data-testid="category_item"
-      >
-        Django
-      </p>
-      <p
-        data-testid="description_item"
-      >
-        description
-      </p>
+        <p
+          class="blog-items__category"
+          data-testid="category_item"
+        >
+          Django
+        </p>
+        <h3
+          class="blog-items__title"
+          data-testid="title_item"
+        >
+          title2
+        </h3>
+        <div
+          class="blog-items__user"
+        >
+          <a>
+            <p
+              class="blog-items__username"
+              data-testid="user_item"
+            >
+              Anonymous
+            </p>
+          </a>
+          <p
+            class="blog-items__time"
+            data-testid="time_item"
+          >
+            15 Nov 2021
+          </p>
+        </div>
+        <p
+          class="blog-items__description"
+          data-testid="description_item"
+        >
+          description
+        </p>
+      </div>
       content
-      <a>
-        See More
-      </a>
+      <div
+        class="blog-items__link-page"
+      >
+        <a>
+          Read More
+        </a>
+      </div>
       <p
+        class="blog-items__likes"
         data-testid="likes_item"
       >
-        5
-      </p>
-      <p
-        data-testid="dislikes_item"
-      >
-        0
+        <span>
+          5
+        </span>
+         People(s) like this Blog
       </p>
     </div>
   </div>

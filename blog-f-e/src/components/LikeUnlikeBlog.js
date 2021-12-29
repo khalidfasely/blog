@@ -1,4 +1,6 @@
 import React from "react";
+import {ReactComponent as ReactLikeIcon} from '../images/heart-regular.svg';
+import {ReactComponent as ReactUnlikeIcon} from '../images/heart-solid.svg';
 
 export const LikeUnlikeBlog = (props) => {
     return (
@@ -6,20 +8,26 @@ export const LikeUnlikeBlog = (props) => {
             {
                 props.uname && (
                     props.blogsLiked.includes(props.bid) ?
-                    <button
+                    <a
+                        className="unlike-container"
                         data-testid='like_unlike_blog'
                         disabled={props.buttonDis}
                         onClick={props.unlike_b}
                     >
-                        Unlike
-                    </button> :
-                    <button
+                        <abbr title='Unlike Blog'>
+                            <ReactUnlikeIcon className='unlike-icon' />
+                        </abbr>
+                    </a> :
+                    <a
+                        className="like-container"
                         data-testid='like_unlike_blog'
                         disabled={props.buttonDis}
                         onClick={props.like_b}
                     >
-                        Like
-                    </button>
+                        <abbr title="Like Blog">
+                            <ReactLikeIcon className='like-icon' />
+                        </abbr>
+                    </a>
                 )
             }
         </div>

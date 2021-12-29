@@ -11,6 +11,7 @@ import 'katex/dist/katex.min.css';
 export const MarkdownBlog = ({ blogContent }) => {
     return (
         <ReactMarkdown
+          className='blog-items__content'
           remarkPlugins={[remarkGfm, remarkMath]}
           rehypePlugins={[rehypeKatex]}
           children={blogContent}

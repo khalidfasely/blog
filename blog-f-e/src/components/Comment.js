@@ -3,6 +3,8 @@ import { connect } from "react-redux";
 import { Link } from 'react-router-dom';
 import { l_comment, u_comment } from "../actions/auth";
 import { startLikeComment, startUnlikeComment } from "../actions/blogPage";
+import { ReactComponent as ReactLikeIcon } from '../images/heart-regular.svg';
+import { ReactComponent as ReactUnlikeIcon } from '../images/heart-solid.svg';
 
 export const Comment = ({ blogId, comment, uname, commentsLiked, startLikeComment, startUnlikeComment, l_comment, u_comment }) => {
     const [ buttonDis, setButtonDis ] = useState(false);
@@ -28,20 +30,32 @@ export const Comment = ({ blogId, comment, uname, commentsLiked, startLikeCommen
         });
     }
     return (
-        <div>
-            <Link data-testid='user_profile' to={`/user/${comment.created_by.id}`}>{comment.created_by.username}</Link>
-            : {comment.content}
+        <div className="comments-section__item">
+            <div className='comments-section__user-item'>
+                <Link data-testid='user_profile' to={`/user/${comment.created_by.id}`}>
+                    <p className='comments-section__username-item'>
+                        {comment.created_by.username}
+                    </p>
+                </Link>
+                <p className='comments-section__time-item'>{comment.created_at}</p>
+            </div>
             <div>
-                {comment.created_at} - {likes} {
-                    uname &&
-                    <div>
-                        {
-                            commentsLiked.includes(`${comment.id}`) ?
-                            <button data-testid='like_unlike_button' disabled={buttonDis} onClick={unlike}>Unlike</button> :
-                            <button data-testid='like_unlike_button' disabled={buttonDis} onClick={like}>Like</button>
-                        }
+                <div className="comments-section__content-item">{comment.content}</div> 
+                <div className="comments-section__likes-container">
+                    <div className="comments-section__likes-count-item">
+                        {likes}
                     </div>
-                }
+                    {
+                        uname &&
+                        <div>
+                            {
+                                commentsLiked.includes(`${comment.id}`) ?
+                                <a data-testid='like_unlike_button' disabled={buttonDis} onClick={unlike}><ReactUnlikeIcon className='unlike-comment-icon' /></a> :
+                                <a data-testid='like_unlike_button' disabled={buttonDis} onClick={like}><ReactLikeIcon className='like-comment-icon' /></a>
+                            }
+                        </div>
+                    }
+                </div>
             </div>
         </div>
     )

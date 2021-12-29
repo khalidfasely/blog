@@ -2,18 +2,26 @@
 
 exports[`Should render BlogPage component correctly with isPreview 1`] = `
 <DocumentFragment>
-  <div>
+  <div
+    class="preview-page"
+  >
     <div>
       BlogPageItems
     </div>
-    <div>
-      LikeUnlikeBlog
-    </div>
-    <div>
-      SaveUnsaveBlog
-    </div>
-    <div>
+    <div
+      class="preview-page__comments-count"
+    >
       2 Comment(s)
+    </div>
+    <div
+      class="preview-page__interactions"
+    >
+      <div>
+        LikeUnlikeBlog
+      </div>
+      <div>
+        SaveUnsaveBlog
+      </div>
     </div>
   </div>
 </DocumentFragment>
@@ -21,63 +29,83 @@ exports[`Should render BlogPage component correctly with isPreview 1`] = `
 
 exports[`Should render BlogPage component correctly with props 1`] = `
 <DocumentFragment>
-  <div>
-    <div>
-      BlogPageItems
-    </div>
-    <button>
-      Edit
-    </button>
+  <div
+    class="blog-page"
+  >
     <div
-      class="edit-modal__buttons"
-    >
-      <abbr
-        title="Close"
-      >
-        <button
-          class="edit-modal__close-button"
-          data-testid="close_button"
-        >
-          X
-        </button>
-      </abbr>
-    </div>
-    <div
-      class="edit-modal__form"
+      class="blog-page__interactions"
     >
       <div>
-        NewBlog
+        LikeUnlikeBlog
+      </div>
+      <a>
+        <abbr
+          title="Edit Blog"
+        >
+          <svg
+            class="edit-blog-icon"
+          >
+            edit-regular.svg
+          </svg>
+        </abbr>
+      </a>
+      <div
+        class="edit-modal__buttons"
+      >
+        <abbr
+          title="Close"
+        >
+          <button
+            class="edit-modal__close-button"
+            data-testid="close_button"
+          >
+            X
+          </button>
+        </abbr>
+      </div>
+      <div
+        class="edit-modal__form"
+      >
+        <div>
+          NewBlog
+        </div>
+      </div>
+      <div>
+        SaveUnsaveBlog
       </div>
     </div>
     <div>
-      LikeUnlikeBlog
-    </div>
-    <div>
-      SaveUnsaveBlog
+      BlogPageItems
     </div>
     <div>
       SocialShare
     </div>
-    <div>
-      CommentsList
-    </div>
-    <div>
-      <h5>
-        Add comments:
-      </h5>
-      <form
-        data-testid="new_comment_form"
+    <div
+      class="comments-section"
+    >
+      <div>
+        CommentsList
+      </div>
+      <div
+        class="comments-section__form"
       >
-        <textarea
-          data-testid="new_comment_input"
-          placeholder="Comment"
-        />
-        <button
-          disabled=""
+        <h5>
+          Add comments:
+        </h5>
+        <form
+          data-testid="new_comment_form"
         >
-          Add Comment
-        </button>
-      </form>
+          <textarea
+            data-testid="new_comment_input"
+            placeholder="Comment"
+          />
+          <button
+            disabled=""
+          >
+            Add Comment
+          </button>
+        </form>
+      </div>
     </div>
   </div>
 </DocumentFragment>
@@ -85,60 +113,72 @@ exports[`Should render BlogPage component correctly with props 1`] = `
 
 exports[`Should render BlogPage component correctly with uname!==blogPage(created_by) 1`] = `
 <DocumentFragment>
-  <div>
-    <div>
-      BlogPageItems
-    </div>
+  <div
+    class="blog-page"
+  >
     <div
-      class="edit-modal__buttons"
-    >
-      <abbr
-        title="Close"
-      >
-        <button
-          class="edit-modal__close-button"
-          data-testid="close_button"
-        >
-          X
-        </button>
-      </abbr>
-    </div>
-    <div
-      class="edit-modal__form"
+      class="blog-page__interactions"
     >
       <div>
-        NewBlog
+        LikeUnlikeBlog
+      </div>
+      <div
+        class="edit-modal__buttons"
+      >
+        <abbr
+          title="Close"
+        >
+          <button
+            class="edit-modal__close-button"
+            data-testid="close_button"
+          >
+            X
+          </button>
+        </abbr>
+      </div>
+      <div
+        class="edit-modal__form"
+      >
+        <div>
+          NewBlog
+        </div>
+      </div>
+      <div>
+        SaveUnsaveBlog
       </div>
     </div>
     <div>
-      LikeUnlikeBlog
-    </div>
-    <div>
-      SaveUnsaveBlog
+      BlogPageItems
     </div>
     <div>
       SocialShare
     </div>
-    <div>
-      CommentsList
-    </div>
-    <div>
-      <h5>
-        Add comments:
-      </h5>
-      <form
-        data-testid="new_comment_form"
+    <div
+      class="comments-section"
+    >
+      <div>
+        CommentsList
+      </div>
+      <div
+        class="comments-section__form"
       >
-        <textarea
-          data-testid="new_comment_input"
-          placeholder="Comment"
-        />
-        <button
-          disabled=""
+        <h5>
+          Add comments:
+        </h5>
+        <form
+          data-testid="new_comment_form"
         >
-          Add Comment
-        </button>
-      </form>
+          <textarea
+            data-testid="new_comment_input"
+            placeholder="Comment"
+          />
+          <button
+            disabled=""
+          >
+            Add Comment
+          </button>
+        </form>
+      </div>
     </div>
   </div>
 </DocumentFragment>
@@ -146,57 +186,69 @@ exports[`Should render BlogPage component correctly with uname!==blogPage(create
 
 exports[`Should render BlogPage component correctly with undefined uname 1`] = `
 <DocumentFragment>
-  <div>
-    <div>
-      BlogPageItems
-    </div>
+  <div
+    class="blog-page"
+  >
     <div
-      class="edit-modal__buttons"
-    >
-      <abbr
-        title="Close"
-      >
-        <button
-          class="edit-modal__close-button"
-          data-testid="close_button"
-        >
-          X
-        </button>
-      </abbr>
-    </div>
-    <div
-      class="edit-modal__form"
+      class="blog-page__interactions"
     >
       <div>
-        NewBlog
+        LikeUnlikeBlog
+      </div>
+      <div
+        class="edit-modal__buttons"
+      >
+        <abbr
+          title="Close"
+        >
+          <button
+            class="edit-modal__close-button"
+            data-testid="close_button"
+          >
+            X
+          </button>
+        </abbr>
+      </div>
+      <div
+        class="edit-modal__form"
+      >
+        <div>
+          NewBlog
+        </div>
+      </div>
+      <div>
+        SaveUnsaveBlog
       </div>
     </div>
     <div>
-      LikeUnlikeBlog
-    </div>
-    <div>
-      SaveUnsaveBlog
+      BlogPageItems
     </div>
     <div>
       SocialShare
     </div>
-    <div>
-      CommentsList
-    </div>
-    <div>
-      <h5>
-        Add comments:
-      </h5>
-      <h5>
-        <a>
-          Login
-        </a>
-         or 
-        <a>
-          Sign In
-        </a>
-         to Add a Comment!
-      </h5>
+    <div
+      class="comments-section"
+    >
+      <div>
+        CommentsList
+      </div>
+      <div
+        class="comments-section__form"
+      >
+        <h5>
+          Add comments:
+        </h5>
+        <h5>
+          <a>
+            Login
+          </a>
+           or 
+          <a>
+            Sign In
+          </a>
+           to Add a Comment!
+        </h5>
+      </div>
     </div>
   </div>
 </DocumentFragment>

@@ -3,12 +3,21 @@
 exports[`Should render SaveUnsaveBlog component correctly if bid in blogsSaved 1`] = `
 <DocumentFragment>
   <div>
-    <button
+    <a
+      class="unsave-container"
       data-testid="save_unsave_blog"
       disabled=""
     >
-      Unsave
-    </button>
+      <abbr
+        title="Unsave Blog"
+      >
+        <svg
+          class="unsave-icon"
+        >
+          bookmark-solid.svg
+        </svg>
+      </abbr>
+    </a>
   </div>
 </DocumentFragment>
 `;
@@ -16,12 +25,21 @@ exports[`Should render SaveUnsaveBlog component correctly if bid in blogsSaved 1
 exports[`Should render SaveUnsaveBlog component correctly if bid not in blogsSaved 1`] = `
 <DocumentFragment>
   <div>
-    <button
+    <a
+      class="save-container"
       data-testid="save_unsave_blog"
       disabled=""
     >
-      Save
-    </button>
+      <abbr
+        title="Save Blog"
+      >
+        <svg
+          class="save-icon"
+        >
+          bookmark-regular.svg
+        </svg>
+      </abbr>
+    </a>
   </div>
 </DocumentFragment>
 `;
