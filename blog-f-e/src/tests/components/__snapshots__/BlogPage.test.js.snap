@@ -89,9 +89,6 @@ exports[`Should render BlogPage component correctly with props 1`] = `
       <div
         class="comments-section__form"
       >
-        <h5>
-          Add comments:
-        </h5>
         <form
           data-testid="new_comment_form"
         >
@@ -162,9 +159,6 @@ exports[`Should render BlogPage component correctly with uname!==blogPage(create
       <div
         class="comments-section__form"
       >
-        <h5>
-          Add comments:
-        </h5>
         <form
           data-testid="new_comment_form"
         >
@@ -235,10 +229,9 @@ exports[`Should render BlogPage component correctly with undefined uname 1`] = `
       <div
         class="comments-section__form"
       >
-        <h5>
-          Add comments:
-        </h5>
-        <h5>
+        <h5
+          class="comments-section__login-links"
+        >
           <a>
             Login
           </a>
