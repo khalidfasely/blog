@@ -81,10 +81,20 @@ export const BlogPage = (props) => {
     const onFormSubmit = (e) => {
         e.preventDefault();
         if (newComment.replace(/\s/g, '')) {    
-            props.startAddComment(parseInt(props.match.params.bid), newComment)//.then(() => {
-            setNewComment('');
-            history.push('/');
-            history.push(`/blog/${blog.id}`);
+            props.startAddComment(parseInt(props.match.params.bid), newComment).then((result) => {
+                setNewComment('');
+                if (!blog.comments.includes(result.comment)) {
+                    setBlog({
+                        ...blog,
+                        comments: [
+                            ...blog.comments,
+                            result.comment
+                        ]
+                    });
+                }                
+            });
+            //history.push('/');
+            //history.push(`/blog/${blog.id}`);
             //});
 //.then((result) => {
 //                setBlog({
