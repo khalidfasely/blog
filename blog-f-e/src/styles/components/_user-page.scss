@@ -62,3 +62,7 @@
     font-weight: 500;
     //margin: 1rem 0;
 }
+
+.user-page__error-server {
+    @extend .blog-page__error-server;
+}

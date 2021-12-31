@@ -10,6 +10,7 @@ import { startSetUserPage } from '../actions/userPage';
 import BlogsList from './BlogsList';
 import ModalEditProfile from './ModalEditProfile';
 import { ReactComponent as ReactEditProfileIcon } from '../images/edit-regular.svg';
+import imageLoader from '../images/loader.gif';
 
 export const UserPage = (props) => {
     const [renderUserPage, setRenderUserPage] = useState(false);
@@ -104,7 +105,7 @@ export const UserPage = (props) => {
             </div>
         )
     } else {
-        return <div>User Page {props.match.params.uid}</div>
+        return <div className='user-page__error-server'><img className="loader__image" src={imageLoader} alt="Loading..." /></div>
     };
 };//<div>{`joined on: ${userPage.uinfo.join_date} - last login on: ${userPage.uinfo.last_login}`}</div>
 
