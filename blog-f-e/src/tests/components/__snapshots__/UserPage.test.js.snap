@@ -2,17 +2,42 @@
 
 exports[`Should render UserPage component correctly 1`] = `
 <DocumentFragment>
-  <div>
-    <div>
+  <div
+    class="content-container"
+  >
+    <div
+      class="user-page"
+    >
       <div
-        data-testid="join_date"
+        class="user-page__info-section"
       >
-        joined on: 7 Oct 2021
-      </div>
-      <div
-        data-testid="user_bio"
-      >
-        bio: MyBio
+        <div
+          class="user-page__uname-edit"
+        >
+          <div
+            class="user-page__uname"
+          >
+            UserAdmin
+            <div
+              class="user-page__join-date"
+              data-testid="join_date"
+            >
+              <i>
+                joined on:
+              </i>
+               7 Oct 2021
+            </div>
+          </div>
+        </div>
+        <div
+          class="user-page__bio"
+          data-testid="user_bio"
+        >
+          <i>
+            bio:
+          </i>
+           MyBio
+        </div>
       </div>
       ModalEditProfile
       <div
@@ -27,27 +52,74 @@ exports[`Should render UserPage component correctly 1`] = `
 
 exports[`Should render UserPage component correctly if uname === userPage(username) 1`] = `
 <DocumentFragment>
-  <div>
-    <div>
+  <div
+    class="content-container"
+  >
+    <div
+      class="user-page"
+    >
       <div
-        data-testid="join_date"
+        class="user-page__info-section"
       >
-        joined on: 7 Oct 2021
-      </div>
-      <div
-        data-testid="user_bio"
-      >
-        bio: MyBio
-      </div>
-      <div>
-        <a>
-          Save Blogs
-        </a>
-        <button
-          data-testid="edit_profile_button"
+        <div
+          class="user-page__uname-edit"
         >
-          Edit Profile
-        </button>
+          <div
+            class="user-page__uname"
+          >
+            UserAdmin
+            <div
+              class="user-page__join-date"
+              data-testid="join_date"
+            >
+              <i>
+                joined on:
+              </i>
+               7 Oct 2021
+            </div>
+          </div>
+          <div
+            class="user-page__private"
+          >
+            <div
+              class="user-page__saved-link"
+            >
+              <a>
+                <abbr
+                  title="Saved Blogs"
+                >
+                  Saved
+                </abbr>
+              </a>
+            </div>
+            <div
+              class="user-page__edit-button-container"
+            >
+              <a
+                data-testid="edit_profile_button"
+              >
+                <abbr
+                  title="Edit Profile"
+                >
+                  <svg
+                    class="edit-profile-icon"
+                  >
+                    edit-regular.svg
+                  </svg>
+                </abbr>
+              </a>
+            </div>
+          </div>
+        </div>
+        <div
+          class="user-page__bio"
+          data-testid="user_bio"
+        >
+          <i>
+            bio:
+          </i>
+           MyBio
+        </div>
       </div>
       ModalEditProfile
       <div
@@ -62,12 +134,33 @@ exports[`Should render UserPage component correctly if uname === userPage(userna
 
 exports[`Should render UserPage component correctly without bio 1`] = `
 <DocumentFragment>
-  <div>
-    <div>
+  <div
+    class="content-container"
+  >
+    <div
+      class="user-page"
+    >
       <div
-        data-testid="join_date"
+        class="user-page__info-section"
       >
-        joined on: 7 Oct 2021
+        <div
+          class="user-page__uname-edit"
+        >
+          <div
+            class="user-page__uname"
+          >
+            UserAdmin
+            <div
+              class="user-page__join-date"
+              data-testid="join_date"
+            >
+              <i>
+                joined on:
+              </i>
+               7 Oct 2021
+            </div>
+          </div>
+        </div>
       </div>
       ModalEditProfile
       <div

@@ -11,8 +11,8 @@ export const SavedBlogs = ({ startSetSavedBlogs, blogs }) => {
         document.title = `Saved Blogs`;
     }, [])
     return (
-        <div>
-            <h3 data-testid='header'>saved blogs</h3>
+        <div className='content-container'>
+            <h3 className='saved-blogs__title' data-testid='header'>saved blogs</h3>
             {
                 blogs && <div>{
                     blogs.length !== 0 ?

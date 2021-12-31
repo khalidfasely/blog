@@ -1,0 +1,64 @@
+.user-page {
+    margin: 2rem 0;
+
+    @media (max-width: $desktop-breakpoint) {
+        margin-top: .6rem 0;
+    }
+}
+
+.user-page__uname {
+    font-size: 1.8rem;
+    font-weight: 600;
+
+    @media (max-width: $desktop-breakpoint) {
+        font-size: 1.4rem;
+    }
+}
+
+.user-page__info-section {
+    max-width: 90%;
+    margin: 0 auto;
+
+    @media (max-width: $desktop-breakpoint) {
+        max-width: 95%;
+    }
+}
+
+.user-page__uname-edit {
+    display: flex;
+    justify-content: space-between;
+}
+
+.edit-profile-icon {
+    height: 2rem;
+    margin: 0 .5rem;
+    color: lightslategrey;
+    cursor: pointer;
+}
+
+.user-page__edit-button-container {
+    text-align: end;
+}
+
+.user-page__saved-link a {
+    text-decoration: none;
+    color: lightslategrey;
+
+    & abbr {
+        text-decoration: none;
+    }
+}
+
+.user-page__bio {
+    font-size: 1.5rem;
+    max-width: 98%;
+    margin: .8rem auto;
+    word-break: break-all;
+}
+
+.user-page__join-date {
+    font-size: 1.4rem;
+    color: $grey;
+    font-weight: 500;
+    //margin: 1rem 0;
+}

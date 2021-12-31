@@ -9,6 +9,7 @@ import { startSaveBlog, startUnsaveBlog } from '../actions/savedBlogs';
 import { startSetUserPage } from '../actions/userPage';
 import BlogsList from './BlogsList';
 import ModalEditProfile from './ModalEditProfile';
+import { ReactComponent as ReactEditProfileIcon } from '../images/edit-regular.svg';
 
 export const UserPage = (props) => {
     const [renderUserPage, setRenderUserPage] = useState(false);
@@ -63,21 +64,44 @@ export const UserPage = (props) => {
 
     if(renderUserPage) {
         return (
-            <div>{ userPage &&
-                <div>
-                    <div data-testid='join_date' >{`joined on: ${userPage.uinfo.join_date}`}</div>
-                    {userPage.bio && <div data-testid='user_bio' >bio: {userPage.bio}</div>}
-                    {
-                        userPage.uid.username === props.uname &&
-                        <div>
-                            <Link data-testid='save_blogs_link' to='/saves' >Save Blogs</Link>
-                            <button data-testid='edit_profile_button' onClick={() => setEdPrModalOpen(true)}>Edit Profile</button>
+            <div className='content-container'>
+                { userPage &&
+                    <div className='user-page'>
+                        <div className='user-page__info-section'>
+                            <div className='user-page__uname-edit'>
+                                <div className='user-page__uname'>
+                                    {userPage.uid.username}
+                                    <div className='user-page__join-date' data-testid='join_date'>
+                                        <i>joined on:</i> {userPage.uinfo.join_date}
+                                    </div>
+                                </div>
+                                {
+                                    userPage.uid.username === props.uname &&
+                                    <div className='user-page__private'>
+                                        <div className='user-page__saved-link'>
+                                            <Link data-testid='save_blogs_link' to='/saves'>
+                                                <abbr title='Saved Blogs'>
+                                                    Saved
+                                                </abbr>
+                                            </Link>
+                                        </div>
+                                        <div className='user-page__edit-button-container'>
+                                            <a data-testid='edit_profile_button' onClick={() => setEdPrModalOpen(true)}>
+                                                <abbr title="Edit Profile">
+                                                    <ReactEditProfileIcon className='edit-profile-icon' />
+                                                </abbr>
+                                            </a>
+                                        </div>
+                                    </div>
+                                }
+                                </div>
+                                {userPage.bio && <div className='user-page__bio' data-testid='user_bio' ><i>bio:</i> {userPage.bio}</div>}
                         </div>
-                    }
-                    <ModalEditProfile ePrModalOpen={ePrModalOpen} setEdPrModalOpen={setEdPrModalOpen} bio={userPage.bio} resetInfoProfile={resetInfoProfile} />
-                    <BlogsList blogs={userPage.blogs} />
-                </div>
-            }</div>
+                        <ModalEditProfile ePrModalOpen={ePrModalOpen} setEdPrModalOpen={setEdPrModalOpen} bio={userPage.bio} resetInfoProfile={resetInfoProfile} />
+                        <BlogsList blogs={userPage.blogs} />
+                    </div>
+                }
+            </div>
         )
     } else {
         return <div>User Page {props.match.params.uid}</div>

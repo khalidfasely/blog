@@ -1,0 +1,10 @@
+.saved-blogs__title {
+    text-align: center;
+    margin: 1rem;
+    font-size: 1.7rem;
+
+    @media (max-width: $desktop-breakpoint) {
+        margin: .6rem;
+        font-size: 1.5rem;
+    }
+}

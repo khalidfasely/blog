@@ -2,8 +2,11 @@
 
 exports[`Should render SavedBlogs correctly with no props 1`] = `
 <DocumentFragment>
-  <div>
+  <div
+    class="content-container"
+  >
     <h3
+      class="saved-blogs__title"
       data-testid="header"
     >
       saved blogs
@@ -14,8 +17,11 @@ exports[`Should render SavedBlogs correctly with no props 1`] = `
 
 exports[`Should render SavedBlogs correctly with props 1`] = `
 <DocumentFragment>
-  <div>
+  <div
+    class="content-container"
+  >
     <h3
+      class="saved-blogs__title"
       data-testid="header"
     >
       saved blogs

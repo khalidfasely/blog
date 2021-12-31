@@ -55,5 +55,5 @@ test('Should render all element correctly if uname === userPage(username)', () =
     expect(userBioEl.textContent).toBe(`bio: ${props.profileList[0].bio}`);
 
     const editProfileButtonEl = getByTestId('edit_profile_button');
-    expect(editProfileButtonEl.textContent).toBe('Edit Profile');
+    expect(editProfileButtonEl.parentElement.className).toBe('user-page__edit-button-container');
 });
