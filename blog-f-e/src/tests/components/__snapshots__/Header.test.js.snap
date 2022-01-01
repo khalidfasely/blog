@@ -4,25 +4,37 @@ exports[`Should render Header component correctly 1`] = `
 <DocumentFragment>
   <header>
     <a>
-      <span
-        data-testid="title_header"
+      <abbr
+        title="Blog Home"
       >
-        Blog
-      </span>
+        <span
+          data-testid="title_header"
+        >
+          Blog
+        </span>
+      </abbr>
     </a>
     <nav>
       <ul
         class="nav__links"
       >
         <li>
-          <a>
-            Login
-          </a>
+          <abbr
+            title="Login"
+          >
+            <a>
+              Login
+            </a>
+          </abbr>
         </li>
         <li>
-          <a>
-            Sign In
-          </a>
+          <abbr
+            title="Create An Acount"
+          >
+            <a>
+              Sign In
+            </a>
+          </abbr>
         </li>
       </ul>
     </nav>
@@ -34,36 +46,52 @@ exports[`Should render Header component with props correctly 1`] = `
 <DocumentFragment>
   <header>
     <a>
-      <span
-        data-testid="title_header"
+      <abbr
+        title="Blog Home"
       >
-        Blog
-      </span>
+        <span
+          data-testid="title_header"
+        >
+          Blog
+        </span>
+      </abbr>
     </a>
     <nav>
       <ul
         class="nav__links"
       >
         <li>
-          <a>
-            New Blog
-          </a>
-        </li>
-        <li>
-          <a>
-            <img
-              class="nav__links_icon"
-              src="64572.png"
-            />
-            User
-          </a>
-        </li>
-        <li>
-          <button
-            class="nav__link_b"
+          <abbr
+            title="Create New Blog"
           >
-            Logout
-          </button>
+            <a>
+              New Blog
+            </a>
+          </abbr>
+        </li>
+        <li>
+          <abbr
+            title="Your Profile"
+          >
+            <a>
+              <img
+                class="nav__links_icon"
+                src="64572.png"
+              />
+              User
+            </a>
+          </abbr>
+        </li>
+        <li>
+          <abbr
+            title="Logout"
+          >
+            <button
+              class="nav__link_b"
+            >
+              Logout
+            </button>
+          </abbr>
         </li>
       </ul>
     </nav>

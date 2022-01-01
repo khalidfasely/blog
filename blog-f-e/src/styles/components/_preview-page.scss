@@ -11,6 +11,20 @@
     margin: auto;
 }
 
+.preview-page .blog-items__content {
+    th, td {
+        color: $dark-grey;
+    }
+
+    tbody tr:nth-of-type(even) {
+        background-color: #bbb;
+    }
+
+    thead tr {
+        background-color: lighten($second-color, 8%);//#009879;
+    }
+}
+
 .preview-page .preview-page__interactions {
     display: flex;
     justify-content: end;

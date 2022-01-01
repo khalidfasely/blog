@@ -16,20 +16,44 @@ export const Header = ({ uname, uid, startLogout, unsetSavedBlogs }) => {
 
     return (
             <header>
-                <Link to='/' className='logo nav__link_a'><span data-testid='title_header'>Blog</span></Link>
+                <Link to='/' className='logo nav__link_a'>
+                    <abbr title='Blog Home'>
+                        <span data-testid='title_header'>Blog</span>
+                    </abbr>
+                </Link>
                 <nav>
                     {uname ? 
                         <ul className='nav__links'>
-                            <li><Link to='/new' className='header__link' className='nav__link_a'>New Blog</Link></li>
-                            <li><Link data-testid='profile_login_link' to={`/user/${uid}`} className='nav__link_a'>
-                                <img className='nav__links_icon' src={profileIcon} />
-                                {uname}
-                            </Link></li>
-                            <li><button onClick={logout} className='nav__link_b'>Logout</button></li>
+                            <li>
+                                <abbr title='Create New Blog'>
+                                    <Link to='/new' className='header__link' className='nav__link_a'>New Blog</Link>
+                                </abbr>
+                            </li>
+                            <li>
+                                <abbr title='Your Profile'>
+                                    <Link data-testid='profile_login_link' to={`/user/${uid}`} className='nav__link_a'>
+                                        <img className='nav__links_icon' src={profileIcon} />
+                                        {uname}
+                                    </Link>
+                                </abbr>
+                            </li>
+                            <li>
+                                <abbr title='Logout'>
+                                    <button onClick={logout} className='nav__link_b'>Logout</button>
+                                </abbr>
+                            </li>
                         </ul> :
                         <ul className='nav__links'>
-                            <li><Link data-testid='profile_login_link' to='/login' className='nav__link_b'>Login</Link></li>
-                            <li><Link to='/register' className='nav__link_a'>Sign In</Link></li>
+                            <li>
+                                <abbr title='Login'>
+                                    <Link data-testid='profile_login_link' to='/login' className='nav__link_b'>Login</Link>
+                                </abbr>
+                            </li>
+                            <li>
+                                <abbr title='Create An Acount'>
+                                    <Link to='/register' className='nav__link_a'>Sign In</Link>
+                                </abbr>
+                            </li>
                         </ul>
                     }
                 </nav>

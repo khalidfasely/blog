@@ -106,3 +106,133 @@
 .solid-border-bottom {
     border-bottom: 1px solid lightgrey;
 }
+
+.blog-items__content {
+    //text-align: center;
+    img {
+        max-width: 80%;
+        margin: 0 10%;
+    }
+
+    h1 {
+        font-size: 3rem;
+    }
+
+    h2 {
+        font-size: 2.2rem;
+    }
+
+    h3 {
+        font-size: 1.7rem;
+    }
+
+    a {
+        color: lighten($second-color, 10%);
+    }
+
+    del {
+        background-color: #444;
+    }
+
+    ul {
+        padding: .5rem 2rem;
+
+        
+        @media (max-width: $desktop-breakpoint) {
+            padding: .2rem .8rem;
+        }
+        
+        li {
+            font-family: italic;
+        }
+
+        .task-list-item {
+            padding: .2rem .7rem;
+            
+            @media (max-width: $desktop-breakpoint) {
+                padding: .2rem .4rem;
+            }
+        }
+    }
+
+    /* table {
+        background-color: #666;
+        margin: 1rem auto;
+        border-collapse: collapse;
+        thead, tbody {
+            background-color: lighten(#666, 10%);
+        }
+        th, td {
+            border: 1px solid $off-white;
+            padding: .2rem 1rem;
+        }
+    } */
+
+    table {
+        border-collapse: collapse;
+        margin: 2.5rem auto;
+        font-size: 1.5rem;
+        min-width: 40rem;
+        border-radius: .5rem .5rem 0 0;
+        overflow: hidden;
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.6);
+
+        @media (max-width: $desktop-breakpoint) {
+            margin: 1.5rem auto;
+            min-width: 100%;
+        }
+
+        thead tr {
+            background-color: $second-color;//#009879;
+            color: #fff;
+            text-align: left;
+            font-weight: bold;
+        }
+
+        th, td {
+            padding: 1.2rem 1.5rem;
+
+            @media (max-width: $desktop-breakpoint) {
+                padding: .7rem;
+            }
+        }
+
+        tbody tr {
+            border-bottom: 1px solid #ddd;
+        }
+
+        tbody tr:nth-of-type(even) {
+            background-color: #444;
+        }
+
+        tbody tr:last-of-type {
+            border-bottom: 2px solid $second-color;//#009879;
+        }
+    }
+
+    blockquote {
+        background-color: #222;
+        padding: .5rem;
+        margin: 0 auto;
+        border-radius: .3rem;
+        max-width: 95%;
+        
+        @media (max-width: $desktop-breakpoint) {
+            width: 100%;
+            padding: .3rem;
+        }
+
+        p {
+            margin: .5rem auto;
+            max-width: 90%;
+
+            @media (max-width: $desktop-breakpoint) {
+                margin: .2rem auto;
+            }
+        }
+    }
+
+    @media (max-width: $desktop-breakpoint) {
+        font-size: 80%;
+    }
+}

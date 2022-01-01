@@ -15,35 +15,27 @@ exports[`Should render Footer component correctly 1`] = `
           class="footer-col"
         >
           <h4>
-            Other App
+            About
           </h4>
           <ul>
             <li>
-              <a
-                href="#"
-              >
-                Expensify App
+              <a>
+                Blog
               </a>
             </li>
             <li>
-              <a
-                href="#"
-              >
-                Indecision App
+              <a>
+                Help
               </a>
             </li>
             <li>
-              <a
-                href="#"
-              >
-                Network App
+              <a>
+                Something
               </a>
             </li>
             <li>
-              <a
-                href="#"
-              >
-                Portfolio
+              <a>
+                Something
               </a>
             </li>
           </ul>
@@ -52,35 +44,27 @@ exports[`Should render Footer component correctly 1`] = `
           class="footer-col"
         >
           <h4>
-            Get help
+            Other Apps
           </h4>
           <ul>
             <li>
-              <a
-                href="#"
-              >
-                Something
+              <a>
+                Expensify App
               </a>
             </li>
             <li>
-              <a
-                href="#"
-              >
-                Something
+              <a>
+                Indecision App
               </a>
             </li>
             <li>
-              <a
-                href="#"
-              >
-                Something
+              <a>
+                Network App
               </a>
             </li>
             <li>
-              <a
-                href="#"
-              >
-                Something
+              <a>
+                Portfolio
               </a>
             </li>
           </ul>
@@ -93,30 +77,22 @@ exports[`Should render Footer component correctly 1`] = `
           </h4>
           <ul>
             <li>
-              <a
-                href="#"
-              >
+              <a>
                 Something
               </a>
             </li>
             <li>
-              <a
-                href="#"
-              >
+              <a>
                 Something
               </a>
             </li>
             <li>
-              <a
-                href="#"
-              >
+              <a>
                 Something
               </a>
             </li>
             <li>
-              <a
-                href="#"
-              >
+              <a>
                 Something
               </a>
             </li>
@@ -131,9 +107,7 @@ exports[`Should render Footer component correctly 1`] = `
           <div
             class="social_links"
           >
-            <a
-              href="#"
-            >
+            <a>
               <svg
                 height="32"
                 viewBox="0 0 64 64"
@@ -151,9 +125,7 @@ exports[`Should render Footer component correctly 1`] = `
                 />
               </svg>
             </a>
-            <a
-              href="#"
-            >
+            <a>
               <svg
                 height="32"
                 viewBox="0 0 64 64"
@@ -171,9 +143,7 @@ exports[`Should render Footer component correctly 1`] = `
                 />
               </svg>
             </a>
-            <a
-              href="#"
-            >
+            <a>
               <svg
                 height="32"
                 viewBox="0 0 64 64"
