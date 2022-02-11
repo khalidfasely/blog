@@ -74,9 +74,9 @@ export const NewBlog = ({
         setCategoryError('');
 
         //const availabelData = (title.replace(/\s/g, '') && description.replace(/\s/g, '') && content.replace(/\s/g, '') && category);
-        const availabelTitle = title.replace(/\s/g, '').length >= 90;
-        const availabelDescription = description.replace(/\s/g, '').length >= 200;
-        const availabelContent = content.replace(/\s/g, '').length >= 500;
+        const availabelTitle = title.length >= 30;
+        const availabelDescription = description.length >= 120;
+        const availabelContent = content.length >= 500;
         const availabelData = (availabelTitle && availabelDescription && availabelContent && category);
 
         if (availabelData && !isEdit) {
@@ -127,10 +127,10 @@ export const NewBlog = ({
             });
         } else {
             if(!availabelTitle){
-                setTitleError('The title\'s length should be 90 or more.');
+                setTitleError('The title\'s length should be 30 or more.');
             }
             if(!availabelDescription){
-                setDescriptionError('The description\'s length should be 200 or more.');
+                setDescriptionError('The description\'s length should be 120 or more.');
             }
             if(!availabelContent){
                 setContentError('The content\'s length should be 500 or more.');
@@ -143,9 +143,9 @@ export const NewBlog = ({
     };
 
     const editing = () => {
-        const availabelTitle = title.replace(/\s/g, '').length >= 90;
-        const availabelDescription = description.replace(/\s/g, '').length >= 200;
-        const availabelContent = content.replace(/\s/g, '').length >= 500;
+        const availabelTitle = title.length >= 30;
+        const availabelDescription = description.length >= 120;
+        const availabelContent = content.length >= 500;
         const availabelData = (availabelTitle && availabelDescription && availabelContent && category);
         (availabelData) && edit();
     }
@@ -163,7 +163,7 @@ export const NewBlog = ({
                           className='title-input'
                           id='title_new'
                           data-testid='title_input'
-                          placeholder='Title (More than 90 characters)'
+                          placeholder='Title (More than 30 characters)'
                           autoFocus
                           maxLength={120}
                           value={title}
@@ -181,7 +181,7 @@ export const NewBlog = ({
                           className='description-input'
                           id='description_new'
                           data-testid='description_input'
-                          placeholder='Description (More than 255 characters)'
+                          placeholder='Description (More than 120 characters)'
                           maxLength={300}
                           value={description}
                           onChange={onDescriptionChange}
