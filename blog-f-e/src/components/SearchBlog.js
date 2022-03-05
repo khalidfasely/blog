@@ -24,7 +24,7 @@ export const SearchBlog = ({ searchFilter, filterBySearch }) => {
                     <input
                         data-testid='search_input'
                         className='search__form_input'
-                        type='text'
+                        type='search'
                         placeholder='Search...'
                         value={searchValue}
                         maxLength={100}
