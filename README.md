@@ -1,3 +1,27 @@
+# CS50W FP - Blog
+- [Overview](#overview)
+- [Distinctiveness and Complexity](#distinctiveness-and-complexity)
+    - [Requirements](#requirements)
+- [Routes](#routes)
+    - [Login: /login](#login-login)
+    - [Register: /register](#register-register)
+    - [Index: /](#index)
+    - [New blog: /new](#new-blog-new)
+    - [Blog page: /blog/\<blogID>](#blog-page-blogblogid)
+    - [User page: /user/\<userID>](#user-page-useruserid)
+    - [Saved page: /saves](#saved-page-saves)
+- [Models](#models)
+- [What’s contained in each file I created](#whats-contained-in-each-file-i-created)
+    - [final_project/ folder](#finalproject-folder)
+    - [blog/ folder](#blog-folder)
+    - [blog-f-e/ folder](#blog-f-e-folder)
+- [How to run the application](#how-to-run-the-application)
+
+# Overview
+As I start building my portfolio I think of a blog page for it, from there I got the idea of creating a blog app as the final project of CS50w.  
+This app it's a Blog App, so the user can create a profile, create/delete a blog, read a blog, like/unlike a blog, save/unsave a blog, comment to a blog..(More details bellow)  
+To build this App I used Django, React and Sass.
+
 # Distinctiveness and Complexity:
 ## Requirements :
 
@@ -14,11 +38,6 @@ The app is using Django on the back-end with 5 models, and using ReactJs (Javasc
 
 All the pages on the app are mobile-responsive and works fine on all devices.
 
-
-# Overview
-As I start building my portfolio I think of a blog page for it, from there I got the idea of creating a blog app as the final project of CS50w.  
-This app it's a Blog App, so the user can create a profile, create/delete a blog, read a blog, like/unlike a blog, save/unsave a blog, comment to a blog..(More details bellow)  
-To build this App I used Django, React and Sass.
 
 # Routes
 ## Login: /login
@@ -66,7 +85,7 @@ There is 5 models in this app(BlogApp)
 **created_by**, **created_at**, **content**, **blog_on**, and **likes**.
 
 
-# Directories and files
+# What’s contained in each file I created.
 
 ## final_project/ folder:
 This folder comes with django as the project folder and it containes the settings.py file...
@@ -132,6 +151,46 @@ When we go to this folder and to the src/ folder, we first see:
 - The tests/ folder that containes all actions/, components/, functions/, reducers/, router/ folders tests, and the fictures/ folder it's a fake data to tests some files that needs it.
 
 # How to run the application
-First you must have Python and Django and NodeJs installed in your machine
-- Then you need to go to the front-end folder(blog-f-e/) and run npm install to create node_modules/ folder.
-- Then back on the root of the app run python manage.py runserver.
+<!--#First you must have Python and Django and NodeJs installed in your machine
+#- Then you need to go to the front-end folder(blog-f-e/) and run npm install to create node_modules/ folder.
+#- Then back on the root of the app run python manage.py runserver.-->
+
+- Copy the repository to your system.
+- Make sure you have Python and Django and NodeJs installed on your system. If not you will need to install them.
+- Install yarn on your machine.
+- Go to the front-end folder
+```shell
+cd blog-f-e
+```
+- and run these commands:
+```shell
+yarn install
+```
+```shell
+yarn run build
+```
+- Go back to the project folder
+- install virtualenv, then create a folder (ENV_FOLDER) and run
+
+```shell
+virtualenv ENV_FOLDER
+```
+```shell
+cd ENV_FOLDER/scripts
+```
+```shell
+activate
+```
+
+- Then go back to the root of the project
+and install the packages from the requirements.txt file.
+
+Then run 
+
+```shell
+python manage.py runserver
+```
+
+Then create an account and to create new blog, like/unlike a blog ...
+
+> You can also visit the app on the internet https://lek-blog.herokuapp.com/
